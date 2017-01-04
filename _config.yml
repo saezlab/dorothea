@@ -2,9 +2,8 @@
 gems:             ['jekyll-paginate', 'jekyll-gist', 'jekyll-github-metadata']
 
 # Dependencies
-highlighter:      rouge
+# highlighter:      rouge
 markdown: kramdown
-
 kramdown:
   input: GFM
   syntax_highlighter: rouge
