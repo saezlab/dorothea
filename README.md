@@ -14,7 +14,6 @@ This template defines only:
 We would like to keep only the style-related code here. 
 Right now, Jakob prepared a version (many thanks), but it is open for discussion. 
 We can keep updating it.
-hey u sone df 
 
 You can check the current template at http://saezlab.github.io/projectDocumentationTemplate
 
