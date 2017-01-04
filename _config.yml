@@ -11,7 +11,7 @@ permalink:        pretty
 title:            Tool-Name
 tagline:          Tagline for website
 description:      "Short description of the tool, for the sidebar"
-url:              url_of_the_tool
+#url:              url_of_the_tool
 baseurl:          /projectDocumentationTemplate/
 
 author:
@@ -23,4 +23,4 @@ paginate:         5
 version:          1.0.1
 
 github:
-  repo:           url_of_the_tool_on_github
+  repo:           projectDocumentationTemplate
