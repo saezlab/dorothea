@@ -12,19 +12,19 @@ kramdown:
 permalink:        pretty
 
 # Setup
-title:            Tool-Name
-tagline:          Tagline for website
-description:      "Short description of the tool, for the sidebar"
-#url:              https://github.com/saezlab/projectDocumentationTemplate
-baseurl:          /projectDocumentationTemplate/
+title:            PHONEMeS
+tagline:          Phosphorylation Networks for Mass Spectrometry
+description:      "Method to model signalling networks based on untargeted phosphoproteomics data"
+#url:              https://github.com/saezlab/PHONEMeS
+baseurl:          /PHONEMeS/
 
 author:
-  name:           'Author Name'
+  name:           'Jakob Wirbel'
 
 paginate:         5
 
 # Custom vars
-version:          1.0.1
+version:          0.2.7
 
 github:
-  repo:           https://github.com/saezlab/projectDocumentationTemplate
+  repo:           https://github.com/saezlab/PHONEMeS
