@@ -10,3 +10,6 @@ Test out some code:
 ```python
 import numpy as np
 ```
+``` html
+<a href="#">Hello world</a>
+```
