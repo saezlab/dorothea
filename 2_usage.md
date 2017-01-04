@@ -12,6 +12,12 @@ inline code, no empty line:
 import numpy as np
 ```
 
+inline code, with empty line:
+
+``` python
+import numpy as np
+```
+
 code block, empty line:
 
 ~~~ python
