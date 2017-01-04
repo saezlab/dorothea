@@ -2,7 +2,7 @@
 gems:             ['jekyll-paginate', 'jekyll-gist', 'jekyll-github-metadata']
 
 # Dependencies
-highlighter:      rouge
+# highlighter:      rouge
 
 # Permalinks
 permalink:        pretty
