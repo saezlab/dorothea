@@ -7,19 +7,30 @@ Please describe here how to use the tool.
 
 
 Test out some code:
-inline, no space:
+inline code, no empty line:
 ``` python
 import numpy as np
 ```
 
-block:
+code block, empty line:
 
 ~~~ python
 import numpy as np
 ~~~
 
-block kramdown-style:
+code block, no empty line:
+~~~ python
+import numpy as np
+~~~
 
+code block kramdown-style, empty line:
+
+~~~
+import numpy as np
+~~~
+{: .language-python}
+
+code block kramdown-style, no line:
 ~~~
 import numpy as np
 ~~~
