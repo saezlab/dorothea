@@ -12,7 +12,7 @@ title:            Tool-Name
 tagline:          Tagline for website
 description:      "Short description of the tool, for the sidebar"
 url:              url_of_the_tool
-baseurl:          /name_of_repo/
+baseurl:          /projectDocumentationTemplate/
 
 author:
   name:           'Author Name'
