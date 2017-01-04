@@ -82,13 +82,13 @@ strong, b {
 /* Code */
 
 code {
-  color: #993030;
+  color: #A11035;
   white-space: pre-wrap;
-  background-color: #222;
+  background-color: #ECEDED;
 }
 
 pre {
-  background-color: #222;
+  background-color: #ECEDED;
 }
 
 pre { white-space: pre; overflow: auto !important; }
