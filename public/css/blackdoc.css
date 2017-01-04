@@ -384,17 +384,17 @@ a.sidebar-nav-item:focus {
   height:5px;
 }
 ::-webkit-scrollbar-track {
-  background: #333;
-  border: thin solid #111;
+  background: #ECEDED;
+  /*border: thin solid #111;*/
   /*box-shadow: 0px 0px 3px #111 inset;*/
   border-radius:10px;
 }
 ::-webkit-scrollbar-thumb {
-  background:#222;
-  border: thin solid #222;
+  background:#CFD1D2;
+  /*border: thin solid #222;*/
   border-radius:10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background:#7d7d7d;
+  background:#9C9E9F;
 }
 
