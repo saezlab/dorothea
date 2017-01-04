@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Kinact</title>
+ <link href="https://github.com/saezlab/kinact/atom.xml" rel="self"/>
+ <link href="https://github.com/saezlab/kinact/"/>
+ <updated>2017-01-04T09:19:09+01:00</updated>
+ <id>https://github.com/saezlab/kinact</id>
+ <author>
+   <name>Jakob Wirbel</name>
+   <email></email>
+ </author>
+
+ 
+
+</feed>
