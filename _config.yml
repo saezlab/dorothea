@@ -17,7 +17,7 @@ tagline:          Tagline for website
 description:      "Short description of the tool, for the sidebar"
 #url:              https://github.com/saezlab/projectDocumentationTemplate
 baseurl:          /projectDocumentationTemplate/
-toollogo:         tool_logo.png
+toollogo:         /projectDocumentationTemplate/tool_logo.png
 
 author:
   name:           'Author Name'
