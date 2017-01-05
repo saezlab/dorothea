@@ -192,13 +192,13 @@ tbody tr:nth-child(odd) th {
 
 /* Sidebar links */
 .sidebar a {
-  color: #ffffff;
+  color: #fdd48f;
 }
 
 
 /* Sidebar nav */
 .sidebar-ref{
-  font-size: 8px;
+  font-size: 12px;
 }
 .sidebar-tool-logo{
 }
