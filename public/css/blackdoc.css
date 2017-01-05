@@ -219,11 +219,10 @@ a.sidebar-nav-item:focus {
 
 /* External links with icons*/
 .sidebar-nav-item-ext {
-  display: block;
   line-height: 1.75;
   background: transparent url('../link_icon.png') no-repeat center right;
   background-size: 15px 15px;
-  padding: 20px;
+  padding: 0px 20px 0px 0px;
 }
 a.sidebar-nav-item-ext:hover,
 a.sidebar-nav-item-ext:focus {
