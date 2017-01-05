@@ -197,6 +197,9 @@ tbody tr:nth-child(odd) th {
 
 
 /* Sidebar nav */
+.sidebar-ref{
+  font-size: 8px;
+}
 .sidebar-nav {
   margin-bottom: 1rem;
 }
