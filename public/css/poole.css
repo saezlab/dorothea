@@ -223,7 +223,7 @@ blockquote p:last-child {
 }
 @media (min-width: 30em) {
   blockquote {
-    padding-right: 5rem;
+    padding-right: 1.5rem;
     padding-left: 1.25rem;
   }
 }
