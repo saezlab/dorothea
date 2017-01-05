@@ -220,7 +220,7 @@ a.sidebar-nav-item:focus {
 /* External links with icons*/
 .sidebar-nav-item-ext {
   line-height: 1.75;
-  background: transparent url('../link_icon.png') no-repeat center right;
+  background: transparent url('../link_icon_white.png') no-repeat center right;
   background-size: 15px 15px;
   padding: 0px 20px 0px 0px;
 }
