@@ -193,7 +193,6 @@ tbody tr:nth-child(odd) th {
 /* Sidebar links */
 .sidebar a {
   color: #fdd48f;
-  background: transparent url('../link_icon.png') no-repeat center right;
 }
 
 
@@ -217,6 +216,21 @@ a.sidebar-nav-item:focus {
 .sidebar-nav-item.active {
   font-weight: bold;
 }
+
+/* External links with icons*/
+.sidebar-nav-item-ext {
+  display: block;
+  line-height: 1.75;
+  background: transparent url('../link_icon.png') no-repeat center right;
+  background-size: 15px 15px;
+  padding: 20px;
+}
+a.sidebar-nav-item-ext:hover,
+a.sidebar-nav-item-ext:focus {
+  text-decoration: underline;
+}
+
+
 
 /* Sticky sidebar
  *
