@@ -193,7 +193,7 @@ tbody tr:nth-child(odd) th {
 /* Sidebar links */
 .sidebar a {
   color: #fdd48f;
-  background: transparent url('../public/link_icon.png') no-repeat center right;
+  background: transparent url('../link_icon.png') no-repeat center right;
 }
 
 
