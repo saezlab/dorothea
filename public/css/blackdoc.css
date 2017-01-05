@@ -200,6 +200,8 @@ tbody tr:nth-child(odd) th {
 .sidebar-ref{
   font-size: 8px;
 }
+.sidebar-tool-logo{
+}
 .sidebar-nav {
   margin-bottom: 1rem;
 }
