@@ -397,6 +397,7 @@ a.sidebar-nav-item-ext:focus {
 /* Thin Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
+  height: .7em
 }
 ::-webkit-scrollbar-button {
   width: 8px;
