@@ -1,4 +1,4 @@
-This folder contains the code needed to estimateai sample-level TF activities (or any other gene set enrichment score).
+This folder contains the code needed to estimate sample-level TF activities (or any other gene set enrichment score).
 
 The main function is 
 
