@@ -12,15 +12,15 @@ kramdown:
 permalink:        pretty
 
 # Setup
-title:            SLAPenrich
-tagline:          Sample-population Level Analysis of Pathway enrichments
-description:      "Pathway-level analysis tool set for genomics data from heterogeneous populations under positive selection"
+title:            Tool-Name
+tagline:          Tagline for website
+description:      "Short description of the tool, for the sidebar"
 #url:              https://github.com/saezlab/projectDocumentationTemplate
-baseurl:          /SLAPenrich/
-toollogo:         /SLAPenrich/public_logo.png
+baseurl:          /projectDocumentationTemplate/
+toollogo:         /projectDocumentationTemplate/tool_logo.png
 
 author:
-  name:           'F. Iorio'
+  name:           'Author Name'
 
 paginate:         5
 
@@ -28,4 +28,4 @@ paginate:         5
 version:          1.0.1
 
 github:
-  repo:           https://github.com/saezlab/SLAPenrich
+  repo:           https://github.com/saezlab/projectDocumentationTemplate
