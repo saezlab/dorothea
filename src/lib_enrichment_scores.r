@@ -15,7 +15,7 @@ op = options(digits.secs = 6)
 # ------------------------------------------------------------------------------------------------------------------------------------
 # SLEA: Sample Level Enrichment Analysis
 # ------------------------------------------------------------------------------------------------------------------------------------
-SLEA = function(E, genesets, method, M = NULL, permutations = 1000, filter_E = F){
+SLEA = function(E, genesets, method, M = NULL, permutations = 1000, filter_E = F, min_geneset_size = 3, max_shared = 10){
   # E = Expression matrix (rows=genes; columns=samples) scaled and recentered (use gene_expression_statistic).
   # genesets = list with two elemens: 1) NAME = vector with the names of the genes set; 2) GENES = named list of gene sets
   # method = name of the method used for the SLEA
@@ -25,7 +25,7 @@ SLEA = function(E, genesets, method, M = NULL, permutations = 1000, filter_E = F
   E = as.matrix(E)
   E = E[ ! duplicated(rownames(E)) , ]
   E = E[ order(rownames(E)), ]
-  genesets = SLEA.clean_genesets(genesets, E)
+  genesets = SLEA.clean_genesets(genesets, E, min_geneset_size = min_geneset_size, max_shared = max_shared)
   message('Getting Enrichment Scores')
   # cat('Please be aware that this test should be applied on expression values that are on the same scale.\nIt assumes scaled and recentered expression data\n')
   # cat('If not scaled and recentered, please use the \'gene_expression_statistic()\' function\n')
@@ -118,11 +118,14 @@ SLEA.ManW = function(E, genesets, M = NULL){ # NOTE: method proposed by Claudia 
   PVAL = ES
   FDR = ES
   pb = txtProgressBar(min = 0, max = length(genesets$NAME), style = 3)
+  if( min(unlist(genesets$GENES)) < 0)
+    E = apply(E, 2, function(x) (x-min(x)) / (max(x)-min(x)) ) # rescale gene expression 
   for( gs in genesets$NAME ){
     Eset = E[ rownames(E) %in% names(genesets$GENES[[gs]]), ]
+    Eset[ rownames(Eset) %in% names(genesets$GENES[[gs]])[ genesets$GENES[[gs]] < 0 ] , ]  =  1 - Eset[ rownames(Eset) %in% names(genesets$GENES[[gs]])[ genesets$GENES[[gs]] < 0 ] , ] # invert values of repressed genes
     Enonset = E[ ! rownames(E) %in% rownames(Eset), ]
     for( s in colnames(ES)){
-      x = ManW(Eset[,s], Enonset[,s], M[,s])
+      x = ManW(s, Eset[,s], Enonset[,s], M)
       ES[gs,s] = x$score
       PVAL[gs,s] = x$pval
     }
@@ -134,13 +137,14 @@ SLEA.ManW = function(E, genesets, M = NULL){ # NOTE: method proposed by Claudia 
 }
 
 
-ManW = function(setvalues, nonsetvalues, methylation_pattern = NULL){ 
-  if( ! is.null(methylation_pattern) ){
+ManW = function(sa, setvalues, nonsetvalues, M = NULL){ 
+  if( ! is.null(M) ){
+    methylation_pattern = M[,sa]
     hidden_genes = names(methylation_pattern)[ methylation_pattern == 1 ]
-    setvalues = setvalues[ ! names(setvalues) %in% hidden_genes ]
-    nonsetvalues = nonsetvalues[ ! names(nonsetvalues) %in% hidden_genes ]
+    test = wilcox.test(setvalues[ ! names(setvalues) %in% hidden_genes ], nonsetvalues[ ! names(nonsetvalues) %in% hidden_genes ])
+  }else{
+    test = wilcox.test(setvalues, nonsetvalues)
   }
-  test = wilcox.test(setvalues, nonsetvalues)
   pval = test$p.value
   score = ifelse(mean(setvalues) < mean(nonsetvalues), log10(pval), -log10(pval))
   return(list(score = score, pval = pval))
@@ -160,8 +164,7 @@ SLEA.VIPER = function(E, genesets, M = NULL){
 }
 
 
-new_aREA = function(eset, genesets, M = NULL) { # Note: VIPER and aREA method proposed by Alvarez et al 2016
-                                                # this function has beed derived from the origival aREA() function in VIPER package version 1.7.4 and modified to dela with methylation data
+new_aREA = function(eset, genesets, M = NULL) {
   if ( ! is.null(M) ){
     hidden_genes = apply(M, 2, function(x) names(x)[x==1] )
     temp = lapply(1:length(genesets$GENES), 
@@ -174,10 +177,11 @@ new_aREA = function(eset, genesets, M = NULL) { # Note: VIPER and aREA method pr
                       t2 = qnorm(t2)
                       gsgenes = intersect(gsn, genes)
                       xst2 = t2[ gsgenes ]
-                      wts = gsw[ gsgenes ]/sum(gsw[ gsgenes ])
-                      sum1 = matrix(wts, nrow = 1, ncol = length(gsgenes)) %*% xst2
+                      wts = gsw[ gsgenes ]/sum(gsw[ gsgenes ]) #new
+                      sum1 = matrix(wts, nrow = 1, ncol = length(gsgenes)) %*% xst2 #new
+                      # sum1 = matrix(gsw[ gsgenes ], nrow = 1, ncol = length(gsgenes)) %*% xst2 
                       nes = sum1 * sqrt(sum(gsw[ gsgenes ]^2))
-                      pval = pnorm(nes, mean = 0)
+                      pval = pnorm(nes, mean = 0)#, sd = sqrt(sum(wts^2)))
                       pval = ifelse(pval<0.5, pval, 1-pval)*2
                       return(list(es=nes, nes=nes, pval = pval))
                     } )
@@ -202,6 +206,7 @@ new_aREA = function(eset, genesets, M = NULL) { # Note: VIPER and aREA method pr
                     function(i) {
                       x = genesets$GENES[[i]]
                       pos = match(names(x), rownames(t2))
+                      # sum1 = matrix(x, nrow = 1, ncol = length(x)) %*% filterRowMatrix(t2, pos)
                       sum1 = matrix(x/length(x), nrow = 1, ncol = length(x)) %*% filterRowMatrix(t2, pos) #new
                       return( sum1 )
                     })
@@ -212,7 +217,7 @@ new_aREA = function(eset, genesets, M = NULL) { # Note: VIPER and aREA method pr
     w = sapply(genesets$GENES, function(x) sqrt(sum(x^2)) )
     nes = es*w# normalize enrihment score
     pval = t(sapply(genesets$NAME, function(g)
-      pnorm(nes[g,], mean = 0)
+      pnorm(nes[g,], mean = 0)#, sd = sqrt(sum((genesets$GENES[[g]]/sum(genesets$GENES[[g]]))^2)))
       ))
     pval = apply(pval, 2, function(x) ifelse(x<0.5, x, 1-x)*2 )
     colnames(pval) = colnames(nes)
@@ -224,7 +229,7 @@ new_aREA = function(eset, genesets, M = NULL) { # Note: VIPER and aREA method pr
 
 
 SLEA.GSVA = function(E, genesets, M = NULL, method='GSVA'){ # NOTE: GSVA  method developed by S Hänzelmann - 2013
-                                                            # NOTE: ssGSEA method developed by S Hänzelmann 2013 as proposed by D A Barbie 2009
+                                                            # NOTE: ssGSEA method developed by S Hänzelmann 2013 as proposed by D A BArbie 2009
   if( is.null(M) ){
     genesets$GENES = lapply(genesets$GENES, names)
     if (method=='GSVA'){
@@ -272,23 +277,56 @@ SLEA.myssGSVA = function(E, s, genesets, M = NULL, method = 'GSVA'){ # runs gsva
     hidden_genes = names(sM)[ sM == 1 ]
     sE = sE[ ! names(sE) %in% hidden_genes ]
   }
-  genesets$GENES = lapply(genesets$GENES, names)
-  if( ! is.null(M) ){
-    genesets$GENES = lapply(genesets$GENES, setdiff, y = hidden_genes)
-  }
-  if( method == 'GSVA'){
-    sE = cbind(sE, sE)# trick to avoid errors in gsva. Expr must have more than one column
-    ssES = gsva(expr = sE, genesets$GENES, method = 'gsva', verbose = F, kernel = F, parallel.sz=no_cores, parallel.type='FORK')$es.obs
-    es = ssES[,1]
-    nes = es
-    pval = sapply(genesets$NAME, function(g) pnorm(es[g], mean = 0, sd = sqrt(  1/length(genesets$GENES[[g]]) )) ) # use analytical approximation
-  }
-  if( method %in% c('ssgsea', 'ssGSEA')){
-    sE = cbind(sE, sapply(1:2, function(i) sample(sE) )) # randomize the data for empiricaly computed null distribution
-    ssES = gsva(expr = sE, genesets$GENES, method = 'ssgsea', ssgsea.norm=T, verbose = F, kernel = T, parallel.sz=no_cores, parallel.type='FORK', tau=0)
-    es = ssES[,1]
-    nes = es
-    pval = sapply(genesets$NAME, function(g)  pnorm(nes[g], mean = 0, sd = sqrt(  1/length(genesets$GENES[[g]]) ))  ) # use empirical approximation
+  if( all(unlist(genesets$GENES) > 0)){
+    genesets$GENES = lapply(genesets$GENES, names)
+    if( ! is.null(M) ){
+      genesets$GENES = lapply(genesets$GENES, setdiff, y = hidden_genes)
+    }
+    if( method == 'GSVA'){
+      sE = cbind(sE, sE)# trick to avoid errors in gsva. Expr must have more than one column
+      ssES = gsva(expr = sE, genesets$GENES, method = 'gsva', verbose = F, kernel = F, parallel.sz=no_cores, parallel.type='FORK')$es.obs
+      es = ssES[,1]
+      nes = es
+      pval = sapply(genesets$NAME, function(g) pnorm(es[g], mean = 0, sd = sqrt(  1/length(genesets$GENES[[g]]) )) ) # use analytical approximation
+    }
+    if( method %in% c('ssgsea', 'ssGSEA')){
+      sE = cbind(sE, sapply(1:2, function(i) sample(sE) )) # randomize the data for empiricaly computed null distribution
+      ssES = gsva(expr = sE, genesets$GENES, method = 'ssgsea', ssgsea.norm=T, verbose = F, kernel = T, parallel.sz=no_cores, parallel.type='FORK', tau=0)
+      es = ssES[,1]
+      nes = es
+      pval = sapply(genesets$NAME, function(g)  pnorm(nes[g], mean = 0, sd = sqrt(  1/length(genesets$GENES[[g]]) ))  ) # use empirical approximation
+    }
+  }else{
+    sE = (sE - min(sE)) / (max(sE) - min(sE))
+    ssES = lapply(genesets$NAME, function(gsn){
+      gs = genesets$GENES[[ gsn ]]
+      if( ! is.null(M) ){
+        gs = gs[setdiff(names(gs), hidden_genes)]
+      }
+      sE[ names(sE) %in% names(gs)[gs<0] ] = 1 - sE[ names(sE) %in% names(gs)[gs<0] ]
+      gs = list(names(gs))
+      names(gs) = gsn
+      if( method == 'GSVA'){
+        sE = cbind(sE, sapply(1:2, function(i) sample(sE) )) # trick to avoid errors in gsva function
+        ssES = gsva(expr = sE, gs, method = 'gsva', verbose = F, kernel = F, parallel.sz=no_cores, parallel.type='FORK')$es.obs
+        es = ssES[,1]
+        nes = es
+        pval = pnorm(es, mean = 0, sd = sqrt(1/length(genesets$GENES[[g]]))  )# use analytical approximation
+      }
+      if( method == 'ssgsea'){
+        sE = cbind(sE, sapply(1:100, function(i) sample(sE) )) # randomize the data for empiricaly computed null distribution
+        ssES = gsva(expr = sE, gs, method = 'ssgsea', ssgsea.norm=T, verbose = F, kernel = F, parallel.sz=no_cores, parallel.type='FORK')
+        es = ssES[,1]
+        nes = es
+        pes = ssES[,-1]
+        pval = pnorm(es, mean = mean(pes), sd = sd(pes)) # use empirical approximation
+      }
+      return(list(es=es, nes=nes, pval = pval))
+    })
+    names(ssES) = genesets$NAME
+    es = sapply(ssES, function(x) x$es )
+    nes = sapply(ssES, function(x) x$nes  )
+    pval = sapply(ssES, function(x) x$pval  )
   }
   pval = ifelse(pval > .5, 1-pval, pval)*2
   names(pval) = names(nes)
@@ -331,6 +369,10 @@ SLEA.MEAN = function(E, genesets, permutations = 1000, M = NULL){ # NOTE: method
 SLEA.MEAN.sample_geneset_level = function(s, E, genes, permutations = 10000, M = NULL){
   desc = 'median'
   sE = E[,s]
+  if( any(genes < 0) ){
+    sE = (sE - min(sE)) / (max(sE) - min(sE))
+    sE[ names(sE) %in% names(genes)[ genes < 0 ] ] = 1 - sE[ names(sE) %in% names(genes)[ genes < 0 ] ]
+  }
   genes = names(genes)
   if( ! is.null(M)){
     sM = M[,s]
@@ -511,21 +553,21 @@ geneset.list2binaryMat = function(gsl, E){
   return(bmgs)
 }
 
-SLEA.clean_genesets = function(genesets, E, th = 3, max_TFs = 10){
-  if( ! is.null(max_TFs) ){
-    cat('Removing targets under more than', max_TFs, ' TF\n')
-    rem = names(which(table(unlist(sapply(genesets$GENES, names) ))>max_TFs))
-    g = names(which(table(unlist(sapply(genesets$GENES, names) ))<=max_TFs))
+SLEA.clean_genesets = function(genesets, E, min_geneset_size = 3, max_shared = 10){
+  if( ! is.null(max_shared) ){
+    cat('Removing targets under more than', max_shared, ' TF\n')
+    rem = names(which(table(unlist(sapply(genesets$GENES, names) ))>max_shared))
+    g = names(which(table(unlist(sapply(genesets$GENES, names) ))<=max_shared))
     genesets$GENES = lapply(genesets$GENES, function(x) x[ intersect(names(x), g) ] )
     cat('\t', length(g), ' targets keept\n')
     cat('\t', length(rem), ' targets removed\n')
   }
   cat('Filtering genesets: removing targets not in the expression matrix\n')
   genesets$GENES = lapply(genesets$GENES, function(x) x[ intersect(names(x), rownames(E)) ] )
-  cat('Removing gene sets with less than ', th, ' genes\n')
-  n = sum(unlist(lapply(genesets$GENES, length)) < th )
-  genesets$NAME = genesets$NAME[ sapply(genesets$GENES, length) >= th ]
-  genesets$GENES = genesets$GENES[ sapply(genesets$GENES, length) >= th ]
+  cat('Removing gene sets with less than ', min_geneset_size, ' genes\n')
+  n = sum(unlist(lapply(genesets$GENES, length)) < min_geneset_size )
+  genesets$NAME = genesets$NAME[ sapply(genesets$GENES, length) >= min_geneset_size ]
+  genesets$GENES = genesets$GENES[ sapply(genesets$GENES, length) >= min_geneset_size ]
   cat('\t', n, ' gene sets removed\n')
   cat('\t', length(genesets$GENES), ' gene sets used covering ', sum(rownames(E) %in% unlist(lapply(genesets$GENES, names)) ), ' genes in the expression matrix\n')
   genesets$GENES = genesets$GENES[ order(genesets$NAME) ]
