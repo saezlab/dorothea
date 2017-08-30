@@ -16,7 +16,9 @@ SLEA(E, genesets, method, M = NULL, permutations = 1000, filter_E = F)
   - method = name of the method used for the SLEA (z-SCORE aka "MEAN"; MLR aka "GSEAlm"; aREA aka "VIPER"; "ssGSEA"; "GSVA")
   - M = Methylation binary matrix (optional). If null will be ignored
   - permutations. Number of permutations needed for the method "MEAN"
-  - filter_E. Logical indicating if genes in E not in the gene set should be removed/ Default FALSE.  
+  - filter_E. Logical indicating if genes in E not in the gene set should be removed/ Default FALSE.
+  - min_geneset_size. Minimum number of targets per TF. Default (n = 3).
+  - max_shared. Maximum number of TFs per target. Default (n = 10).  
 ```
 
 
