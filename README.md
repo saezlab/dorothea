@@ -19,14 +19,7 @@ SLEA(E, genesets, method, M = NULL, permutations = 1000, filter_E = F)
   Info:
   - E = Expression matrix (rows=genes; columns=samples) scaled and recentered. Note that genes need to be in a comparable scale (e.g. z-transformed). 
   - genesets = list with two elemens: 1) NAME = vector with the names of the genes set; 2) GENES = named list of vectors containing the gene sets. Values indicate the edges (1 in this case) while names indicate the gene symbol of the targets. 
-  - method = name of the method used for the SLEA:
-       - "MEAN" (aka z-SCORE). Calls a z-test (https://genomemedicine.biomedcentral.com/articles/10.1186/gm327) method.
-       - "GSEAlm" (aka MLR). Uses a Multiple Linear Regression.
-       - "VIPER". Calls the [aREA](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5040167/) (analytic Rank-based Enrichment Analysis) method from the [VIPER](https://www.bioconductor.org/packages/release/bioc/html/viper.html) R package.
-       - "ssGSEA". Calls the [ssGSEA](https://www.ncbi.nlm.nih.gov/pubmed/19847166)
-       (single-sample GSEA) method from the [GSVA](https://bioconductor.org/packages/release/bioc/html/GSVA.html) R package. 
-       - "GSVA". Calls the [GSVA](https://www.ncbi.nlm.nih.gov/pubmed/23323831)
-       (Gene Set Variation Analysis) method from the [GSVA](https://bioconductor.org/packages/release/bioc/html/GSVA.html) R package.
+  - method = name of the method used for the SLEA (z-SCORE aka "MEAN"; MLR aka "GSEAlm"; aREA aka "VIPER"; "ssGSEA"; "GSVA").
   - M = Methylation binary matrix (optional). If null will be ignored
   - permutations. Number of permutations needed for the method "MEAN"
   - filter_E. Logical indicating if genes in E not in the gene set should be removed/ Default FALSE.
@@ -34,8 +27,17 @@ SLEA(E, genesets, method, M = NULL, permutations = 1000, filter_E = F)
   - max_shared. Maximum number of TFs per target. Default (n = 10).  
 ```
 
+The SLEA function calls the following methods:
+   - "MEAN" (aka z-SCORE). Calls a z-test (https://genomemedicine.biomedcentral.com/articles/10.1186/gm327) method.
+   - "GSEAlm" (aka MLR). Uses a Multiple Linear Regression.
+   - "VIPER". Calls the [aREA](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5040167/) (analytic Rank-based Enrichment Analysis) method from the [VIPER](https://www.bioconductor.org/packages/release/bioc/html/viper.html) R package.
+  - "ssGSEA". Calls the [ssGSEA](https://www.ncbi.nlm.nih.gov/pubmed/19847166)
+     (single-sample GSEA) method from the [GSVA](https://bioconductor.org/packages/release/bioc/html/GSVA.html) R package. 
+  - "GSVA". Calls the [GSVA](https://www.ncbi.nlm.nih.gov/pubmed/23323831)
+       (Gene Set Variation Analysis) method from the [GSVA](https://bioconductor.org/packages/release/bioc/html/GSVA.html) R package.
+       
 
-See the ``src/example.r`` file for an example.
+See ``src/example.r`` for an example.
 
 To reproduce the TF activities from [Garcia-Alonso et al 2018](https://www.ncbi.nlm.nih.gov/pubmed/29229604), please use the cl_voom_batchcor_dupmerged_KDCFgenenorm.rdata file in www.synapse.org [syn10463688](https://www.synapse.org/#!Synapse:syn10463688/wiki/463140). This file contains gene-wise normalized expression estimates for protein coding genes in more than 1,300 cell lines. The consensus TF regulons are available in the _data > regulons_ folder.
 
