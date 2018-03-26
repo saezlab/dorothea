@@ -51,7 +51,11 @@ The regulons are provided as an R object at ``data/regulons/CTFRs_v122016.rdata`
 
 ## Citation
 
-Link to the article: [Garcia-Alonso et al 2018](https://www.ncbi.nlm.nih.gov/pubmed/29229604) for more datils.
+[Garcia-Alonso et al 2018](https://www.ncbi.nlm.nih.gov/pubmed/29229604)
+Transcription Factor Activities Enhance Markers of Drug Sensitivity in Cancer.
+Cancer Res February 1 2018 (78) (3) 769-780; 
+DOI: 10.1158/0008-5472.CAN-17-1679
+
 
 ```
 @article{garcia2018transcription,
