@@ -71,4 +71,7 @@ DOI: 10.1158/0008-5472.CAN-17-1679
 ```
 
 
+## License
+
+Distributed under the GNU GPLv2 License. See accompanying file [LICENSE.txt](https://github.com/saezlab/DoRothEA/blob/master/LICENSE.txt) or copy at https://www.gnu.org/licenses/gpl-2.0.html.
 
