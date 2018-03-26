@@ -46,6 +46,8 @@ To reproduce the TF activities from [Garcia-Alonso et al 2018](https://www.ncbi.
 
 DoRothEA makes use of consensus TF regulon (CTFR), composed of TF–target regulatory interactions from 13 public resources covering different TF-binding evidences, including TF-binding site (TFBS) predictions, chromatin immunoprecipitation coupled with high-throughput data (ChIP-X), text-mining derived and manually curated TF–target interactions. For each TF, the CTFR is defined by selecting TF–target interactions reported in more than one source. These TF–target interactions are unsigned and unweighted.
 
+The regulons are provided as an R object at ``data/regulons/CTFRs_v122016.rdata``
+
 
 ## Citation
 
