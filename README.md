@@ -1,7 +1,7 @@
 # DoRothEA (Discriminant Regulon Expression Analysis)
 
 
-DoRothEA (Discriminant Regulon Expression Analysis) is a framework to estimate single sample TF activities from gene expression data and consensus TF-target DNA binding networks. The approach asseumes that the activity of a TF can be estimated from the mRNA levels of its direct target genes.  Please see [Garcia-Alonso et al 2018](http://cancerres.aacrjournals.org/content/early/2017/12/09/0008-5472.CAN-17-1679) for more datils.
+DoRothEA (Discriminant Regulon Expression Analysis) is a framework to estimate single sample TF activities from gene expression data and consensus TF-target DNA binding networks. The approach assumes that the activity of a TF can be estimated from the mRNA levels of its direct target genes.  Please see [Garcia-Alonso et al 2018](http://cancerres.aacrjournals.org/content/early/2017/12/09/0008-5472.CAN-17-1679) for more datils.
 
 
 ## Usage
