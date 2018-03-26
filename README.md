@@ -28,8 +28,8 @@ SLEA(E, genesets, method, M = NULL, permutations = 1000, filter_E = F)
 ```
 
 The SLEA function calls the following methods:
-   - "MEAN" (aka z-SCORE). Calls a z-test (https://genomemedicine.biomedcentral.com/articles/10.1186/gm327) method.
-   - "GSEAlm" (aka MLR). Uses a Multiple Linear Regression.
+   - "MEAN" (aka z-SCORE). Calls a [z-test](https://genomemedicine.biomedcentral.com/articles/10.1186/gm327) method.
+   - "GSEAlm" (aka MLR). Uses a [Multiple Linear Regression](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1182396/) approach.
    - "VIPER". Calls the [aREA](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5040167/) (analytic Rank-based Enrichment Analysis) method from the [VIPER](https://www.bioconductor.org/packages/release/bioc/html/viper.html) R package.
   - "ssGSEA". Calls the [ssGSEA](https://www.ncbi.nlm.nih.gov/pubmed/19847166)
      (single-sample GSEA) method from the [GSVA](https://bioconductor.org/packages/release/bioc/html/GSVA.html) R package. 
