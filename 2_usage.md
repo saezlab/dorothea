@@ -17,8 +17,10 @@ load('data/example_expression_mat.rdata')
 # Estimate TF activities
 TF_activities = SLEA(E = E, genesets = CTFRs_genesets, method = 'GSVA')$NES
 ```
+
 ## DoRothEA (v2)
 Below you find two examples how to calculate TF activities using the second version of DoRothEA.
+
 ```
 # Load requeired packages
 require(viper) 
@@ -68,5 +70,4 @@ TF_activities = data.frame(Regulon = names(mrs$es$nes),
 TF_activities = TF_activities[ order(TF_activities$p.value), ]
 # Save results
 write.csv(TF_activities, file = 'TFactivities_example2.csv')
-
 ```
