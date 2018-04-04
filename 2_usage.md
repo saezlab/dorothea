@@ -19,6 +19,7 @@ TF_activities = SLEA(E = E, genesets = CTFRs_genesets, method = 'GSVA')$NES
 ```
 ## DoRothEA (v2)
 Below you find two examples how to calculate TF activities using the second version of DoRothEA.
+
 ```
 # Load requeired packages
 require(viper) 
