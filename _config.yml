@@ -14,7 +14,7 @@ permalink:        pretty
 # Setup
 title:            DoRothEA
 tagline:          DoRothEA - GitHub page
-description:      "Manually curated human regulon to infer transcription factor activity using viper"
+description:      "Manually curated human regulon to infer transcription factor activity"
 #url:              https://github.com/saezlab/projectDocumentationTemplate
 baseurl:          /DoRothEA/
 toollogo:         /DoRothEA/tool_logo.png
