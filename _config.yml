@@ -12,15 +12,15 @@ kramdown:
 permalink:        pretty
 
 # Setup
-title:            Tool-Name
-tagline:          Tagline for website
-description:      "Short description of the tool, for the sidebar"
+title:            DoRothEA
+tagline:          DoRothEA - GitHub page
+description:      "Manually curated human regulon which can be used to infer transcription factor activity using viper"
 #url:              https://github.com/saezlab/projectDocumentationTemplate
 baseurl:          /DoRothEA/
-toollogo:         /projectDocumentationTemplate/tool_logo.png
+toollogo:         /DoRothEA/tool_logo.png
 
 author:
-  name:           'Author Name'
+  name:           'Luz Garcia-Alonso'
 
 paginate:         5
 
