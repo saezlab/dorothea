@@ -10,7 +10,7 @@ DoRothEA (Discriminant Regulon Expression Analysis) is a manually curated human 
 ### DoRothEA (v1)
 The first version of DoRothEA consists of 127 TFs targeting in total 7,445 genes. If you use this regulon please cite
 
-> Garcia-Alonso, L., Iorio, F., Matchan, A., Fonseca, N., Jaaks, P., Peat, G., Pignatelli, M., Falcone, F., Benes, CH., Dunham, I., Bignell, GR., McDade, S., Garnett, MJ., Saez-Rodriguez, J. (2017). [Transcription Factor Activities Enhance Markers of Drug Sensitivity in Cancer.] (http://cancerres.aacrjournals.org/content/early/2017/12/09/0008-5472.CAN-17-1679) Cancer Research, 78(3), 769–780.
+Garcia-Alonso, L., Iorio, F., Matchan, A., Fonseca, N., Jaaks, P., Peat, G., Pignatelli, M., Falcone, F., Benes, CH., Dunham, I., Bignell, GR., McDade, S., Garnett, MJ., Saez-Rodriguez, J. (2017). [Transcription Factor Activities Enhance Markers of Drug Sensitivity in Cancer.] (http://cancerres.aacrjournals.org/content/early/2017/12/09/0008-5472.CAN-17-1679) Cancer Research, 78(3), 769–780.
 
 ```
 @article{GarciaAlonso2017,
