@@ -69,3 +69,4 @@ TF_activities = data.frame(Regulon = names(mrs$es$nes),
 TF_activities = TF_activities[ order(TF_activities$p.value), ]
 # Save results
 write.csv(TF_activities, file = 'TFactivities_example2.csv')
+
