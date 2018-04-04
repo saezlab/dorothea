@@ -2,7 +2,6 @@
 layout: page
 title: Installation
 ---
-# Installation
 ## DoRothEA (v1)
 Currently the scripts to run DoRothEA are not wrapped up in an R package. Therefore no installation is required.
 
