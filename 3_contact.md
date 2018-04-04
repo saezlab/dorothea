@@ -3,4 +3,4 @@ layout: page
 title: Contact
 ---
 
-Provide contact information.
+Author: [Luz Garcia-Alonso](mailto:luzgarciaalonso@gmail.com) 
