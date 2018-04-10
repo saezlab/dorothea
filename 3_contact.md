@@ -3,4 +3,4 @@ layout: page
 title: Contact
 ---
 
-Author: [Luz Garcia-Alonso](mailto:luzgarciaalonso@gmail.com) 
+Please do not hesitate to [contact us](mailto:dorothea@saezlab.org) for feedback, questions or suggestions. 
