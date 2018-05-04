@@ -4,7 +4,7 @@ title: Usage
 ---
 
 ## DoRothEA (v1)
-Below is an example how to run the first version of DoRothEA. The corresponding GitHub repository you find [here](https://github.com/saezlab/DoRothEA/releases/tag/version1)
+Below is an example how to run the first version of DoRothEA. The corresponding GitHub repository can be found [here](https://github.com/saezlab/DoRothEA/releases/tag/version1).
 ```
 # Load functions
 source('src/lib_enrichment_scores.r')
@@ -19,7 +19,7 @@ TF_activities = SLEA(E = E, genesets = CTFRs_genesets, method = 'GSVA')$NES
 ```
 
 ## DoRothEA (v2)
-Below you find two examples how to calculate TF activities using the second version of DoRothEA.
+Below you can find two examples of how to calculate TF activities using the second version of DoRothEA.
 
 ```
 # Load requeired packages
