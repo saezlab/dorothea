@@ -26,6 +26,11 @@ Each TF-target interaction has been assigned a confidence score, ranging from A-
 The collection of consensus TF regulons, scored according our A-E criteria, is available at  ``data/TFregulons/Robjects_VIPERformat/consensus/BEST_viperRegulon.rdata`` and ``data/TFregulons/table/database_20180326.csv.zip``
 
 
+### Loading TF regulons in `pypath`
+
+[`pypath`](https://github.com/saezlab/pypath) is our Python module for building molecular networks. By loading TF regulons in `pypath` you will be able to manipulate it as an `igraph` network object, combine it with annotations from other data sources and also with other networks. See [here](https://github.com/saezlab/pypath/blob/master/tfregulons_tutorial.md) how to do it.
+
+
 ## Citation
 
 [Garcia-Alonso et al 2018](https://www.ncbi.nlm.nih.gov/pubmed/29229604)
