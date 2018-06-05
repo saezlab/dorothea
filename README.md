@@ -20,14 +20,40 @@ See ``src/example.r`` for several examples.
 ## About the TF regulons
 
 DoRothEA makes use of consensus TF regulon (CTFR), composed of TF–target regulatory interactions derived from about 20 sources and strategies covering different lines of evidence, including: 13 manually curated repositories, interactions derived from ChIP-seq binding data (from ReMap), in silico prediction of TF binding on gene promoters (using TF binding motifs from JASPAR and HOCMOCO) and the prediction of transcriptional interactions from GTEx (gene expression across human tissues) via ARACNe. 
-Each TF-target interaction has been assigned a confidence score, ranging from A-E, being A the most confident interactions. See [Garcia-Alonso 2018 et al.](https://www.biorxiv.org/content/early/2018/06/03/337915) for more information.
+Each TF-target interaction has been assigned a confidence score, ranging from A-E, being A the most confident interactions (see Table below).
+
+| Confidence score  | #TFs  | #Interactions |
+| ----------------- | ----- | ------------- |
+| A                 | 94    | 5,156         |
+| B                 | 21    | 1,188         |
+| C                 | 174   | 7,422         | 
+| D                 | 94    | 11,038        |
+| E                 | 1,013 | 445,907       |
+| Total             | 1,396 | 470,701       |
+
+See [Garcia-Alonso 2018 et al.](https://www.biorxiv.org/content/early/2018/06/03/337915) for more information.
 
 
 The collection of consensus TF regulons, scored according our A-E criteria, is available at  ``data/TFregulons/Robjects_VIPERformat/consensus/BEST_viperRegulon.rdata`` and ``data/TFregulons/table/database_20180326.csv.zip``
 
 
+
+
 ## Citation
 
+# DoRothEA v2
+[Garcia-Alonso et al 2018](https://www.biorxiv.org/content/early/2018/06/03/337915)
+Benchmark and integration of resources for the estimation of human transcription factor activities.
+
+```
+@article{garcia2018benchmark,
+  title={Benchmark and integration of resources for the estimation of human transcription factor activities},
+  author={Garcia-Alonso, Luz and Ibrahim, MM and Turei, D and Saez-Rodriguez, J}
+  journal={bioRxiv}
+
+```
+
+# DoRothEA v1
 [Garcia-Alonso et al 2018](https://www.ncbi.nlm.nih.gov/pubmed/29229604)
 Transcription Factor Activities Enhance Markers of Drug Sensitivity in Cancer.
 Cancer Res February 1 2018 (78) (3) 769-780; 
