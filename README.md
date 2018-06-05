@@ -20,7 +20,7 @@ See ``src/example.r`` for several examples.
 ## About the TF regulons
 
 DoRothEA makes use of consensus TF regulon (CTFR), composed of TF–target regulatory interactions derived from about 20 sources and strategies covering different lines of evidence, including: 13 manually curated repositories, interactions derived from ChIP-seq binding data (from ReMap), in silico prediction of TF binding on gene promoters (using TF binding motifs from JASPAR and HOCMOCO) and the prediction of transcriptional interactions from GTEx (gene expression across human tissues) via ARACNe. 
-Each TF-target interaction has been assigned a confidence score, ranging from A-E, being A the most confident interactions (see Table below).
+Each TF-target interaction has been assigned a confidence score, ranging from A-E, being A the most confident interactions (see table below).
 
 | Confidence score  | #TFs  | #Interactions |
 | ----------------- | ----- | ------------- |
@@ -41,7 +41,7 @@ The collection of consensus TF regulons, scored according our A-E criteria, is a
 
 ## Citation
 
-# DoRothEA v2
+### DoRothEA v2
 [Garcia-Alonso et al 2018](https://www.biorxiv.org/content/early/2018/06/03/337915)
 Benchmark and integration of resources for the estimation of human transcription factor activities.
 
@@ -53,7 +53,7 @@ Benchmark and integration of resources for the estimation of human transcription
 
 ```
 
-# DoRothEA v1
+### DoRothEA v1
 [Garcia-Alonso et al 2018](https://www.ncbi.nlm.nih.gov/pubmed/29229604)
 Transcription Factor Activities Enhance Markers of Drug Sensitivity in Cancer.
 Cancer Res February 1 2018 (78) (3) 769-780; 
