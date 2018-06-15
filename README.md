@@ -70,11 +70,11 @@ DOI: 10.1158/0008-5472.CAN-17-1679
 
 
 ```
-@article{garcia2017transcription,
+@article{garcia2018transcription,
   doi = {10.1158/0008-5472.can-17-1679},
   url = {https://doi.org/10.1158/0008-5472.can-17-1679},
-  year  = {2017},
-  month = {dec},
+  year  = {2018},
+  month = {feb},
   publisher = {American Association for Cancer Research ({AACR})},
   volume = {78},
   number = {3},
