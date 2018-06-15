@@ -22,7 +22,7 @@ See ``src/example.r`` for several examples.
 DoRothEA makes use of consensus TF regulon (CTFR), composed of TF–target regulatory interactions derived from about 20 sources and strategies covering different lines of evidence, including: 13 manually curated repositories, interactions derived from ChIP-seq binding data (from ReMap), in silico prediction of TF binding on gene promoters (using TF binding motifs from JASPAR and HOCMOCO) and the prediction of transcriptional interactions from GTEx (gene expression across human tissues) via ARACNe. 
 Each TF-target interaction has been assigned a confidence score, ranging from A-E, being A the most confident interactions (see table below).
 
-| Confidence score  | #TFs  | # Targets | #Interactions |
+| Confidence score  | #TFs  | #Targets | #Interactions |
 | ----------------- | ----- | --------- | ------------- |
 | A                 | 94    | 2,530     | 5,156         |
 | B                 | 21    | 997       | 1,188         |
@@ -60,7 +60,6 @@ DOI: 10.1101/337915
   title={Benchmark and integration of resources for the estimation of human transcription factor activities},
   author={Garcia-Alonso, Luz and Ibrahim, MM and Turei, D and Saez-Rodriguez, J}
   journal={bioRxiv}
-
 ```
 
 ### DoRothEA v1
