@@ -36,8 +36,75 @@ See [Garcia-Alonso 2018 et al.](https://www.biorxiv.org/content/early/2018/06/03
 
 The collection of consensus TF regulons, scored according our A-E criteria, is available at  ``data/TFregulons/Robjects_VIPERformat/consensus/BEST_viperRegulon.rdata`` and ``data/TFregulons/table/database_20180326.csv.zip``
 
+### Loading TF regulons in ``pypath``
 
+[``pypath``](https://github.com/saezlab/pypath) is our Python module for building molecular networks.
+By loading TF regulons in ``pypath`` you will be able to manipulate it as an ``igraph`` network object,
+combine it with annotations from other data sources and also with other networks.
+See [here](https://github.com/saezlab/pypath/blob/master/tfregulons_tutorial.md) how to do it.
+Briefly, you can build a network of the `A` and `B` confidence level TF-target relationships like this:
 
+```
+import pypath
+
+transc = pypath.data_formats.transcription
+transc['tfregulons'].inputArgs['levels'] = {'A', 'B'}
+
+pa = pypath.PyPath()
+pa.init_network(transc)
+```
+
+### Query TF regulons by webservice
+
+TF regulons data is accessible also in the webservice at http://omnipathdb.org/.
+Below we show a few example queries, check
+[here](https://github.com/saezlab/pypath/blob/master/README.rst) to see some more.
+
+**Important:** Be aware that the server serves not only TF regulons but other datasets as well.
+It queries TF regulons only if you explicitely tell to do so by adding ``datasets=tfregulons``
+or ``types=TF`` to your query. If you miss to add either of these the returned interactions
+will be of other datasets. If you mistype any argument name or value the server returns a
+plain text error message pointing out the error.
+
+**Important:** By default the server returns interactions of confidence levels `A` and `B`. If
+you want to retrieve other levels you need to explicitely add the argument
+``tfregulons_levels=A,B,C,D``. In the webservice only confidence levels `A-D` are available.
+The number of interactions in `E` confidence level is too large hence these are available in
+static files [here](http://saezlab.org/tfregulons/).
+
+Get all interactions at confidence levels `A-C`:
+
+http://omnipathdb.org/interactions?datasets=tfregulons&tfregulons_levels=A,B,C&genesymbols=1&fields=sources,tfregulons_level
+
+Interactions at confidence level `A` translated to mouse identifiers by homology using NCBI Homologene:
+
+http://omnipathdb.org/interactions?datasets=tfregulons&tfregulons_levels=A&genesymbols=1&fields=sources,ncbi_tax_id&organisms=10090
+
+Interactions from ChIP-Seq and expression based inference methods:
+
+http://omnipathdb.org/interactions?datasets=tfregulons&tfregulons_methods=chipseq,coexp&genesymbols=1&fields=sources,tfregulons_level
+
+All targets of some of the forkhead box transcription factors:
+
+http://omnipathdb.org/interactions?datasets=tfregulons&sources=FOXA1,FOXA2,FOXA3,FOXB1,FOXB2,FOXC1,FOXH1&genesymbols=1&fields=sources,tfregulons_level
+
+All transcription factors regulating EGFR:
+
+http://omnipathdb.org/interactions?datasets=tfregulons&targets=P00533&genesymbols=1&fields=sources,tfregulons_level
+
+Transcriptional regulation of EGFR with its protein-protein interactions and miRNA regulators:
+
+http://omnipathdb.org/interactions?datasets=tfregulons,omnipath,kinaseextra,mirnatarget&partners=EGFR&genesymbols=1&fields=sources,references,type
+
+The same in JSON format:
+
+http://omnipathdb.org/interactions?datasets=tfregulons,omnipath,kinaseextra,mirnatarget&partners=EGFR&genesymbols=1&fields=sources,references,type&format=json
+
+Include 4 additional columns with ``True`` and ``False`` values according to which of the
+4 approaches (literature curation, ChIP-Seq, expression based inference, sequence based
+binding site prediction) confirmed the TF-target interactions:
+
+http://omnipathdb.org/interactions?datasets=tfregulons&genesymbols=1&fields=databases,tfregulons_curated,tfregulons_chipseq,tfregulons_coexp,tfregulons_tfbs,tfregulons_level
 
 ## Citation
 
@@ -89,4 +156,3 @@ DOI: 10.1158/0008-5472.CAN-17-1679
 ## License
 
 Distributed under the GNU GPLv2 License. See accompanying file [LICENSE.txt](https://github.com/saezlab/DoRothEA/blob/master/LICENSE.txt) or copy at https://www.gnu.org/licenses/gpl-2.0.html.
-
