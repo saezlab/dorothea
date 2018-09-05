@@ -34,7 +34,7 @@ Each TF-target interaction has been assigned a confidence score, ranging from A-
 See [Garcia-Alonso 2018 et al.](https://www.biorxiv.org/content/early/2018/06/03/337915) for more information.
 
 
-The collection of consensus TF regulons, scored according our A-E criteria, is available at  ``data/TFregulons/Robjects_VIPERformat/consensus/`` and ``data/TFregulons/table/database_20180326.csv.zip``
+The collection of consensus TF regulons, scored according our A-E criteria, is available at  ``data/TFregulons/Robjects_VIPERformat/consensus/``
 
 ### Loading TF regulons in ``pypath``
 
