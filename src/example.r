@@ -11,7 +11,7 @@ require(viper)
 
 
 # Load TF regulon genesets in VIPER format
-load('DoRothEA/data/TFregulons/consensus/Robjects_VIPERformat/normal/TOP10score_viperRegulon.rdata')
+load('data/TFregulons/consensus/Robjects_VIPERformat/normal/TOP10score_viperRegulon.rdata')
 # Clean TF names & explore object
 names(viper_regulon) = sapply(strsplit(names(viper_regulon), split = ' - '), head, 1)
 # Explore the regulons object
