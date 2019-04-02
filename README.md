@@ -4,7 +4,7 @@
 DoRothEA (Discriminant Regulon Expression Analysis) is a framework to estimate single sample TF activities from gene expression data and consensus TF-target DNA binding networks. The approach assumes that the activity of a TF can be estimated from the mRNA levels of its direct target genes.  
 
 
-This new version of DoRothEA (v2) provides updated TF regulons derived from a broader collection of resources and strategies. The new TF regulons are signed (to account for activation/repression), when possible, and accompanied by a confidence score. The preprint of the corresponding paper can be found on [bioRxiv](https://www.biorxiv.org/content/early/2018/06/03/337915). 
+This new version of DoRothEA (v2) provides **updated TF regulons** derived from a broader collection of resources and strategies. The new TF regulons are **signed** (to account for activation/repression), when possible, and accompanied by a **confidence score**. The preprint of the corresponding paper can be found on [bioRxiv](https://www.biorxiv.org/content/early/2018/06/03/337915). 
 
 
 An earlier version of the TF regulons and the code to estimate TF activities, as described in [Garcia-Alonso et al 2018](http://cancerres.aacrjournals.org/content/early/2017/12/09/0008-5472.CAN-17-1679), can be found in [DoRothEA v1 version](https://github.com/saezlab/DoRothEA/releases/tag/version1).
