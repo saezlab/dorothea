@@ -4,7 +4,7 @@
 DoRothEA (Discriminant Regulon Expression Analysis) is a framework to estimate single sample TF activities from gene expression data and consensus TF-target DNA binding networks. The approach assumes that the activity of a TF can be estimated from the mRNA levels of its direct target genes.  
 
 
-This new version of DoRothEA (v2) provides **updated TF regulons** derived from a broader collection of resources and strategies. The new TF regulons are **signed** (to account for activation/repression), when possible, and accompanied by a **confidence score**. The preprint of the corresponding paper can be found on [bioRxiv](https://www.biorxiv.org/content/early/2018/06/03/337915). 
+This new version of DoRothEA (v2) provides **updated TF regulons** derived from a broader collection of resources and strategies. The new TF regulons are **signed** (to account for activation/repression), when possible, and accompanied by a **confidence score**. The manuscript is published in [Genome Research](https://genome.cshlp.org/content/early/2019/07/24/gr.240663.118.abstract). 
 
 
 An earlier version of the TF regulons and the code to estimate TF activities, as described in [Garcia-Alonso et al 2018](http://cancerres.aacrjournals.org/content/early/2017/12/09/0008-5472.CAN-17-1679), can be found in [DoRothEA v1 version](https://github.com/saezlab/DoRothEA/releases/tag/version1).
@@ -111,24 +111,22 @@ http://omnipathdb.org/interactions?datasets=tfregulons&genesymbols=1&fields=data
 ## Citation
 
 ### DoRothEA v2
-[Garcia-Alonso et al 2018](https://www.biorxiv.org/content/early/2018/06/03/337915)
+[Garcia-Alonso et al 2019](https://genome.cshlp.org/content/early/2019/07/24/gr.240663.118.abstract)
 Benchmark and integration of resources for the estimation of human transcription factor activities.
-BioRxiv;
-DOI: 10.1101/337915
+Genome Research, 29(8), 1363-1375. https://doi.org/10.1101/gr.240663.118
 
 ```
-@article{garcia2018benchmark,
-  doi = {10.1101/337915},
-  url = {https://www.biorxiv.org/content/early/2018/06/03/337915},
-  year  = {2018},
-  month = {jun},
-  publisher = {},
-  volume = {},
-  number = {},
-  pages = {},
+@article{garcia2019benchmark,
+  doi = {10.1101/gr.240663.118},
+  url = {https://genome.cshlp.org/content/early/2019/07/24/gr.240663.118.abstract},
+  year  = {2019},
+  month = {aug},
+  volume = {29},
+  number = {8},
+  pages = {1363-1375},
   title={Benchmark and integration of resources for the estimation of human transcription factor activities},
-  author={Garcia-Alonso, Luz and Ibrahim, MM and Turei, D and Saez-Rodriguez, J}
-  journal={bioRxiv}
+  author={Garcia-Alonso, L., Holland, C.H., Ibrahim, M.M., Turei, D. and Saez-Rodriguez, J.}
+  journal={Genome Research}
 ```
 
 ### DoRothEA v1
