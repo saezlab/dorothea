@@ -24,12 +24,12 @@ Each TF-target interaction has been assigned a confidence score, ranging from A-
 
 See [Garcia-Alonso 2018 et al.](https://www.biorxiv.org/content/early/2018/06/03/337915) for more information.
 
-## TF regulons data
+## Accessing the TF regulons
 
 We provide the collection of consensus TF regulons in three different ways:
-1. As csv files ``data/TFregulons/consensus/table``.
-2. As R objects ready to be used by the VIPER method ([Alvarez et al. 2016](https://www.nature.com/articles/ng.3593)) ``data/TFregulons/consensus/Robjects_VIPERformat``
-3. Via [omnipathdb](https://www.nature.com/articles/nmeth.4077?proof=trueIn) pypath or webservice.
+1. Via [omnipathdb](https://www.nature.com/articles/nmeth.4077?proof=trueIn) pypath or webservice.
+2. As csv files ``data/TFregulons/consensus/table``.
+3. As R objects ready to be used by the VIPER method ([Alvarez et al. 2016](https://www.nature.com/articles/ng.3593)) ``data/TFregulons/consensus/Robjects_VIPERformat``
 
 Please visit our [GitHub page](https://saezlab.github.io/DoRothEA/) for more information. 
 
