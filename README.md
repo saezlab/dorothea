@@ -1,20 +1,11 @@
 # DoRothEA v2
 
 
-DoRothEA (Discriminant Regulon Expression Analysis) is a framework to estimate single sample TF activities from gene expression data and consensus TF-target DNA binding networks. The approach assumes that the activity of a TF can be estimated from the mRNA levels of its direct target genes.  
+DoRothEA (Discriminant Regulon Expression Analysis) is a framework to estimate single sample TF activities from gene expression data and consensus TF-target binding networks. The approach assumes that the activity of a TF can be estimated from the mRNA levels of its direct target genes.  
 
-
-This new version of DoRothEA (v2) provides **updated TF regulons** derived from a broader collection of resources and strategies. The new TF regulons are **signed** (to account for activation/repression), when possible, and accompanied by a **confidence score**. The manuscript is published in [Genome Research](https://genome.cshlp.org/content/early/2019/07/24/gr.240663.118.abstract). 
-
+This new version of DoRothEA (v2) provides **updated scored TF regulons** derived from a broader collection of resources and strategies. The new TF regulons are **signed** (to account for activation/repression), when possible, and accompanied by a **confidence score**. The manuscript is published in [Genome Research](https://genome.cshlp.org/content/early/2019/07/24/gr.240663.118.abstract). 
 
 An earlier version of the TF regulons and the code to estimate TF activities, as described in [Garcia-Alonso et al 2018](http://cancerres.aacrjournals.org/content/early/2017/12/09/0008-5472.CAN-17-1679), can be found in [DoRothEA v1 version](https://github.com/saezlab/DoRothEA/releases/tag/version1).
-
-
-
-## Usage
-
-See ``src/example.r`` for several examples.
-
 
 
 ## About the TF regulons
@@ -33,8 +24,12 @@ Each TF-target interaction has been assigned a confidence score, ranging from A-
 
 See [Garcia-Alonso 2018 et al.](https://www.biorxiv.org/content/early/2018/06/03/337915) for more information.
 
+## TF regulons data
 
-The collection of consensus TF regulons, scored according our A-E criteria, is available at  ``data/TFregulons/Robjects_VIPERformat/normal/``
+We provide the collection of consensus TF regulons in three different ways:
+1. As csv files ``data/TFregulons/consensus/table``.
+2. As R objects ready to be used by the VIPER method ([Alvarez et al. 2016](https://www.nature.com/articles/ng.3593)) ``data/TFregulons/consensus/Robjects_VIPERformat``
+3. Via [omnipathdb](https://www.nature.com/articles/nmeth.4077?proof=trueIn) pypath or webservice.
 
 Please visit our [GitHub page](https://saezlab.github.io/DoRothEA/) for more information. 
 
@@ -107,6 +102,12 @@ Include 4 additional columns with ``True`` and ``False`` values according to whi
 binding site prediction) confirmed the TF-target interactions:
 
 http://omnipathdb.org/interactions?datasets=tfregulons&genesymbols=1&fields=databases,tfregulons_curated,tfregulons_chipseq,tfregulons_coexp,tfregulons_tfbs,tfregulons_level
+
+
+## Usage: estimating TF activities:
+
+See ``src/example.r`` for several examples on how to get TF activities based on DoRothEA regulons. We recommend the [VIPER](https://www.bioconductor.org/packages/release/bioc/html/viper.html) R method ([Alvarez et al. 2016](https://www.nature.com/articles/ng.3593)) to compute protein activities. This approach considers the effect signe of the TF-target interaction. Alternatively, you can use any Gene Set Enrichment Analysis method of your preference such as the ones included in the [GSVA package](https://www.bioconductor.org/packages/release/bioc/html/GSVA.html) ([Hänzelmann et al 2013](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-14-7)) or [AUCell](https://bioconductor.org/packages/release/bioc/html/AUCell.html) ([Aibar et al 2017](https://www.nature.com/articles/nmeth.4463)). Please, cite the method accordingly.
+
 
 ## Citation
 
