@@ -104,7 +104,7 @@ binding site prediction) confirmed the TF-target interactions:
 http://omnipathdb.org/interactions?datasets=tfregulons&genesymbols=1&fields=databases,tfregulons_curated,tfregulons_chipseq,tfregulons_coexp,tfregulons_tfbs,tfregulons_level
 
 
-## Usage: estimating TF activities:
+## Usage: estimating TF activities
 
 See ``src/example.r`` for several examples on how to get TF activities based on DoRothEA regulons. We recommend the [VIPER](https://www.bioconductor.org/packages/release/bioc/html/viper.html) R method ([Alvarez et al. 2016](https://www.nature.com/articles/ng.3593)) to compute protein activities. This approach considers the effect signe of the TF-target interaction. Alternatively, you can use any Gene Set Enrichment Analysis method of your preference such as the ones included in the [GSVA package](https://www.bioconductor.org/packages/release/bioc/html/GSVA.html) ([Hänzelmann et al 2013](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-14-7)) or [AUCell](https://bioconductor.org/packages/release/bioc/html/AUCell.html) ([Aibar et al 2017](https://www.nature.com/articles/nmeth.4463)). Please, cite the method accordingly.
 
