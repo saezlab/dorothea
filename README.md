@@ -27,7 +27,7 @@ See [Garcia-Alonso 2018 et al.](https://www.biorxiv.org/content/early/2018/06/03
 ## Accessing the TF regulons
 
 We provide the collection of consensus TF regulons in three different ways:
-1. Via [omnipathdb](https://www.nature.com/articles/nmeth.4077?proof=trueIn) pypath or webservice.
+1. Via pypath or [OmniPath](https://www.nature.com/articles/nmeth.4077?proof=trueIn) webservice.
 2. As csv files ``data/TFregulons/consensus/table``.
 3. As R objects ready to be used by the VIPER method ([Alvarez et al. 2016](https://www.nature.com/articles/ng.3593)) ``data/TFregulons/consensus/Robjects_VIPERformat``
 
@@ -35,9 +35,9 @@ Please visit our [GitHub page](https://saezlab.github.io/DoRothEA/) for more inf
 
 ### Loading TF regulons in ``pypath``
 
-[``pypath``](https://github.com/saezlab/pypath) is our Python module for building molecular networks.
-By loading TF regulons in ``pypath`` you will be able to manipulate it as an ``igraph`` network object,
-combine it with annotations from other data sources and also with other networks.
+[``pypath``](https://github.com/saezlab/pypath) is a Python module for integration of molecular information from different databases.
+By loading TF regulons from ``pypath`` allows the user to manipulate and visualize the regulons and their context,
+combine it with further annotations from other data sources and also with other networks (e.g. protein-protein interactions).
 See [here](https://github.com/saezlab/pypath/blob/master/tfregulons_tutorial.md) how to do it.
 Briefly, you can build a network of the `A` and `B` confidence level TF-target relationships like this:
 
@@ -156,4 +156,6 @@ DOI: 10.1158/0008-5472.CAN-17-1679
 
 ## License
 
-Distributed under the GNU GPLv2 License. See accompanying file [LICENSE.txt](https://github.com/saezlab/DoRothEA/blob/master/LICENSE.txt) or copy at https://www.gnu.org/licenses/gpl-2.0.html.
+The code in this repository is distributed under the GNU GPLv3 License. See accompanying file [LICENSE_code](https://github.com/saezlab/DoRothEA/blob/master/LICENSE_code) or copy at https://www.gnu.org/licenses/gpl-3.0.html.
+
+The TF regulon data in this repository and other sources is distributed under a Creative Commons Attribution-NonCommercial 4.0 International license. You can find a copy at https://creativecommons.org/licenses/by-sa/4.0/legalcode.
