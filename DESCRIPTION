@@ -1,0 +1,19 @@
+Package: dorothea
+Type: Package
+Title: Collection Of Human And Mouse TF Regulons
+Version: 0.9.0
+Author: Christian H. Holland, Luz Garcia-Alonso, Alberto Valdeolivas, Minoo 
+    Ashtiani 
+Maintainer: Christian H. Holland <cholland2408@gmail.com>
+Description: This package contains human and mouse TF regulons.
+    The human regulons were curated and collected from different types of 
+    evidence such as literature curated resources, ChIP-seq peaks, TF binding 
+    site motifs and interactions inferred directly from gene expression. The 
+    mouse regulons were constructed by mapping the human gene symbols to their 
+    orthologs in mice.
+License: GPL3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.0
+Imports:
+    dplyr
