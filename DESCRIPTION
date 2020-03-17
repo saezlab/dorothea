@@ -11,6 +11,7 @@ Description: This package contains human and mouse TF regulons.
     site motifs and interactions inferred directly from gene expression. The 
     mouse regulons were constructed by mapping the human gene symbols to their 
     orthologs in mice.
+Depends: R (>= 3.5.0)
 License: GPL3
 Encoding: UTF-8
 LazyData: true
