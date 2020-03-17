@@ -72,6 +72,7 @@ parse_confidence_levels = function(confidence_levels) {
   if (!all(grepl(pattern = "[A|B|C|D|E]", v))) {
     stop("Confidence levels must contain only the letters A,B,C,D and E")
   }
+
   return(v)
 }
 
