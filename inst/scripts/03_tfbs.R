@@ -1,6 +1,11 @@
-# TFBS on promoters
+library(dplyr)
+library(purrr)
+library(tidyr)
+library(readr)
+library(stringr)
+library(tibble)
 
-library(tidyverse)
+source("inst/scripts/utils.R")
 
 tfs = load_tf_census()
 
@@ -17,14 +22,14 @@ jaspar = read_delim('inst/extdata/tf_target_sources/tfbs/jaspar/scanning_output/
   select(-sequence_name, -start, -stop) %>%
   distinct()
 
-  
+
 
 
 # map hocomocos "number motif id" with "gene names" by uniprots "entry name"
 mapping = hocomoco %>%
   distinct(number_motif_id) %>%
   # mutate(entry_name = str_split(number_motif_id, pattern = "\\.")[[1]][1]) %>%
-  separate(number_motif_id, into = "entry_name", extra = "drop", remove = F, 
+  separate(number_motif_id, into = "entry_name", extra = "drop", remove = F,
            sep = "\\.") %>%
   left_join(anno, by=c("entry_name")) %>%
   mutate(gene_name = case_when(is.na(gene_name) ~ str_remove(entry_name, "_HUMAN"),
@@ -57,12 +62,12 @@ df = databases %>%
   drop_na() %>%
   arrange(tf, target)
 
-df %>% 
+df %>%
   filter(source == "jaspar") %>%
   distinct(tf, target) %>%
   write_csv("inst/extdata/tf_target_sources/tfbs/jaspar/network.sif")
 
-df %>% 
+df %>%
   filter(source == "hocomoco") %>%
   distinct(tf, target) %>%
   write_csv("inst/extdata/tf_target_sources/tfbs/hocomoco/network.sif")

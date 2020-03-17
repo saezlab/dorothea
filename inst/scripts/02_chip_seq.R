@@ -1,10 +1,19 @@
+library(dplyr)
+library(purrr)
+library(tidyr)
+library(readr)
+library(stringr)
+library(tibble)
+
+source("inst/scripts/utils.R")
 
 tfs = load_tf_census()
+
 remap_network = read_delim(
   "inst/extdata/tf_target_sources/chip_seq/remap/gene_tf_pairs_genesymbol.txt",
   delim = "\t", col_names = c("tf", "target", "enseml_target", "score")
   ) %>%
-  filter(tf %in% tfs & score > 100) 
+  filter(tf %in% tfs & score > 100)
 
 
 

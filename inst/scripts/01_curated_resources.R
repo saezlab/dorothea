@@ -1,20 +1,25 @@
-library(biomaRt)
-library(tidyverse)
+library(dplyr)
+library(purrr)
+library(tidyr)
+library(readr)
+library(stringr)
+library(tibble)
 
-# overall
+source("inst/scripts/utils.R")
+
 tfs = load_tf_census()
 
 # litreature curated resources
 #### Fantom4 ####
 # load fantom table
 fantom = read_delim(
-  "inst/extdata/tf_target_sources/curated/fantom_4/edge.GoldStd_TF.tbl.txt", 
+  "inst/extdata/tf_target_sources/curated/fantom_4/edge.GoldStd_TF.tbl.txt",
   delim ="\t", skip = 24) %>%
   rename(pubmed_id = sym_value)
 
 # load annotation table for fantom db
 fantom_anno = read_delim(
-  "inst/extdata/tf_target_sources/curated/fantom_4/feature.entrez_gene.tbl.txt", 
+  "inst/extdata/tf_target_sources/curated/fantom_4/feature.entrez_gene.tbl.txt",
   delim ="\t", skip = 29)
 
 # translate feature1 and feature2 ids to TF/target symbols
@@ -28,17 +33,17 @@ fantom_clean = fantom %>%
   arrange(tf, target) %>%
   distinct(tf, target, pubmed_id)
 
-write_csv(fantom_clean, 
+write_csv(fantom_clean,
             "inst/extdata/tf_target_sources/curated/fantom_4/network_with_pubmed.sif")
 
 #### TRRUST ####
 trrust = read_delim(
-  "inst/extdata/tf_target_sources/curated/trrust/trrust_rawdata.human.v2.tsv", 
+  "inst/extdata/tf_target_sources/curated/trrust/trrust_rawdata.human.v2.tsv",
   delim = "\t", col_names = c("tf", "target", "mor", "pubmed_id")
   )
 
 
-trrust_clean = trrust %>% 
+trrust_clean = trrust %>%
   separate_rows(pubmed_id, sep = ";", ) %>%
   add_count(tf, target, mor, name = "evidence_count") %>%
   group_by(tf, target, mor, evidence_count) %>%
@@ -62,7 +67,7 @@ write_csv(trrust_clean, "inst/extdata/tf_target_sources/curated/trrust/network_w
 
 #### IntAct ####
 int_act = read_delim(
-  "inst/extdata/tf_target_sources/curated/int_act/homo_sapiens_protein2gene_20171031.txt", 
+  "inst/extdata/tf_target_sources/curated/int_act/homo_sapiens_protein2gene_20171031.txt",
   delim = "\t"
   ) %>%
   janitor::clean_names()
@@ -103,15 +108,15 @@ write_csv(int_act_clean, "inst/extdata/tf_target_sources/curated/int_act/network
 #### Orgeganno ####
 df = read_delim(pipe("grep sapiens inst/extdata/tf_target_sources/curated/oreganno/ORegAnno_Combined_2016.01.19.tsv | grep TRANSCRIPTION | grep hg38"), delim = "\t", col_names = F)
 
-df_clean = df %>% 
+df_clean = df %>%
   select(source = X13,
-         effect = X3, 
+         effect = X3,
          Regulatory_Element_Source = X10,
          tf = X8,
          target = X5,
          pubmed_id = X12) %>%
   filter(Regulatory_Element_Source != "miRBase" &
-           tf %in% tfs & 
+           tf %in% tfs &
            target != "N/A") %>%
   drop_na(target) %>%
   mutate(mor = case_when(effect == "POSITIVE OUTCOME" ~ 1,
@@ -122,12 +127,12 @@ df_clean = df %>%
 
 oreganno = df_clean %>%
   filter(source %in% c("N/A", "STAT1 literature-derived sites")) %>%
-  distinct(tf, target, mor, pubmed_id) 
+  distinct(tf, target, mor, pubmed_id)
 
 
 regulome = df_clean %>%
   filter(source == "NFIRegulomeDB") %>%
-  distinct(tf, target, mor) 
+  distinct(tf, target, mor)
 
 pazar = df_clean %>%
   filter(source == "PAZAR") %>%
@@ -139,7 +144,7 @@ write_csv(pazar, "inst/extdata/tf_target_sources/curated/pazar/network.sif")
 
 
 #### TFact ####
-df = read_delim("inst/extdata/tf_target_sources/curated/tf_act/Catalogues.txt", 
+df = read_delim("inst/extdata/tf_target_sources/curated/tf_act/Catalogues.txt",
                     delim = "\t") %>%
   janitor::clean_names()
 
@@ -148,7 +153,7 @@ df_clean = df %>%
   # filter for human data
   filter(str_detect(species, fixed("homo", ignore_case = T)) |
            str_detect(species, fixed("human", ignore_case = T))) %>%
-  select(source = ref, tf = official_tf_coding_gene_name, 
+  select(source = ref, tf = official_tf_coding_gene_name,
          target = official_gene_name, mor = regulation,
          pubmed_id = ref_accession_number) %>%
   mutate(mor = case_when(mor == "UP" ~ 1,
@@ -168,8 +173,8 @@ tf_act = df_clean %>%
   distinct(tf, target, mor, pubmed_id) %>%
   filter(tf %in% tfs) %>%
   arrange(tf, target)
-    
-trrd = df_clean %>% 
+
+trrd = df_clean %>%
   filter(str_detect(source, fixed("trrd", ignore_case = T))) %>%
   distinct(tf, target, mor) %>%
   filter(tf %in% tfs) %>%
@@ -180,19 +185,19 @@ write_csv(tf_act, "inst/extdata/tf_target_sources/curated/tf_act/network_with_pu
 write_csv(trrd, "inst/extdata/tf_target_sources/curated/trrd_via_tf_act/network.sif")
 
 #### Reviews ####
-review_paths = list.files("inst/extdata/tf_target_sources/curated/reviews", 
+review_paths = list.files("inst/extdata/tf_target_sources/curated/reviews",
                           pattern = "sif", full.names = T, recursive = T) %>%
   discard(.p = ~str_detect(.x, "network"))
 
-reviews = files %>% 
+reviews = files %>%
   map_dfr(function(path) {
-    pubmed_id = path %>% 
+    pubmed_id = path %>%
       str_split("/") %>%
       pluck(1,5) %>%
       str_split("_") %>%
       pluck(1) %>%
       tail(1)
-    
+
     read_delim(path, delim = "\t", col_names = F) %>%
       rename(tf = X1, target = X2) %>%
       filter(tf != "TF") %>%
@@ -214,7 +219,7 @@ write_csv(tred_clean,
           "inst/extdata/tf_target_sources/curated/tred_via_reg_network/network.sif")
 
 #### HTRIdb ####
-htri = read_delim('inst/extdata/tf_target_sources/curated/htri_db/tf-target_network_052016_literaturecurated.txt', 
+htri = read_delim('inst/extdata/tf_target_sources/curated/htri_db/tf-target_network_052016_literaturecurated.txt',
                   delim = "\t")
 
 htri_clean = htri %>%
