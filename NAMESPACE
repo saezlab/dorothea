@@ -2,4 +2,6 @@
 
 export(df2geneset)
 export(df2regulon)
+export(scViper)
 import(dplyr)
+import(viper)

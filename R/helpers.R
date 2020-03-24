@@ -76,3 +76,54 @@ parse_confidence_levels = function(confidence_levels) {
   return(v)
 }
 
+#' VIPER wrapper for single cell data
+#'
+#' This function is a convenient wrapper to run the
+#' \code{\link[=viper]{viper::viper()}} function to apply it on single cell
+#' data combined with Dorothea regulons
+#'
+#' @import viper
+#' @export
+#' @param InputObject An expression matrix with genes (HGNC/MGI symbols) in rows
+#' and cells in columns. It also accepts \code{Seurat} object from which the
+#' normalised expresion matrix of the selected assay will be extracted
+#' @param regulon Object of class regulon. Check viper documentation for
+#' further information.
+#' @param assay_name it only applies if the input is a Seurat object. It selects
+#' the name of the assay on which Viper will be run. Default to:
+#' RNA, i.e. normalized expression values.
+#' @param return_assay it only applies if the input is a Seurat object. A
+#' logical value indicating whether to return Dorothea results as a new
+#' assay called Dorothea in the Seurat object used as input.
+#' Default to FALSE.
+#' @param options A list of named options to pass to
+#' \code{\link[=viper]{viper::viper()}} such as \code{minsize} or
+#' \code{method}. These options should not include \code{eset} or
+#' \code{regulon}.
+#'
+#' @return A matrix containing the activity of the different TFs provided in
+#' the regulon object.
+
+scViper = function(InputObject, regulon, assay_name = "RNA",
+    return_assay = FALSE, options=list()) {
+
+    requireNamespace("Seurat")
+
+    if (class(InputObject) == "Seurat"){
+        expr <- InputObject[[assay_name]]@data
+    } else {
+        expr <- InputObject
+    }
+
+    emat <- as.matrix(expr)
+    viper_res  <- do.call(viper,c(list(eset = emat,regulon = regulon),options))
+
+    if (return_assay){
+        InputObject[['dorothea']] <-
+            Seurat::CreateAssayObject(data = viper_res)
+        Seurat::Key(object = InputObject[['dorothea']]) <- 'dorothea_'
+        return(InputObject)
+    } else {
+        return(viper_res)
+    }
+}
