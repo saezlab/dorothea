@@ -57,7 +57,6 @@ df2geneset = function(df, confidence_levels = c("ABCDE"),
   })
 }
 
-
 #' Parsing confidende levels
 #'
 #' @param confidence_levels Combination of DoRothEA's confidence levels. This
@@ -75,4 +74,3 @@ parse_confidence_levels = function(confidence_levels) {
 
   return(v)
 }
-
