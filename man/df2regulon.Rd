@@ -2,25 +2,17 @@
 % Please edit documentation in R/helpers.R
 \name{df2regulon}
 \alias{df2regulon}
-\title{Construction of viper regulons}
+\title{Construction of dorothea regulons for viper analysis}
 \usage{
-df2regulon(df, confidence_levels = c("ABCDE"), organism = "hs")
+df2regulon(df)
 }
 \arguments{
-\item{df}{A table from DoRothEA package.}
-
-\item{confidence_levels}{Combination of DoRothEA's confidence levels.
-Corresponding regulons/interactions will be returned. This combination
-can contain any combination from the letters A-E and must be encoded as a
-single character string.}
-
-\item{organism}{A character string indicating whether human DoRothEA (hs) or
-mouse DoRothEA (mm) is desired.}
+\item{df}{A regulon table from dorothea package.}
 }
 \value{
-Regulons in the \code{\link[=viper]{viper::viper()}} format.
+Regulons in the \code{\link[=viper]{viper()}} format.
 }
 \description{
 This function converts DoRothEA's regulons that are stored in a table to the
-format required by the \code{\link[=viper]{viper::viper()}} function.
+format required by the \code{\link[=viper]{viper()}} function.
 }
