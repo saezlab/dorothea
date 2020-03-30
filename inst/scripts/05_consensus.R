@@ -9,13 +9,20 @@ source("inst/scripts/utils.R")
 
 tfs = load_tf_census()
 
+# resoures only allowed for academic not  for commercial use
+only_academic = c("tred", "kegg")
 
 #### Load networks from all types of evidences ####
 n = list.files("inst/extdata/tf_target_sources", pattern = "network",
                recursive = T, full.names = T) %>%
+  # remove tissue specific network inferred via aracne
   keep(.p = ~str_detect(.x, "sif")) %>%
   # remove networks inferred from TCGA data
   discard(.p = ~str_detect(.x, "tcga")) %>%
+  # # remove networks from kegg
+  # discard(.p = ~str_detect(.x, "kegg")) %>%
+  # # remove networks that are not allowed for for commercial used
+  # discard(.p = ~str_detect(.x, str_c(only_academic, collapse = "|"))) %>%
   map_dfr(function(path) {
     message(path)
     if (str_detect(path, "tf_e")) {
@@ -136,7 +143,7 @@ c2 = n %>%
 c3 = n %>%
   distinct(tf, target, evidence) %>%
   filter(evidence %in% c("chip_seq", "inferred")) %>%
-  count(tf) %>%
+  count(tf, target) %>%
   filter(n==2) %>%
   select(-n)
 
@@ -298,14 +305,27 @@ entire_database = unique_interactions %>%
   left_join(pubmed_ids, by=c("tf", "target")) %>%
   replace_na(list(pubmed_id = "-")) %>%
   arrange(tf, target) %>%
-  select(-evidence, -database)
+  select(-evidence, -database) %>%
+  # remove interactions exclusively reported by kegg
+  filter(!(which_curated == "kegg" & which_chip_seq == "none" &
+             which_inferred == "none" & which_tfbs == "none"))
 
+# make final database with adapted mor. assign to all interactions mor of 1
+# beside known repressors. Those get a mor of -1
+tf_annotation = readRDS("inst/extdata/annotations/tf_annotation.rds") %>%
+  filter(class == "repressors")
 final_database_human = entire_database %>%
-  distinct(tf, target, mor, confidence)
+  distinct(tf, target, mor, confidence) %>%
+  left_join(tf_annotation, by="tf") %>%
+  mutate(mor = case_when(mor == 0 & is.na(class) ~ 1,
+                         mor == 0 & class == "repressors" ~ -1,
+                         TRUE ~ mor)) %>%
+  select(-class)
 
 
 #### Translate final database to mouse symbols ####
-anno = readRDS("inst/extdata/annotations/hgnc_mgi_annotation.rds")
+anno = readRDS("inst/extdata/annotations/hgnc_mgi_annotation.rds") %>%
+  filter(!str_detect(mgi_symbol, "^Gm[:digit:]+"))
 
 final_database_mouse = final_database_human %>%
   rename(hgnc_symbol = tf) %>%
@@ -329,7 +349,9 @@ final_database_mouse = final_database_human %>%
 # regulon size equal to or greater than 10 targets.
 top_10_database_human = final_database_human %>%
   add_count(tf, name = "total_interactions") %>%
-  filter(total_interactions > 3) %>%
+  # filter out tfs with less than 4 targets
+  filter(total_interactions >= 4) %>%
+  # remove self-regulation of a TF
   filter(tf != target) %>%
   nest(regulon = -tf) %>%
   mutate(r = regulon %>% map(function(regulon) {
@@ -360,7 +382,11 @@ top_10_database_human = final_database_human %>%
         inner_join(regulon, by="confidence") %>%
         select(summary_confidence, target, mor)
     }
-    return(res)
+
+    # if mor is unknown (0) assign a positive mode of regulation (1)
+    res %>%
+      mutate(mor = case_when(mor == 0 ~ 1,
+                             TRUE ~ mor))
   })) %>%
   unnest(r) %>%
   select(-regulon) %>%
@@ -372,7 +398,9 @@ top_10_database_human = final_database_human %>%
 # regulon size equal to or greater than 10 targets.
 top_10_database_mouse = final_database_mouse %>%
   add_count(tf, name = "total_interactions") %>%
-  filter(total_interactions > 3) %>%
+  # filter out tfs with less than 4 targets
+  filter(total_interactions >= 4) %>%
+  # remove self-regulation of a TF
   filter(tf != target) %>%
   nest(regulon = -tf) %>%
   mutate(r = regulon %>% map(function(regulon) {
@@ -403,7 +431,10 @@ top_10_database_mouse = final_database_mouse %>%
         inner_join(regulon, by="confidence") %>%
         select(summary_confidence, target, mor)
     }
-    return(res)
+    # if mor is unknown (0) assign a positive mode of regulation (1)
+    res %>%
+      mutate(mor = case_when(mor == 0 ~ 1,
+                             TRUE ~ mor))
   })) %>%
   unnest(r) %>%
   select(-regulon) %>%
@@ -412,20 +443,20 @@ top_10_database_mouse = final_database_mouse %>%
 #### Save data ####
 ### Human
 # entire database with meta data
-metadata = entire_database
-save(metadata, file = "data/metadata.rda")
+dorothea_metadata = entire_database
+save(dorothea_metadata, file = "data/metadata.rda")
 
 # final database
-database_hs = final_database_human
-save(database_hs, file = "data/database_hs.rda")
+# database_hs = final_database_human
+# save(database_hs, file = "data/database_hs.rda")
 # top 10 database
-top_10_database_hs = top_10_database_human
-save(top_10_database_hs, file = "data/top_10_database_hs.rda")
+dorothea_hs = top_10_database_human
+save(dorothea_hs, file = "data/dorothea_hs.rda")
 
 ### Mouse
-# final database
-database_mm = final_database_mouse
-save(database_mm, file = "data/database_mm.rda")
+# # final database
+# database_mm = final_database_mouse
+# save(database_mm, file = "data/database_mm.rda")
 # top 10 database
-top_10_database_mm = top_10_database_mouse
-save(top_10_database_mm, file = "data/top_10_database_mm.rda")
+dorothea_mm = top_10_database_mouse
+save(dorothea_mm, file = "data/dorothea_mm.rda")
