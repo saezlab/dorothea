@@ -4,9 +4,11 @@
 \alias{df2geneset}
 \title{Construction of gene sets}
 \usage{
-df2geneset(dorothea, confidence_levels = c("ABCDE"), organism = "hs")
+df2geneset(df, confidence_levels = c("ABCDE"), organism = "hs")
 }
 \arguments{
+\item{df}{A table from DoRothEA package.}
+
 \item{confidence_levels}{Combination of DoRothEA's confidence levels.
 Corresponding regulons/interactions will be returned. This combination
 can contain any combination from the letters A-E and must be encoded as a
@@ -14,8 +16,6 @@ single character string.}
 
 \item{organism}{A character string indicating whether human DoRothEA (hs) or
 mouse DoRothEA (mm) is desired.}
-
-\item{df}{A table from DoRothEA package.}
 }
 \value{
 Regulons in GSEA format (see \code{\link[=fgsea]{fgsea::fgsea()}}).
