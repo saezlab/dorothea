@@ -14,15 +14,15 @@ tfs = load_tf_census()
 gtex_path = "inst/extdata/tf_target_sources/inferred/gtex/tissue_specific"
 
 
-gtex_df = list.files(path = gtex_path, full.names = T, recursive = T, 
+gtex_df = list.files(path = gtex_path, full.names = T, recursive = T,
                 pattern = "viperRegulon") %>%
   map_dfr(function(path) {
     tissue = str_split(path, pattern = "/") %>%
       pluck(1,7)
-    
+
     message(tissue)
     regulon = get(load(path))
-    
+
     map_dfr(regulon, function(i) {
       tf_target = i$tfmode %>%
         enframe(name = "target", value = "mor") %>%
@@ -45,7 +45,7 @@ gtex_network = gtex_df %>%
   select(-n) %>%
   arrange(tf, target)
 
-write_csv(gtex_network, 
+write_csv(gtex_network,
           "inst/extdata/tf_target_sources/inferred/gtex/pantissue/network.sif")
 
 #### tcga ####
@@ -53,16 +53,16 @@ write_csv(gtex_network,
 tcga_path = "inst/extdata/tf_target_sources/inferred/tcga/cancer_specific"
 
 
-tcga_df = list.files(path = tcga_path, full.names = T, recursive = T, 
+tcga_df = list.files(path = tcga_path, full.names = T, recursive = T,
                      pattern = "viperRegulon") %>%
   map_dfr(function(path) {
     cancer = basename(path) %>%
       str_split(pattern = "_") %>%
       pluck(1,1)
-    
+
     message(cancer)
     regulon = get(load(path))
-    
+
     map_dfr(regulon, function(i) {
       tf_target = i$tfmode %>%
         enframe(name = "target", value = "mor") %>%
@@ -81,9 +81,9 @@ tcga_network = tcga_df %>%
   # keep only interactions with unambigious mor
   add_count(tf, target) %>%
   filter(n == 1) %>%
-  select(-n, -signed_evidence) %>%
+  dplyr::select(-n, -signed_evidence) %>%
   arrange(tf, target) %>%
   distinct(tf, target, mor)
 
-write_csv(tcga_network, 
+write_csv(tcga_network,
           "inst/extdata/tf_target_sources/inferred/tcga/pancancer/network.sif")
