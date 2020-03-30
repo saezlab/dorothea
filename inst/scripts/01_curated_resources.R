@@ -89,7 +89,7 @@ network = int_act %>%
          target = str_remove(target, "ensembl:"))
 
 # map ensembl gene and swissprot ids to HGNC symbols
-anno = readRDS("inst/extdata/annotations/my_annotation.rds")
+anno = readRDS("inst/extdata/annotations/gene_annotation.rds")
 network$tf = anno$hgnc_symbol[match(network$tf, anno$uniprotswissprot)]
 network$target = anno$hgnc_symbol[ match(network$target, anno$ensembl_gene_id)]
 
@@ -105,7 +105,7 @@ int_act_clean = network %>%
 
 write_csv(int_act_clean, "inst/extdata/tf_target_sources/curated/int_act/network_with_pubmed.sif")
 
-#### Orgeganno ####
+#### Oreganno ####
 df = read_delim(pipe("grep sapiens inst/extdata/tf_target_sources/curated/oreganno/ORegAnno_Combined_2016.01.19.tsv | grep TRANSCRIPTION | grep hg38"), delim = "\t", col_names = F)
 
 df_clean = df %>%
@@ -189,7 +189,7 @@ review_paths = list.files("inst/extdata/tf_target_sources/curated/reviews",
                           pattern = "sif", full.names = T, recursive = T) %>%
   discard(.p = ~str_detect(.x, "network"))
 
-reviews = files %>%
+reviews = review_paths %>%
   map_dfr(function(path) {
     pubmed_id = path %>%
       str_split("/") %>%
@@ -230,4 +230,62 @@ htri_clean = htri %>%
 
 write_csv(htri_clean, "inst/extdata/tf_target_sources/curated/htri_db/network_with_pubmed.sif")
 
+#### KEGG ####
+library(KEGGgraph)
+library(KEGGREST)
+library(org.Hs.eg.db)
 
+get_GErel_edges = function(path_name, path_id){
+
+  message(path_name)
+  tmp = paste(tempfile(tmpdir = '~/tmp'), '.xml', sep = '')
+  my_kgml = retrieveKGML(pathwayid = path_id, organism="hsa", destfile = tmp)
+  mapkG = try(parseKGML2Graph(tmp, expandGenes=T), silent = T)
+
+  if (class(mapkG) == "try-error")
+    return(NULL)
+
+  pathedges =  getKEGGedgeData(mapkG)
+  pathedges_type = sapply(pathedges, getType)
+  pathedges_GErel = pathedges[ pathedges_type == 'GErel' ]
+  pathedges_entryID = sapply(pathedges_GErel, getEntryID)
+  pathedges_subtype_name = sapply(pathedges_GErel,
+                                  function(x) getName(getSubtype(x)[[1]]))
+  pathedges_subtype_value = sapply(pathedges_GErel,
+                                   function(x) getValue(getSubtype(x)[[1]]))
+  if (is.list(pathedges_entryID))
+    return(NULL)
+  df = as.data.frame(cbind(t(pathedges_entryID),
+                           pathedges_subtype_name,
+                           pathedges_subtype_value,
+                           path_name = path_name,
+                           path_id = path_id),
+                     stringsAsFactors = F)
+
+  df$Entry1Symbol = sapply(mget(translateKEGGID2GeneID(df$Entry1ID),
+                                org.Hs.egSYMBOL, ifnotfound=NA), "[[",1)
+  df$Entry2Symbol = sapply(mget(translateKEGGID2GeneID(df$Entry2ID),
+                                org.Hs.egSYMBOL, ifnotfound=NA), "[[",1)
+  return(df)
+}
+
+
+
+mykegglist = keggList(organism = "hsa", database = 'pathway')
+pId = gsub('path:hsa', '', names(mykegglist))
+pName = mykegglist
+GErel_edges = mapply(get_GErel_edges, pName, pId)
+
+
+x = GErel_edges %>%
+  compact() %>%
+  enframe(name = "key") %>%
+  unnest(value) %>%
+  arrange(Entry1Symbol, Entry2Symbol)
+
+network = x %>%
+  distinct(tf = Entry1Symbol, target = Entry2Symbol) %>%
+  filter(tf %in% tfs) %>%
+  arrange(tf, target)
+
+write_csv(network, "inst/extdata/tf_target_sources/curated/kegg/network.sif")
