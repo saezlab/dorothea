@@ -435,13 +435,13 @@ top_10_database_mouse = final_database_mouse %>%
 #### Save data ####
 ### Human
 # entire database with meta data
-save(entire_database, file = "data/entire_database.rda")
+save(entire_database, file = "data/entire_database.rda", compress="xz")
 
 # top 10 database
 dorothea_hs = top_10_database_human
-save(dorothea_hs, file = "data/dorothea_hs.rda")
+save(dorothea_hs, file = "data/dorothea_hs.rda", compress="xz")
 
 ### Mouse
 # top 10 database
 dorothea_mm = top_10_database_mouse
-save(dorothea_mm, file = "data/dorothea_mm.rda")
+save(dorothea_mm, file = "data/dorothea_mm.rda", compress="xz")
