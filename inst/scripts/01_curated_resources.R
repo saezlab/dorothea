@@ -1,3 +1,6 @@
+library(KEGGgraph)
+library(KEGGREST)
+library(org.Hs.eg.db)
 library(dplyr)
 library(purrr)
 library(tidyr)
@@ -34,7 +37,7 @@ fantom_clean = fantom %>%
   distinct(tf, target, pubmed_id)
 
 write_csv(fantom_clean,
-            "inst/extdata/tf_target_sources/curated/fantom_4/network_with_pubmed.sif")
+            "inst/extdata/networks/curated/fantom_4/network_with_pubmed.sif")
 
 #### TRRUST ####
 trrust = read_delim(
@@ -63,7 +66,7 @@ trrust_clean = trrust %>%
                          mor == "Activation" ~ 1)) %>%
   filter(tf %in% tfs)
 
-write_csv(trrust_clean, "inst/extdata/tf_target_sources/curated/trrust/network_with_pubmed.sif")
+write_csv(trrust_clean, "inst/extdata/networks/curated/trrust/network_with_pubmed.sif")
 
 #### IntAct ####
 int_act = read_delim(
@@ -103,7 +106,7 @@ int_act_clean = network %>%
   arrange(tf, target) %>%
   distinct()
 
-write_csv(int_act_clean, "inst/extdata/tf_target_sources/curated/int_act/network_with_pubmed.sif")
+write_csv(int_act_clean, "inst/extdata/networks/curated/int_act/network_with_pubmed.sif")
 
 #### Oreganno ####
 df = read_delim(pipe("grep sapiens inst/extdata/tf_target_sources/curated/oreganno/ORegAnno_Combined_2016.01.19.tsv | grep TRANSCRIPTION | grep hg38"), delim = "\t", col_names = F)
@@ -138,9 +141,9 @@ pazar = df_clean %>%
   filter(source == "PAZAR") %>%
   distinct(tf, target, mor)
 
-write_csv(oreganno, "inst/extdata/tf_target_sources/curated/oreganno/network_with_pubmed.sif")
-write_csv(regulome, "inst/extdata/tf_target_sources/curated/nfi_regulome_db/network.sif")
-write_csv(pazar, "inst/extdata/tf_target_sources/curated/pazar/network.sif")
+write_csv(oreganno, "inst/extdata/networks/curated/oreganno/network_with_pubmed.sif")
+write_csv(regulome, "inst/extdata/networks/curated/nfi_regulome_db/network.sif")
+write_csv(pazar, "inst/extdata/networks/curated/pazar/network.sif")
 
 
 #### TFact ####
@@ -181,8 +184,8 @@ trrd = df_clean %>%
   arrange(tf, target)
 
 
-write_csv(tf_act, "inst/extdata/tf_target_sources/curated/tf_act/network_with_pubmed.sif")
-write_csv(trrd, "inst/extdata/tf_target_sources/curated/trrd_via_tf_act/network.sif")
+write_csv(tf_act, "inst/extdata/networks/curated/tf_act/network_with_pubmed.sif")
+write_csv(trrd, "inst/extdata/networks/curated/trrd_via_tf_act/network.sif")
 
 #### Reviews ####
 review_paths = list.files("inst/extdata/tf_target_sources/curated/reviews",
@@ -205,7 +208,7 @@ reviews = review_paths %>%
       mutate(pubmed_id = pubmed_id)
   })
 
-write_csv(reviews, "inst/extdata/tf_target_sources/curated/reviews/network_with_pubmed.sif")
+write_csv(reviews, "inst/extdata/networks/curated/reviews/network_with_pubmed.sif")
 
 #### TRED ####
 tred = read_csv("inst/extdata/tf_target_sources/curated/tred_via_reg_network/export_Fri_Sep_22_11_00_16_UTC_2017.csv")
@@ -216,7 +219,7 @@ tred_clean = tred %>%
   filter(tf %in% tfs)
 
 write_csv(tred_clean,
-          "inst/extdata/tf_target_sources/curated/tred_via_reg_network/network.sif")
+          "inst/extdata/networks/curated/tred_via_reg_network/network.sif")
 
 #### HTRIdb ####
 htri = read_delim('inst/extdata/tf_target_sources/curated/htri_db/tf-target_network_052016_literaturecurated.txt',
@@ -228,12 +231,9 @@ htri_clean = htri %>%
   arrange(tf, target) %>%
   distinct()
 
-write_csv(htri_clean, "inst/extdata/tf_target_sources/curated/htri_db/network_with_pubmed.sif")
+write_csv(htri_clean, "inst/extdata/networks/curated/htri_db/network_with_pubmed.sif")
 
 #### KEGG ####
-library(KEGGgraph)
-library(KEGGREST)
-library(org.Hs.eg.db)
 
 get_GErel_edges = function(path_name, path_id){
 
@@ -288,4 +288,4 @@ network = x %>%
   filter(tf %in% tfs) %>%
   arrange(tf, target)
 
-write_csv(network, "inst/extdata/tf_target_sources/curated/kegg/network.sif")
+write_csv(network, "inst/extdata/networks/curated/kegg/network.sif")

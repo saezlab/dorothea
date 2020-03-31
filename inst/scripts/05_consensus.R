@@ -9,20 +9,11 @@ source("inst/scripts/utils.R")
 
 tfs = load_tf_census()
 
-# resoures only allowed for academic not  for commercial use
-only_academic = c("tred", "kegg")
-
 #### Load networks from all types of evidences ####
-n = list.files("inst/extdata/tf_target_sources", pattern = "network",
+n = list.files("inst/extdata/networks", pattern = "network",
                recursive = T, full.names = T) %>%
-  # remove tissue specific network inferred via aracne
-  keep(.p = ~str_detect(.x, "sif")) %>%
   # remove networks inferred from TCGA data
   discard(.p = ~str_detect(.x, "tcga")) %>%
-  # # remove networks from kegg
-  # discard(.p = ~str_detect(.x, "kegg")) %>%
-  # # remove networks that are not allowed for for commercial used
-  # discard(.p = ~str_detect(.x, str_c(only_academic, collapse = "|"))) %>%
   map_dfr(function(path) {
     message(path)
     if (str_detect(path, "tf_e")) {
@@ -52,7 +43,6 @@ n = list.files("inst/extdata/tf_target_sources", pattern = "network",
     return(net)
   }) %>%
   distinct()
-
 
 
 #### Confidence class A ####
@@ -443,20 +433,13 @@ top_10_database_mouse = final_database_mouse %>%
 #### Save data ####
 ### Human
 # entire database with meta data
-dorothea_metadata = entire_database
-save(dorothea_metadata, file = "data/metadata.rda")
+save(entire_database, file = "data/entire_database.rda")
 
-# final database
-# database_hs = final_database_human
-# save(database_hs, file = "data/database_hs.rda")
 # top 10 database
 dorothea_hs = top_10_database_human
 save(dorothea_hs, file = "data/dorothea_hs.rda")
 
 ### Mouse
-# # final database
-# database_mm = final_database_mouse
-# save(database_mm, file = "data/database_mm.rda")
 # top 10 database
 dorothea_mm = top_10_database_mouse
 save(dorothea_mm, file = "data/dorothea_mm.rda")

@@ -65,9 +65,9 @@ df = databases %>%
 df %>%
   filter(source == "jaspar") %>%
   distinct(tf, target) %>%
-  write_csv("inst/extdata/tf_target_sources/tfbs/jaspar/network.sif")
+  write_csv("inst/extdata/networks/tfbs/jaspar/network.sif")
 
 df %>%
   filter(source == "hocomoco") %>%
   distinct(tf, target) %>%
-  write_csv("inst/extdata/tf_target_sources/tfbs/hocomoco/network.sif")
+  write_csv("inst/extdata/networks/tfbs/hocomoco/network.sif")

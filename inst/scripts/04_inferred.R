@@ -35,7 +35,7 @@ gtex_network = gtex_df %>%
   filter(tf %in% tfs) %>%
   mutate(mor = case_when(mor > 0 ~ 1,
                          mor < 0 ~ -1)) %>%
-  # keep only interactions that are reported at least in 3 tissues
+  # keep only interactions that are reported in at least in 3 tissues
   add_count(tf, target, mor, name = "signed_evidence") %>%
   filter(signed_evidence >= 3) %>%
   distinct(tf, target, mor) %>%
@@ -46,7 +46,7 @@ gtex_network = gtex_df %>%
   arrange(tf, target)
 
 write_csv(gtex_network,
-          "inst/extdata/tf_target_sources/inferred/gtex/pantissue/network.sif")
+          "inst/extdata/networks/inferred/gtex/pantissue/network.sif")
 
 #### tcga ####
 # Load networks
@@ -86,4 +86,4 @@ tcga_network = tcga_df %>%
   distinct(tf, target, mor)
 
 write_csv(tcga_network,
-          "inst/extdata/tf_target_sources/inferred/tcga/pancancer/network.sif")
+          "inst/extdata/networks/inferred/tcga/pancancer/network.sif")
