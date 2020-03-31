@@ -17,7 +17,6 @@
 #'
 #' @keywords datasets
 #' @name dorothea_hs
-
 #' @source \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6673718/}
 NULL
 
@@ -40,6 +39,5 @@ NULL
 #'
 #' @keywords datasets
 #' @name dorothea_mm
-#' @example data(dorothea_mm, package = "dorothea")
 #' @source \url{https://www.ncbi.nlm.nih.gov/pubmed/31525460}
 NULL
