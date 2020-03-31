@@ -275,8 +275,10 @@ which_evidence = interactions %>%
   spread(evidence, val, fill=F)
 
 # retrieve pubmed ids for interaction from curated databases
-pubmed = list.files("inst/extdata/networks/curated", pattern = "pubmed", full.names = T, recursive = T) %>%
-  map_dfr(read_delim, delim = ",", col_type = cols(pubmed_id = col_character()), na = "N/A") %>%
+pubmed = list.files("inst/extdata/networks/curated", pattern = "pubmed",
+                    full.names = T, recursive = T) %>%
+  map_dfr(read_delim, delim = ",", col_type = cols(pubmed_id = col_character()),
+          na = "N/A") %>%
   na_if("N,A")
 
 pubmed_ids = pubmed %>%
