@@ -10,9 +10,9 @@ df2regulon(df)
 \item{df}{A regulon table from dorothea package.}
 }
 \value{
-Regulons in the \code{\link[=viper]{viper()}} format.
+Regulons in the \code{viper} format.
 }
 \description{
 This function converts DoRothEA's regulons that are stored in a table to the
-format required by the \code{\link[=viper]{viper()}} function.
+format required by the \code{viper} function.
 }
