@@ -1,7 +1,7 @@
 #' VIPER wrapper
 #'
 #' This function is a convenient wrapper for the
-#' \code{\link[=viper]{viper()}} function using DoRothEA regulons.
+#' \code{viper} function using DoRothEA regulons.
 #'
 #' @param input An object containing a gene expression matrix with genes
 #'   (HGNC/MGI symbols) in rows and samples in columns. The object can be a simple
