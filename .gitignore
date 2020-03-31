@@ -7,5 +7,4 @@ vignettes/.Rhistory
 vignettes/.Rhistory
 
 # raw data
-inst/extdata/annotations/*
 inst/extdata/tf_target_sources/*
