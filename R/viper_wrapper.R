@@ -23,12 +23,6 @@
 #'
 #' @export
 #' @import dplyr
-#' @import tibble
-#' @import stringr
-#' @import purrr
-#' @import tidyr
-#' @import tibble
-#' @import viper
 run_viper <- function(input, regulons, options = list(), tidy = F) {
   UseMethod("run_viper")
 }
