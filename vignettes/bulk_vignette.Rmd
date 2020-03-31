@@ -52,7 +52,7 @@ on http://bioconductor.org/ and https://github.com/christianholland/dorothea.
 
 You can install it by running the following commands on an R console:
 
-```{r, eval=FALSE}
+```{r "installation", eval=FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
@@ -61,7 +61,7 @@ BiocManager::install("dorothea")
 
 We also load here the packages and functions required to run this script.
 
-```{r, message = FALSE}
+```{r "load packages", message = FALSE}
 ## We load the required packages
 library(dorothea)
 library(bcellViper)
@@ -78,7 +78,7 @@ how to combine viper with regulons from DoRothEA.
 Similiar to the `r Biocpkg("viper")` vignette we use the gene expression matrix from the `r Biocpkg("bcellViper")` package.
 Click [here](https://bioconductor.org/packages/release/bioc/vignettes/viper/inst/doc/viper.pdf) for more information about the gene expression matrix.
 The regulons from DoRothEA are provided within the dorothea package and can be acessed via the `data()` function. As the gene expression matrix contains human data we also load the human version of DoRothEA.
-```{r}
+```{r "load data"}
 # accessing expression data from bcellViper
 data(bcellViper, package = "bcellViper")
 
@@ -94,7 +94,7 @@ input types  such as matrix, dataframe, ExpressionSet, Seurat (see dedicated
 vignette for single-cell analysis). We subset DoRothEA to the confidence levels 
 A and B to include only the high quality regulons.
 
-```{r, message=FALSE, cache = T}
+```{r "run viper", message=FALSE}
 regulons = dorothea_hs %>%
   filter(confidence %in% c("A", "B"))
 
@@ -104,12 +104,11 @@ tf_activities = run_viper(dset, regulons,
                                           verbose = FALSE))
 ```
 
-# References
-
-# Session info {.unnumbered}
+# Session info
 
 ```{r sessionInfo, echo=FALSE}
 sessionInfo()
 ```
 
+# References
 

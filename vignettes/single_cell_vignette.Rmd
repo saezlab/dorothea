@@ -56,7 +56,7 @@ http://bioconductor.org/ and https://github.com/christianholland/dorothea.
 
 You can install it by running the following commands on an R console:
 
-```{r, eval=FALSE}
+```{r "installation", eval=FALSE}
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
@@ -65,7 +65,7 @@ BiocManager::install("dorothea")
 
 We also load here the packages and functions required  to run this script. 
 
-```{r, message = FALSE}
+```{r "load packages", message = FALSE}
 ## We load the required packages
 library(dorothea)
 library(dplyr)
@@ -92,7 +92,7 @@ sequenced on the Illumina NextSeq 500. This dataset is freely available in
 
 https://s3-us-west-2.amazonaws.com/10x.files/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz
 
-```{r, eval=FALSE}
+```{r "load data", eval=FALSE}
 ## Load the PBMC dataset
 pbmc.data <- Read10X(data.dir = "filtered_gene_bc_matrices/hg19/")
 
@@ -101,7 +101,7 @@ pbmc <- CreateSeuratObject(counts = pbmc.data, project = "pbmc3k",
                            min.cells = 3, min.features = 200)
 ```
 
-```{r, eval=TRUE , include=FALSE}
+```{r "load data2", eval=TRUE , include=FALSE}
 load(file="../inst/extdata/for_vignette/toy_seurat_object.RData", verbose = FALSE)
 ```
 
@@ -113,7 +113,7 @@ These steps carry out the selection and filtration of cells based on quality
 control metrics, the data normalization and scaling, and the detection of highly
 variable features (see https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html). 
 
-```{r, message=FALSE}
+```{r "preprocessing", message=FALSE}
 ## Identification of mithocondrial genes
 pbmc[["percent.mt"]] <- PercentageFeatureSet(pbmc, pattern = "^MT-")
 
@@ -142,7 +142,7 @@ are grouped based on the similarity of their transcriptomic profiles. We first
 apply the `r CRANpkg("Seurat")` v3 classical approach as described in their 
 aforementioned vignette. We visualize the cell clusters using UMAP: 
 
-```{r, message=FALSE, warning=FALSE, cache = T}
+```{r "clustering", message=FALSE, warning=FALSE}
 pbmc <- RunPCA(pbmc, features = VariableFeatures(object = pbmc), 
                verbose = FALSE)
 pbmc <- FindNeighbors(pbmc, dims = 1:10, verbose = FALSE)
@@ -160,7 +160,7 @@ names(new.cluster.ids) <- levels(pbmc)
 pbmc <- RenameIdents(pbmc, new.cluster.ids)
 ```
 
-```{r, message = FALSE, warning = FALSE}
+```{r "pca", message = FALSE, warning = FALSE}
 DimPlot(pbmc, reduction = "umap", label = TRUE, pt.size = 0.5) + NoLegend()
 ```
 
@@ -174,7 +174,7 @@ complementary information to the clusters based on transcriptomics profiles.
 
 Here, we first run **VIPER** on **DoRothEA's** regulons to obtain TFs activity.
 
-```{r message=FALSE, cache = T}
+```{r "viper", message=FALSE}
 ## We read Dorothea Regulons for Human:
 dorothea_regulon_human <- get(data("dorothea_hs", package = "dorothea"))
 
@@ -192,7 +192,7 @@ pbmc <- run_viper(pbmc, regulon,
 We then apply `r CRANpkg("Seurat")` to cluster the cells following the same 
 protocol than above but using TF activity scores.
 
-```{r, message=FALSE, cache = T}
+```{r "tf clustering", message=FALSE}
 ## We compute the Nearest Neighbours to perform cluster
 DefaultAssay(object = pbmc) <- "dorothea"
 pbmc <- ScaleData(pbmc)
@@ -213,7 +213,7 @@ names(new.cluster.ids) <- levels(pbmc)
 pbmc <- RenameIdents(pbmc, new.cluster.ids)
 ```
 
-```{r, message = FALSE, warning = FALSE}
+```{r "tf umap", message = FALSE, warning = FALSE}
 DimPlot(pbmc, reduction = "umap", label = TRUE, pt.size = 0.5) + NoLegend()
 ```
 
@@ -223,7 +223,7 @@ Finally, we characterise the different cell populations based on their
 TF activities thanks to the previously computed **VIPER** scores on 
 **DoRothEA's** regulons. 
 
-```{r, message = FALSE}
+```{r "tf activity", message = FALSE}
 ## We transform Viper scores, scaled by seurat, into a data frame to better 
 ## handling the results
 viper_scores_df <- GetAssayData(pbmc, slot = "scale.data", 
@@ -254,7 +254,7 @@ summarized_viper_scores <- viper_scores_clusters %>%
 For visualization purposes, we select the 20 most variable TFs across clusters
 according to our scores. 
 
-```{r, message=FALSE}
+```{r "highly variable tfs", message=FALSE}
 ## We select the 20 most variable TFs. (20*9 populations = 180)
 highly_variable_tfs <- summarized_viper_scores %>%
   group_by(tf) %>%
@@ -271,7 +271,7 @@ summarized_viper_scores_df <- summarized_viper_scores %>%
   data.frame(row.names = 1, check.names = FALSE, stringsAsFactors = FALSE) 
 ```
 
-```{r}
+```{r "tf heatmap"}
 palette_length = 100
 my_color = colorRampPalette(c("Darkblue", "white","red"))(palette_length)
 
@@ -288,12 +288,11 @@ viper_hmap <- pheatmap(t(summarized_viper_scores_df),fontsize=14,
                        treeheight_col = 0,  border_color = NA) 
 ```
 
-# References
-
-# Session info {.unnumbered}
+# Session info
 
 ```{r sessionInfo, echo=FALSE}
 sessionInfo()
 ```
 
+# References
 
