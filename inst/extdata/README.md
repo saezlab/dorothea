@@ -1,1 +1,1 @@
-The raw data that were used to construct DoRothEA's regulons will be made available on Zenodo
+DoRothEA is constructed based on the networks in the directory `networks`. The data to construct those networks is available at Zenodo (TODO)
