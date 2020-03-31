@@ -1,20 +1,19 @@
 #' Construction of dorothea regulons for viper analysis
 #'
 #' This function converts DoRothEA's regulons that are stored in a table to the
-#' format required by the \code{\link[=viper]{viper()}} function.
+#' format required by the \code{viper} function.
 #'
 #' @param df A regulon table from dorothea package.
 #'
-#' @return Regulons in the \code{\link[=viper]{viper()}} format.
-#' @import dplyr
+#' @return Regulons in the \code{viper} format.
+#'
 #' @export
-df2regulon = function(df) {
+df2regulon <- function(df) {
 
-  regulon_list = df %>%
-    split(.$tf)
+  regulon_list = split(df, df$tf)
 
   viper_regulons = lapply(regulon_list, function(regulon) {
-    tfmode = setNames(regulon$mor, regulon$target)
+    tfmode = stats::setNames(regulon$mor, regulon$target)
     list(tfmode = tfmode, likelihood = rep(1, length(tfmode)))
   })
 

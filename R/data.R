@@ -49,5 +49,8 @@ NULL
 #'   based on the number of supporting evidences. The table provides also all
 #'   required information to trace back the origin of the interaction.
 #'
+#'
 #' @keywords datasets
+#' @name entire_database
 #' @source \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6673718/}
+NULL
