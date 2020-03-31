@@ -6,7 +6,7 @@
 \format{A table of human TF-target interactions:
 \describe{
     \item{tf}{TF identifier as HGNC symbols}
-    \item{confidence}{Confidence score classifying regulons based on their quality}
+    \item{confidence}{Summary confidence score classifying regulons based on their quality}
     \item{target}{target identifier as HGNC symbols}
     \item{mor}{mode of regulation indicating the effect of a TF on the target}
 }}

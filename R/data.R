@@ -10,7 +10,7 @@
 #' @format A table of human TF-target interactions:
 #' \describe{
 #'     \item{tf}{TF identifier as HGNC symbols}
-#'     \item{confidence}{Confidence score classifying regulons based on their quality}
+#'     \item{confidence}{Summary confidence score classifying regulons based on their quality}
 #'     \item{target}{target identifier as HGNC symbols}
 #'     \item{mor}{mode of regulation indicating the effect of a TF on the target}
 #' }
@@ -32,7 +32,7 @@ NULL
 #' @format A table of mouse TF-target interactions:
 #' \describe{
 #'     \item{tf}{TF identifier as MGI symbols}
-#'     \item{confidence}{Confidence score classifying regulons based on their quality}
+#'     \item{confidence}{summary confidence score classifying regulons based on their quality}
 #'     \item{target}{target identifier as MGI symbols}
 #'     \item{mor}{mode of regulation indicating the effect of a TF on the target}
 #' }
@@ -41,3 +41,13 @@ NULL
 #' @name dorothea_mm
 #' @source \url{https://www.ncbi.nlm.nih.gov/pubmed/31525460}
 NULL
+
+#' Entire database with associated meta data
+#'
+#' This table lists all human TF-target interactions that were derived from the
+#'   four lines of evidences. Each interaction is assigned a confidence score
+#'   based on the number of supporting evidences. The table provides also all
+#'   required information to trace back the origin of the interaction.
+#'
+#' @keywords datasets
+#' @source \url{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6673718/}
