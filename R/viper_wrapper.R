@@ -1,12 +1,12 @@
 #' VIPER wrapper
 #'
 #' This function is a convenient wrapper for the
-#' \code{viper} function using DoRothEA regulons.
+#' \code{\link[=viper]{viper::viper()}} function using DoRothEA regulons.
 #'
 #' @param input An object containing a gene expression matrix with genes
-#'   (HGNC/MGI symbols) in rows and samples in columns. The object can be a simple
-#'   matrix/data frame or complexer objects such as ExpressionSet or Seurat
-#'   objects.
+#'   (HGNC/MGI symbols) in rows and samples in columns. The object can be a
+#'   simple matrix/data frame or complexer objects such as ExpressionSet or
+#'   Seurat objects.
 #' @param regulons DoRothEA regulons in table format.
 #' @param options A list of named options to pass to \code{viper} such as
 #'   \code{minsize} or \code{method}. These options should not include,
@@ -23,31 +23,48 @@
 #'
 #' @export
 #' @import dplyr
-run_viper <- function(input, regulons, options = list(), tidy = F) {
+#'
+#' @examples
+#' # use example gene expression matrix from bcellViper package
+#' library(bcellViper)
+#' data(bcellViper, package = "bcellViper")
+#' # acessing (human) dorothea regulons
+#' # for mouse regulons: data(dorothea_mm, package = "dorothea")
+#' data(dorothea_hs, package = "dorothea")
+#' # run viper
+#'tf_activities <- run_viper(dset, dorothea_hs,
+#'                           options =  list(method = "scale", minsize = 4,
+#'                           eset.filter = FALSE, cores = 1,
+#'                           verbose = FALSE))
+run_viper <- function(input, regulons, options = list(), tidy = FALSE) {
   UseMethod("run_viper")
 }
 
 #' @export
-run_viper.ExpressionSet <- function(input, regulons, options = list(), tidy=F) {
-  run_viper(input@assayData$exprs, regulons = regulons, options = options, tidy = tidy)
+run_viper.ExpressionSet <- function(input, regulons, options = list(),
+                                    tidy=FALSE) {
+  run_viper(input@assayData$exprs, regulons = regulons, options = options,
+            tidy = tidy)
 }
 
 #' @export
-run_viper.data.frame <- function(input, regulons, options = list(), tidy=F) {
+run_viper.data.frame <- function(input, regulons, options = list(),
+                                 tidy=FALSE) {
   run_viper(as.matrix(input), regulons = regulons, options = options,
             tidy = tidy)
 }
 
 #' @export
-run_viper.Seurat <- function(input, regulons, options = list(), tidy = F) {
+run_viper.Seurat <- function(input, regulons, options = list(), tidy = FALSE) {
   if (tidy) {
-    tidy <- F
-    warning("The argument 'tidy' cannot be true for Seurat objects. tidy is set to FALSE")
+    tidy <- FALSE
+    warning("The argument 'tidy' cannot be TRUE for Seurat objects. ",
+            "'tidy' is set to FALSE")
   }
   mat <- as.matrix(Seurat::GetAssayData(input, assay = "RNA", slot = "data"))
 
   tf_activities <- run_viper(mat, regulons = regulons, options = options,
-                             tidy = F)
+                             tidy = FALSE)
 
   # include TF activities in Seurat object
   dorothea_assay <- Seurat::CreateAssayObject(data = tf_activities)
@@ -58,7 +75,7 @@ run_viper.Seurat <- function(input, regulons, options = list(), tidy = F) {
 }
 
 #' @export
-run_viper.matrix <- function(input, regulons, options = list(), tidy=F) {
+run_viper.matrix <- function(input, regulons, options = list(), tidy=FALSE) {
   viper_res <- do.call(viper::viper,
                       c(list(eset = input,
                              regulon = df2regulon(regulons)),
@@ -66,14 +83,14 @@ run_viper.matrix <- function(input, regulons, options = list(), tidy=F) {
 
   if (tidy) {
     metadata <- regulons %>%
-      select(-c("target", "mor")) %>%
-      distinct()
+      dplyr::select(-c("target", "mor")) %>%
+      dplyr::distinct()
 
     tidy_viper_res <- viper_res %>%
-      data.frame(check.names = F, stringsAsFactors = F) %>%
+      data.frame(check.names = FALSE, stringsAsFactors = FALSE) %>%
       tibble::rownames_to_column("tf") %>%
       tidyr::gather(sample, "activity", -c("tf")) %>%
-      inner_join(metadata, by="tf")
+      dplyr::inner_join(metadata, by="tf")
 
     return(tidy_viper_res)
   } else {
@@ -82,7 +99,7 @@ run_viper.matrix <- function(input, regulons, options = list(), tidy=F) {
 }
 
 #' @export
-run_viper.default <- function(input, regulons, options=list(), tidy = F) {
+run_viper.default <- function(input, regulons, options=list(), tidy = FALSE) {
   stop("Do not know how to access the data matrix from class ", class(input))
 }
 
