@@ -52,8 +52,8 @@ trrust_clean = trrust %>%
   group_by(tf, target, mor, evidence_count) %>%
   summarise(pubmed_id = str_c(pubmed_id, collapse = ",")) %>%
   ungroup() %>%
-  mutate(priority = case_when(mor == "Unknown" ~ F,
-                              TRUE ~ T)) %>%
+  mutate(priority = case_when(mor == "Unknown" ~ FALSE,
+                              TRUE ~ TRUE)) %>%
   arrange(-priority, -evidence_count, mor) %>%
   group_by(tf, target) %>%
   slice(1) %>%
@@ -66,7 +66,8 @@ trrust_clean = trrust %>%
                          mor == "Activation" ~ 1)) %>%
   filter(tf %in% tfs)
 
-write_csv(trrust_clean, "inst/extdata/networks/curated/trrust/network_with_pubmed.sif")
+write_csv(trrust_clean,
+          "inst/extdata/networks/curated/trrust/network_with_pubmed.sif")
 
 #### IntAct ####
 int_act = read_delim(
@@ -106,10 +107,12 @@ int_act_clean = network %>%
   arrange(tf, target) %>%
   distinct()
 
-write_csv(int_act_clean, "inst/extdata/networks/curated/int_act/network_with_pubmed.sif")
+write_csv(int_act_clean,
+          "inst/extdata/networks/curated/int_act/network_with_pubmed.sif")
 
 #### Oreganno ####
-df = read_delim(pipe("grep sapiens inst/extdata/tf_target_sources/curated/oreganno/ORegAnno_Combined_2016.01.19.tsv | grep TRANSCRIPTION | grep hg38"), delim = "\t", col_names = F)
+df = read_delim(pipe("grep sapiens inst/extdata/tf_target_sources/curated/oreganno/ORegAnno_Combined_2016.01.19.tsv | grep TRANSCRIPTION | grep hg38"),
+                delim = "\t", col_names = FALSE)
 
 df_clean = df %>%
   select(source = X13,
@@ -141,7 +144,8 @@ pazar = df_clean %>%
   filter(source == "PAZAR") %>%
   distinct(tf, target, mor)
 
-write_csv(oreganno, "inst/extdata/networks/curated/oreganno/network_with_pubmed.sif")
+write_csv(oreganno,
+          "inst/extdata/networks/curated/oreganno/network_with_pubmed.sif")
 write_csv(regulome, "inst/extdata/networks/curated/nfi_regulome_db/network.sif")
 write_csv(pazar, "inst/extdata/networks/curated/pazar/network.sif")
 
@@ -154,8 +158,8 @@ df = read_delim("inst/extdata/tf_target_sources/curated/tf_act/Catalogues.txt",
 
 df_clean = df %>%
   # filter for human data
-  filter(str_detect(species, fixed("homo", ignore_case = T)) |
-           str_detect(species, fixed("human", ignore_case = T))) %>%
+  filter(str_detect(species, fixed("homo", ignore_case = TRUE)) |
+           str_detect(species, fixed("human", ignore_case = TRUE))) %>%
   select(source = ref, tf = official_tf_coding_gene_name,
          target = official_gene_name, mor = regulation,
          pubmed_id = ref_accession_number) %>%
@@ -172,24 +176,26 @@ df_clean = df %>%
 
 
 tf_act = df_clean %>%
-  filter(str_detect(source, fixed("pubmed", ignore_case = T))) %>%
+  filter(str_detect(source, fixed("pubmed", ignore_case = TRUE))) %>%
   distinct(tf, target, mor, pubmed_id) %>%
   filter(tf %in% tfs) %>%
   arrange(tf, target)
 
 trrd = df_clean %>%
-  filter(str_detect(source, fixed("trrd", ignore_case = T))) %>%
+  filter(str_detect(source, fixed("trrd", ignore_case = TRUE))) %>%
   distinct(tf, target, mor) %>%
   filter(tf %in% tfs) %>%
   arrange(tf, target)
 
 
-write_csv(tf_act, "inst/extdata/networks/curated/tf_act/network_with_pubmed.sif")
+write_csv(tf_act,
+          "inst/extdata/networks/curated/tf_act/network_with_pubmed.sif")
 write_csv(trrd, "inst/extdata/networks/curated/trrd_via_tf_act/network.sif")
 
 #### Reviews ####
 review_paths = list.files("inst/extdata/tf_target_sources/curated/reviews",
-                          pattern = "sif", full.names = T, recursive = T) %>%
+                          pattern = "sif", full.names = TRUE,
+                          recursive = TRUE) %>%
   discard(.p = ~str_detect(.x, "network"))
 
 reviews = review_paths %>%
@@ -201,7 +207,7 @@ reviews = review_paths %>%
       pluck(1) %>%
       tail(1)
 
-    read_delim(path, delim = "\t", col_names = F) %>%
+    read_delim(path, delim = "\t", col_names = FALSE) %>%
       rename(tf = X1, target = X2) %>%
       filter(tf != "TF") %>%
       select(tf, target) %>%
@@ -211,7 +217,8 @@ reviews = review_paths %>%
 write_csv(reviews, "inst/extdata/networks/curated/reviews/network_with_pubmed.sif")
 
 #### TRED ####
-tred = read_csv("inst/extdata/tf_target_sources/curated/tred_via_reg_network/export_Fri_Sep_22_11_00_16_UTC_2017.csv")
+tred = read_csv(
+  "inst/extdata/tf_target_sources/curated/tred_via_reg_network/export_Fri_Sep_22_11_00_16_UTC_2017.csv")
 
 tred_clean = tred %>%
   distinct(tf = regulator_symbol, target = target_symbol) %>%
@@ -222,7 +229,7 @@ write_csv(tred_clean,
           "inst/extdata/networks/curated/tred_via_reg_network/network.sif")
 
 #### HTRIdb ####
-htri = read_delim('inst/extdata/tf_target_sources/curated/htri_db/tf-target_network_052016_literaturecurated.txt',
+htri = read_delim("inst/extdata/tf_target_sources/curated/htri_db/tf-target_network_052016_literaturecurated.txt",
                   delim = "\t")
 
 htri_clean = htri %>%
@@ -238,16 +245,16 @@ write_csv(htri_clean, "inst/extdata/networks/curated/htri_db/network_with_pubmed
 get_GErel_edges = function(path_name, path_id){
 
   message(path_name)
-  tmp = paste(tempfile(tmpdir = '~/tmp'), '.xml', sep = '')
+  tmp = paste(tempfile(tmpdir = "~/tmp"), ".xml", sep = "")
   my_kgml = retrieveKGML(pathwayid = path_id, organism="hsa", destfile = tmp)
-  mapkG = try(parseKGML2Graph(tmp, expandGenes=T), silent = T)
+  mapkG = try(parseKGML2Graph(tmp, expandGenes=TRUE), silent = TRUE)
 
-  if (class(mapkG) == "try-error")
+  if (is(mapkG,"try-error"))
     return(NULL)
 
   pathedges =  getKEGGedgeData(mapkG)
   pathedges_type = sapply(pathedges, getType)
-  pathedges_GErel = pathedges[ pathedges_type == 'GErel' ]
+  pathedges_GErel = pathedges[ pathedges_type == "GErel" ]
   pathedges_entryID = sapply(pathedges_GErel, getEntryID)
   pathedges_subtype_name = sapply(pathedges_GErel,
                                   function(x) getName(getSubtype(x)[[1]]))
@@ -260,7 +267,7 @@ get_GErel_edges = function(path_name, path_id){
                            pathedges_subtype_value,
                            path_name = path_name,
                            path_id = path_id),
-                     stringsAsFactors = F)
+                     stringsAsFactors = FALSE)
 
   df$Entry1Symbol = sapply(mget(translateKEGGID2GeneID(df$Entry1ID),
                                 org.Hs.egSYMBOL, ifnotfound=NA), "[[",1)
@@ -271,8 +278,8 @@ get_GErel_edges = function(path_name, path_id){
 
 
 
-mykegglist = keggList(organism = "hsa", database = 'pathway')
-pId = gsub('path:hsa', '', names(mykegglist))
+mykegglist = keggList(organism = "hsa", database = "pathway")
+pId = gsub("path:hsa", "", names(mykegglist))
 pName = mykegglist
 GErel_edges = mapply(get_GErel_edges, pName, pId)
 

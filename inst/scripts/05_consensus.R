@@ -11,7 +11,7 @@ tfs = load_tf_census()
 
 #### Load networks from all types of evidences ####
 n = list.files("inst/extdata/networks", pattern = "network",
-               recursive = T, full.names = T) %>%
+               recursive = TRUE, full.names = TRUE) %>%
   # remove networks inferred from TCGA data
   discard(.p = ~str_detect(.x, "tcga")) %>%
   map_dfr(function(path) {
@@ -271,12 +271,12 @@ which_evidence = interactions %>%
     evidence == "inferred" ~ "is_evidence_inferred",
     evidence == "tfbs" ~ "is_evidence_tfbs"
   )) %>%
-  mutate(val = T) %>%
-  spread(evidence, val, fill=F)
+  mutate(val = TRUE) %>%
+  spread(evidence, val, fill=FALSE)
 
 # retrieve pubmed ids for interaction from curated databases
 pubmed = list.files("inst/extdata/networks/curated", pattern = "pubmed",
-                    full.names = T, recursive = T) %>%
+                    full.names = TRUE, recursive = TRUE) %>%
   map_dfr(read_delim, delim = ",", col_type = cols(pubmed_id = col_character()),
           na = "N/A") %>%
   na_if("N,A")

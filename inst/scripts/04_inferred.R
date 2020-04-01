@@ -14,7 +14,7 @@ tfs = load_tf_census()
 gtex_path = "inst/extdata/tf_target_sources/inferred/gtex/tissue_specific"
 
 
-gtex_df = list.files(path = gtex_path, full.names = T, recursive = T,
+gtex_df = list.files(path = gtex_path, full.names = TRUE, recursive = TRUE,
                 pattern = "viperRegulon") %>%
   map_dfr(function(path) {
     tissue = str_split(path, pattern = "/") %>%
@@ -53,7 +53,7 @@ write_csv(gtex_network,
 tcga_path = "inst/extdata/tf_target_sources/inferred/tcga/cancer_specific"
 
 
-tcga_df = list.files(path = tcga_path, full.names = T, recursive = T,
+tcga_df = list.files(path = tcga_path, full.names = TRUE, recursive = TRUE,
                      pattern = "viperRegulon") %>%
   map_dfr(function(path) {
     cancer = basename(path) %>%

@@ -12,12 +12,12 @@ tfs = load_tf_census()
 anno = readRDS("inst/extdata/annotations/uniprot_annotation.rds") %>%
   distinct(entry, entry_name, gene_name)
 
-hocomoco = read_delim('inst/extdata/tf_target_sources/tfbs/hocomoco/scanning_output/fimo/fimo_annotated.txt', delim = "\t") %>%
+hocomoco = read_delim("inst/extdata/tf_target_sources/tfbs/hocomoco/scanning_output/fimo/fimo_annotated.txt", delim = "\t") %>%
   janitor::clean_names() %>%
   select(-sequence_name, -start, -stop) %>%
   distinct()
 
-jaspar = read_delim('inst/extdata/tf_target_sources/tfbs/jaspar/scanning_output/fimo/fimo_annotated.txt', delim = "\t") %>%
+jaspar = read_delim("inst/extdata/tf_target_sources/tfbs/jaspar/scanning_output/fimo/fimo_annotated.txt", delim = "\t") %>%
   janitor::clean_names() %>%
   select(-sequence_name, -start, -stop) %>%
   distinct()
@@ -29,7 +29,7 @@ jaspar = read_delim('inst/extdata/tf_target_sources/tfbs/jaspar/scanning_output/
 mapping = hocomoco %>%
   distinct(number_motif_id) %>%
   # mutate(entry_name = str_split(number_motif_id, pattern = "\\.")[[1]][1]) %>%
-  separate(number_motif_id, into = "entry_name", extra = "drop", remove = F,
+  separate(number_motif_id, into = "entry_name", extra = "drop", remove = FALSE,
            sep = "\\.") %>%
   left_join(anno, by=c("entry_name")) %>%
   mutate(gene_name = case_when(is.na(gene_name) ~ str_remove(entry_name, "_HUMAN"),
