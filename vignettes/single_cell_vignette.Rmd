@@ -1,5 +1,6 @@
 --- 
-title: "TF activity inference from scRNA-seq data with DoRothEA as regulon resource."
+title: "TF activity inference from scRNA-seq data with DoRothEA as regulon 
+    resource."
 author:
 - name: Christian H. Holland 
   affiliation: Institute for Computational Biomedicine, Heidelberg University
@@ -102,7 +103,8 @@ pbmc <- CreateSeuratObject(counts = pbmc.data, project = "pbmc3k",
 ```
 
 ```{r "load data2", eval=TRUE , include=FALSE}
-load(file="../inst/extdata/for_vignette/toy_seurat_object.RData", verbose = FALSE)
+load(file="../inst/extdata/for_vignette/seurat_object.RData", 
+     verbose = FALSE)
 ```
 
 ## Pre-processing, normalization and identification of highly variable features

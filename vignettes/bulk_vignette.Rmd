@@ -1,5 +1,6 @@
 --- 
-title: "TF activity inference from bulk transcriptomic data with DoRothEA as regulon resource."
+title: "TF activity inference from bulk transcriptomic data with DoRothEA as 
+    regulon resource."
 author:
 - name: Christian Holland 
   affiliation: Institute for Computational Biomedicine, Heidelberg University
@@ -75,9 +76,12 @@ According to the vignette from the `r Biocpkg("viper")` package we demonstrate
 how to combine viper with regulons from DoRothEA.
 
 ## Accessing example data and  DoRothEA regulons.
-Similiar to the `r Biocpkg("viper")` vignette we use the gene expression matrix from the `r Biocpkg("bcellViper")` package.
-Click [here](https://bioconductor.org/packages/release/bioc/vignettes/viper/inst/doc/viper.pdf) for more information about the gene expression matrix.
-The regulons from DoRothEA are provided within the dorothea package and can be acessed via the `data()` function. As the gene expression matrix contains human data we also load the human version of DoRothEA.
+Similiar to the `r Biocpkg("viper")` vignette we use the gene expression matrix 
+from the `r Biocpkg("bcellViper")` package. Click [here](https://bioconductor.org/packages/release/bioc/vignettes/viper/inst/doc/viper.pdf) 
+for more information about the gene expression matrix. The regulons from 
+DoRothEA are provided within the dorothea package and can be acessed via the 
+`data()` function. As the gene expression matrix contains human data we also 
+load the human version of DoRothEA.
 ```{r "load data"}
 # accessing expression data from bcellViper
 data(bcellViper, package = "bcellViper")
