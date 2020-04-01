@@ -6,9 +6,11 @@
 \format{A table of mouse TF-target interactions:
 \describe{
     \item{tf}{TF identifier as MGI symbols}
-    \item{confidence}{summary confidence score classifying regulons based on their quality}
+    \item{confidence}{summary confidence score classifying regulons based on
+        their quality}
     \item{target}{target identifier as MGI symbols}
-    \item{mor}{mode of regulation indicating the effect of a TF on the target}
+    \item{mor}{mode of regulation indicating the effect of a TF on the
+        target}
 }}
 \source{
 \url{https://www.ncbi.nlm.nih.gov/pubmed/31525460}

@@ -4,13 +4,13 @@
 \alias{run_viper}
 \title{VIPER wrapper}
 \usage{
-run_viper(input, regulons, options = list(), tidy = F)
+run_viper(input, regulons, options = list(), tidy = FALSE)
 }
 \arguments{
 \item{input}{An object containing a gene expression matrix with genes
-(HGNC/MGI symbols) in rows and samples in columns. The object can be a simple
-matrix/data frame or complexer objects such as ExpressionSet or Seurat
-objects.}
+(HGNC/MGI symbols) in rows and samples in columns. The object can be a
+simple matrix/data frame or complexer objects such as ExpressionSet or
+Seurat objects.}
 
 \item{regulons}{DoRothEA regulons in table format.}
 
@@ -31,5 +31,18 @@ A matrix of normalized enrichment scores for each TF across all
 }
 \description{
 This function is a convenient wrapper for the
-\code{\link[=viper]{viper()}} function using DoRothEA regulons.
+\code{\link[=viper]{viper::viper()}} function using DoRothEA regulons.
+}
+\examples{
+# use example gene expression matrix from bcellViper package
+library(bcellViper)
+data(bcellViper, package = "bcellViper")
+# acessing (human) dorothea regulons
+# for mouse regulons: data(dorothea_mm, package = "dorothea")
+data(dorothea_hs, package = "dorothea")
+# run viper
+tf_activities <- run_viper(dset, dorothea_hs,
+                          options =  list(method = "scale", minsize = 4,
+                          eset.filter = FALSE, cores = 1,
+                          verbose = FALSE))
 }

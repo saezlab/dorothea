@@ -6,7 +6,13 @@
 \usage{
 lhs \%>\% rhs
 }
+\value{
+lhs
+}
 \description{
 See \code{magrittr::\link[magrittr:pipe]{\%>\%}} for details.
+}
+\examples{
+c(1:10) \%>\% mean()
 }
 \keyword{internal}
