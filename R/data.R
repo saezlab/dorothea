@@ -10,9 +10,11 @@
 #' @format A table of human TF-target interactions:
 #' \describe{
 #'     \item{tf}{TF identifier as HGNC symbols}
-#'     \item{confidence}{Summary confidence score classifying regulons based on their quality}
+#'     \item{confidence}{Summary confidence score classifying regulons based on
+#'         their quality}
 #'     \item{target}{target identifier as HGNC symbols}
-#'     \item{mor}{mode of regulation indicating the effect of a TF on the target}
+#'     \item{mor}{mode of regulation indicating the effect of a TF on the
+#'         target}
 #' }
 #'
 #' @keywords datasets
@@ -32,9 +34,11 @@ NULL
 #' @format A table of mouse TF-target interactions:
 #' \describe{
 #'     \item{tf}{TF identifier as MGI symbols}
-#'     \item{confidence}{summary confidence score classifying regulons based on their quality}
+#'     \item{confidence}{summary confidence score classifying regulons based on
+#'         their quality}
 #'     \item{target}{target identifier as MGI symbols}
-#'     \item{mor}{mode of regulation indicating the effect of a TF on the target}
+#'     \item{mor}{mode of regulation indicating the effect of a TF on the
+#'         target}
 #' }
 #'
 #' @keywords datasets

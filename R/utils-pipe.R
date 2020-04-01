@@ -5,7 +5,10 @@
 #' @name %>%
 #' @rdname pipe
 #' @keywords internal
-#' @export
 #' @importFrom magrittr %>%
+#' @return lhs
+#' @export
 #' @usage lhs \%>\% rhs
+#' @examples
+#' c(1:10) %>% mean()
 NULL
