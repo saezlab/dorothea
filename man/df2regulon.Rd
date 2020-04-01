@@ -14,5 +14,5 @@ Regulons in the \code{viper} format.
 }
 \description{
 This function converts DoRothEA's regulons that are stored in a table to the
-format required by the \code{viper} function.
+format required by the \code{\link[=viper]{viper::viper()}} function.
 }
