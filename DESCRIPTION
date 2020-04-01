@@ -28,4 +28,5 @@ Suggests:
     tidyr,
     utils,
     viper,
-    yardstick
+    yardstick,
+    testthat (>= 2.1.0)
