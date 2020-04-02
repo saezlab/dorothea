@@ -5,5 +5,5 @@
 ```r
 # install the development version from GitHub
 # install.packages("devtools")
-devtools::install_github("christianholland/dorothea")
+devtools::install_github("saezlab/dorothea_R")
 ```
