@@ -149,8 +149,7 @@ pbmc <- RunPCA(pbmc, features = VariableFeatures(object = pbmc),
                verbose = FALSE)
 pbmc <- FindNeighbors(pbmc, dims = 1:10, verbose = FALSE)
 pbmc <- FindClusters(pbmc, resolution = 0.5, verbose = FALSE)
-pbmc <- RunUMAP(pbmc, dims = 1:10,  umap.method = 'umap-learn',  
-                metric='correlation')
+pbmc <- RunUMAP(pbmc, dims = 1:10, umap.method = "uwot", metric = "cosine")
 
 pbmc.markers <- FindAllMarkers(pbmc, only.pos = TRUE, min.pct = 0.25, 
                                logfc.threshold = 0.25, verbose = FALSE)
@@ -202,8 +201,7 @@ pbmc <- RunPCA(pbmc, features = rownames(pbmc), verbose = FALSE)
 pbmc <- FindNeighbors(pbmc, dims = 1:10, verbose = FALSE)
 pbmc <- FindClusters(pbmc, resolution = 0.5, verbose = FALSE)
 
-pbmc <- RunUMAP(pbmc, dims = 1:10,  umap.method = 'umap-learn',  
-                metric='correlation')
+pbmc <- RunUMAP(pbmc, dims = 1:10, umap.method = "uwot", metric = "cosine")
 
 pbmc.markers <- FindAllMarkers(pbmc, only.pos = TRUE, min.pct = 0.25, 
                                logfc.threshold = 0.25, verbose = FALSE)
