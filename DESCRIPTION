@@ -26,11 +26,13 @@ Imports:
     bcellViper
 Suggests:
     BiocStyle,
+    knitr,
     pheatmap,
     Seurat,
+    testthat (>= 2.1.0),
     tibble,
     tidyr,
     utils,
-    viper,
-    testthat (>= 2.1.0),
-    knitr
+    viper
+    
+    
