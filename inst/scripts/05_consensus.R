@@ -309,7 +309,6 @@ final_database_human = entire_database %>%
                          TRUE ~ mor)) %>%
   select(-class)
 
-
 #### Translate final database to mouse symbols ####
 anno = readRDS("inst/extdata/annotations/hgnc_mgi_annotation.rds") %>%
   filter(!str_detect(mgi_symbol, "^Gm[:digit:]+"))
