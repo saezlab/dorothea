@@ -20,7 +20,8 @@ VignetteBuilder: utils
 biocViews: ExperimentData, Homo_sapiens_Data, Mus_musculus_Data
 Imports:
     dplyr,
-    magrittr
+    magrittr,
+    bcellViper
 Suggests:
     pheatmap,
     Seurat,

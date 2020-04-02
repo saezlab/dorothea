@@ -1,16 +1,16 @@
 #' VIPER wrapper
 #'
 #' This function is a convenient wrapper for the
-#' \code{\link[=viper]{viper::viper()}} function using DoRothEA regulons.
+#' \code{\link[viper]{viper}} function using DoRothEA regulons.
 #'
 #' @param input An object containing a gene expression matrix with genes
 #'   (HGNC/MGI symbols) in rows and samples in columns. The object can be a
 #'   simple matrix/data frame or complexer objects such as
-#'   \code{\link[=ExpressionSet]{ExpressionSet}} or
-#'   \code{\link[=Seurat]{Seurat}} objects.
+#'   \code{\link[Biobase]{ExpressionSet}} or
+#'   \code{\link[Seurat]{Seurat}} objects.
 #' @param regulons \code{\link[=dorothea_hs]{DoRothEA}} regulons in table format.
 #' @param options A list of named options to pass to
-#'   \code{\link[=viper]{viper::viper()}} such as \code{minsize} or
+#'   \code{\link[viper]{viper}} such as \code{minsize} or
 #'   \code{method}. These options should not include, \code{eset} or
 #'   \code{regulon}.
 #' @param tidy Logical, whether computed tf activities scores should be returned
@@ -25,6 +25,7 @@
 #'
 #' @export
 #' @import dplyr
+#' @import bcellViper
 #'
 #' @examples
 #' # use example gene expression matrix from bcellViper package
