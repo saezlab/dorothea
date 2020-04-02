@@ -11,7 +11,7 @@ author:
 - name: Julio Saez-Rodriguez 
   affiliation: Institute for Computational Biomedicine, Heidelberg University 
    
-# package: dorothea
+package: dorothea
 output:
   BiocStyle::html_document
 bibliography: references.bib
@@ -20,7 +20,7 @@ abstract: |
   scRNA-seq data by running Viper on DoRothEA's curated regulons. 
 license: GNU-GLPv3, please check http://www.gnu.org/licenses/
 vignette: |
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{TF activity inference from scRNA-seq data with DoRothEA as regulon resource.}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

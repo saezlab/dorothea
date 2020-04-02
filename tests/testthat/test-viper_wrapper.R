@@ -19,8 +19,8 @@ test_that("test run_viper with matrix as input", {
     system.file("testdata", "output_matrix_tidy.rds", package = "dorothea")
   )
 
-  expect_identical(res, expected_res)
-  expect_identical(tidy_res, expected_res_tidy)
+  expect_equal(res, expected_res)
+  expect_equal(tidy_res, expected_res_tidy)
 })
 
 test_that("test run_viper with eset as input", {
@@ -45,8 +45,8 @@ test_that("test run_viper with eset as input", {
     system.file("testdata", "output_eset_tidy.rds", package = "dorothea")
   )
 
-  expect_identical(res, expected_res)
-  expect_identical(tidy_res, expected_res_tidy)
+  expect_equal(res, expected_res)
+  expect_equal(tidy_res, expected_res_tidy)
 })
 
 
@@ -69,8 +69,8 @@ test_that("test run_viper with seurat as input", {
     system.file("testdata", "output_seurat.rds", package = "dorothea")
   )
 
-  expect_identical(res, expected_res)
-  expect_identical(tidy_res, expected_res)
+  expect_equal(res, expected_res)
+  expect_equal(tidy_res, expected_res)
 
   # check raised warning when tidy is set to T
   expect_warning(
@@ -81,6 +81,6 @@ test_that("test run_viper with seurat as input", {
     "The argument 'tidy' cannot be TRUE for Seurat objects. 'tidy' is set to FALSE")
 
   # Check key of seurat assays
-  expect_identical(unname(Seurat::Key(res)), c("rna_","dorothea_"))
+  expect_equal(unname(Seurat::Key(res)), c("rna_","dorothea_"))
 
 })
