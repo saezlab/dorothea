@@ -17,11 +17,6 @@ n = list.files("inst/extdata/networks", pattern = "network",
   map_dfr(function(path) {
     message(path)
     net = readRDS(path)
-    # if (str_detect(path, "tf_e")) {
-    #   net = read_delim(path, delim = "\t")
-    # } else {
-    #   net = read_delim(path, delim = ',')
-    # }
 
     # extract evidence type
     evidence = path %>%
