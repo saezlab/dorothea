@@ -13,7 +13,8 @@ simple matrix/data frame or complexer objects such as
 \code{\link[Biobase]{ExpressionSet}} or
 \code{\link[Seurat]{Seurat}} objects.}
 
-\item{regulons}{\code{\link[=dorothea_hs]{DoRothEA}} regulons in table format.}
+\item{regulons}{\code{\link[=dorothea_hs]{DoRothEA}} regulons in table
+format.}
 
 \item{options}{A list of named options to pass to
 \code{\link[viper]{viper}} such as \code{minsize} or
