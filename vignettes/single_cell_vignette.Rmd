@@ -8,8 +8,6 @@ author:
 - name: Alberto Valdeolivas
   affiliation: Institute for Computational Biomedicine, Heidelberg University
   email: alberto.valdeolivas@bioquant.uni-heidelberg.de
-- name: Minoo Ashtiani 
-  affiliation: Institute for Computational Biomedicine, Heidelberg University
 - name: Julio Saez-Rodriguez 
   affiliation: Institute for Computational Biomedicine, Heidelberg University 
    
@@ -42,8 +40,8 @@ to E (lowest confidence) [@GarciaAlonso2019].
 expression levels of its targets. We therefore can consider TF activity as a 
 proxy of a given transcriptional state [@Dugourd2019]. 
 
-Recently, @Holland2020 evaluated the performance of **DoRothEA** in 
-combination with **VIPER** when applied to scRNA-seq data. They showed that, in 
+@Holland2020 evaluated the performance of **DoRothEA** in 
+combination with **VIPER** when applied to scRNA-seq data. We showed that, in 
 spite of the current limitations of scRNA-seq technologies, their approach can 
 provide meaningful results in this context. Indeed, this vignette shows an 
 example on how to apply **DoRothEA** regulons coupled with **VIPER** in a well 
@@ -53,7 +51,7 @@ known single-cell dataset.
 
 First of all, you need a current version of R (http://www.r-project.org). 
 `r Biocpkg("DoRothEA")` is a freely available annotation package deposited on 
-http://bioconductor.org/ and https://github.com/christianholland/dorothea. 
+http://bioconductor.org/ and https://github.com/saezlab/dorothea_R. 
 
 You can install it by running the following commands on an R console:
 
@@ -64,7 +62,7 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 BiocManager::install("dorothea")
 ```
 
-We also load here the packages and functions required  to run this script. 
+We also load here the packages required  to run this script. 
 
 ```{r "load packages", message = FALSE}
 ## We load the required packages
@@ -173,8 +171,12 @@ activity computed with **VIPER** and **DoRothEA** performs better than
 using the expression level of the same TFs. In addition, it brings 
 complementary information to the clusters based on transcriptomics profiles.
 
-Here, we first run **VIPER** on **DoRothEA's** regulons to obtain TFs activity.
-
+Here, we first run **VIPER** on **DoRothEA's** regulons to obtain TFs activity,
+by using the wrapper function `run_viper()`. This function can deal with 
+different input types such as matrix, dataframe, ExpressionSet or even Seurat 
+objects. In case of a seurat object the function returns the same seurat object 
+with an additonal assay called `dorothea` containing the TF activities in the 
+slot `data`.
 ```{r "viper", message=FALSE}
 ## We read Dorothea Regulons for Human:
 dorothea_regulon_human <- get(data("dorothea_hs", package = "dorothea"))

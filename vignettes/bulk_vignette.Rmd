@@ -2,12 +2,10 @@
 title: "TF activity inference from bulk transcriptomic data with DoRothEA as 
     regulon resource."
 author:
-- name: Christian Holland 
+- name: Christian H. Holland 
   affiliation: Institute for Computational Biomedicine, Heidelberg University
   email: christian.holland@bioquant.uni-heidelberg.de
 - name: Alberto Valdeolivas
-  affiliation: Institute for Computational Biomedicine, Heidelberg University
-- name: Minoo Ashtiani 
   affiliation: Institute for Computational Biomedicine, Heidelberg University
 - name: Julio Saez-Rodriguez 
   affiliation: Institute for Computational Biomedicine, Heidelberg University 
@@ -18,8 +16,7 @@ output:
 bibliography: references.bib
 abstract: |
   This vignette describes how to infer transcription factor activity from 
-  bulk transcriptome data by using DoRothEA's curated regulons with various
-  statistics
+  bulk transcriptome data by using DoRothEA's curated regulons with viper.
 license: GNU-GLPv3, please check http://www.gnu.org/licenses/
 vignette: |
   %\VignetteIndexEntry{Vignette Title}
@@ -44,6 +41,9 @@ than dedicated mouse regulons [@Holland2019].
 [@Alvarez2016]. In this context, TF activities are computed based on the mRNA 
 expression levels of its targets. We therefore can consider TF activity as a 
 proxy of a given transcriptional state [@Dugourd2019].
+However, it is up to the user to decide which statistcal method to use. 
+Alternatives could be for instance classical Gene Set Enrichment Analysis or 
+simply mean statistic.
 
 # Installation
 
@@ -60,7 +60,7 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 BiocManager::install("dorothea")
 ```
 
-We also load here the packages and functions required to run this script.
+We also load here the packages required to run this vignette
 
 ```{r "load packages", message = FALSE}
 ## We load the required packages
@@ -94,18 +94,18 @@ data(dorothea_hs, package = "dorothea")
 ## Running VIPER with DoRothEA regulons
 
 We implemented a wrapper for the viper function that can deal with different 
-input types  such as matrix, dataframe, ExpressionSet, Seurat (see dedicated 
-vignette for single-cell analysis). We subset DoRothEA to the confidence levels 
-A and B to include only the high quality regulons.
+input types  such as matrix, dataframe, ExpressionSet or Seurat objects 
+(see dedicated vignette for single-cell analysis). We subset DoRothEA to the 
+confidence levels A and B to include only the high quality regulons.
 
 ```{r "run viper", message=FALSE}
 regulons = dorothea_hs %>%
   filter(confidence %in% c("A", "B"))
 
-tf_activities = run_viper(dset, regulons, 
-                          options =  list(method = "scale", minsize = 4, 
-                                          eset.filter = FALSE, cores = 1, 
-                                          verbose = FALSE))
+tf_activities <- run_viper(dset, regulons, 
+                           options =  list(method = "scale", minsize = 4, 
+                                           eset.filter = FALSE, cores = 1, 
+                                           verbose = FALSE))
 ```
 
 # Session info
