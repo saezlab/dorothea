@@ -25,12 +25,12 @@ Imports:
     magrittr,
     bcellViper
 Suggests:
+    BiocStyle,
     pheatmap,
     Seurat,
     tibble,
     tidyr,
     utils,
     viper,
-    yardstick,
     testthat (>= 2.1.0),
     knitr
