@@ -49,7 +49,7 @@ simply mean statistic.
 
 First of all, you need a current version of R (http://www.r-project.org). In 
 addition you need `r Biocpkg("dorothea")`, a freely available package deposited 
-on http://bioconductor.org/ and https://github.com/christianholland/dorothea. 
+on http://bioconductor.org/ and https://github.com/saezlab/dorothea_R. 
 
 You can install it by running the following commands on an R console:
 
