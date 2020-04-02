@@ -84,3 +84,4 @@ test_that("test run_viper with seurat as input", {
   expect_equal(unname(Seurat::Key(res)), c("rna_","dorothea_"))
 
 })
+
