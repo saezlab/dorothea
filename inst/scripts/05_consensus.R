@@ -9,19 +9,19 @@ source("inst/scripts/utils.R")
 
 tfs = load_tf_census()
 
+# resoures only allowed for academic not  for commercial use
+only_academic = c("tred", "kegg")
+
 #### Load networks from all types of evidences ####
 n = list.files("inst/extdata/networks", pattern = "network",
-               recursive = TRUE, full.names = TRUE) %>%
+               recursive = T, full.names = T) %>%
   # remove networks inferred from TCGA data
   discard(.p = ~str_detect(.x, "tcga")) %>%
+  # remove networks that are not allowed for for commercial used
+  discard(.p = ~str_detect(.x, str_c(only_academic, collapse = "|"))) %>%
   map_dfr(function(path) {
     message(path)
     net = readRDS(path)
-    # if (str_detect(path, "tf_e")) {
-    #   net = read_delim(path, delim = "\t")
-    # } else {
-    #   net = read_delim(path, delim = ',')
-    # }
 
     # extract evidence type
     evidence = path %>%
