@@ -51,7 +51,7 @@ known single-cell dataset.
 
 First of all, you need a current version of R (http://www.r-project.org). 
 `r Biocpkg("DoRothEA")` is a freely available annotation package deposited on 
-http://bioconductor.org/ and https://github.com/saezlab/dorothea_R. 
+http://bioconductor.org/ and https://github.com/saezlab/dorothea. 
 
 You can install it by running the following commands on an R console:
 
