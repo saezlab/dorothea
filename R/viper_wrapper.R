@@ -8,7 +8,8 @@
 #'   simple matrix/data frame or complexer objects such as
 #'   \code{\link[Biobase]{ExpressionSet}} or
 #'   \code{\link[Seurat]{Seurat}} objects.
-#' @param regulons \code{\link[=dorothea_hs]{DoRothEA}} regulons in table format.
+#' @param regulons \code{\link[=dorothea_hs]{DoRothEA}} regulons in table
+#'   format.
 #' @param options A list of named options to pass to
 #'   \code{\link[viper]{viper}} such as \code{minsize} or
 #'   \code{method}. These options should not include, \code{eset} or
