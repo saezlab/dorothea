@@ -45,8 +45,8 @@ gtex_network = gtex_df %>%
   select(-n) %>%
   arrange(tf, target)
 
-write_csv(gtex_network,
-          "inst/extdata/networks/inferred/gtex/pantissue/network.sif")
+saveRDS(gtex_network,
+        "inst/extdata/networks/inferred/gtex/pantissue/network.rds")
 
 #### tcga ####
 # Load networks
@@ -85,5 +85,5 @@ tcga_network = tcga_df %>%
   arrange(tf, target) %>%
   distinct(tf, target, mor)
 
-write_csv(tcga_network,
-          "inst/extdata/networks/inferred/tcga/pancancer/network.sif")
+saveRDS(tcga_network,
+        "inst/extdata/networks/inferred/tcga/pancancer/network.rds")

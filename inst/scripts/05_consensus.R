@@ -16,11 +16,12 @@ n = list.files("inst/extdata/networks", pattern = "network",
   discard(.p = ~str_detect(.x, "tcga")) %>%
   map_dfr(function(path) {
     message(path)
-    if (str_detect(path, "tf_e")) {
-      net = read_delim(path, delim = "\t")
-    } else {
-      net = read_delim(path, delim = ',')
-    }
+    net = readRDS(path)
+    # if (str_detect(path, "tf_e")) {
+    #   net = read_delim(path, delim = "\t")
+    # } else {
+    #   net = read_delim(path, delim = ',')
+    # }
 
     # extract evidence type
     evidence = path %>%
@@ -277,8 +278,7 @@ which_evidence = interactions %>%
 # retrieve pubmed ids for interaction from curated databases
 pubmed = list.files("inst/extdata/networks/curated", pattern = "pubmed",
                     full.names = TRUE, recursive = TRUE) %>%
-  map_dfr(read_delim, delim = ",", col_type = cols(pubmed_id = col_character()),
-          na = "N/A") %>%
+  map_dfr(readRDS) %>%
   na_if("N,A")
 
 pubmed_ids = pubmed %>%

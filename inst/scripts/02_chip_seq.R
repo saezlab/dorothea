@@ -27,4 +27,4 @@ network = remap_network %>%
   select(tf, target) %>%
   arrange(tf, target)
 
-write_csv(network, "inst/extdata/networks/chip_seq/remap/network.sif")
+saveRDS(network, "inst/extdata/networks/chip_seq/remap/network.rds")

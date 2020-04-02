@@ -65,9 +65,9 @@ df = databases %>%
 df %>%
   filter(source == "jaspar") %>%
   distinct(tf, target) %>%
-  write_csv("inst/extdata/networks/tfbs/jaspar/network.sif")
+  saveRDS("inst/extdata/networks/tfbs/jaspar/network.rds")
 
 df %>%
   filter(source == "hocomoco") %>%
   distinct(tf, target) %>%
-  write_csv("inst/extdata/networks/tfbs/hocomoco/network.sif")
+  saveRDS("inst/extdata/networks/tfbs/hocomoco/network.rds")

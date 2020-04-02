@@ -34,17 +34,17 @@ fantom$target = fantom_anno$primary_name[match(fantom$feature2_id, fantom_anno$f
 fantom_clean = fantom %>%
   filter(tf %in% tfs) %>%
   arrange(tf, target) %>%
-  distinct(tf, target, pubmed_id)
+  distinct(tf, target, pubmed_id) %>%
+  mutate(pubmed_id = as.character(pubmed_id))
 
-write_csv(fantom_clean,
-            "inst/extdata/networks/curated/fantom_4/network_with_pubmed.sif")
+saveRDS(fantom_clean,
+        "inst/extdata/networks/curated/fantom_4/network_with_pubmed.rds")
 
 #### TRRUST ####
 trrust = read_delim(
   "inst/extdata/tf_target_sources/curated/trrust/trrust_rawdata.human.v2.tsv",
   delim = "\t", col_names = c("tf", "target", "mor", "pubmed_id")
   )
-
 
 trrust_clean = trrust %>%
   separate_rows(pubmed_id, sep = ";", ) %>%
@@ -66,8 +66,8 @@ trrust_clean = trrust %>%
                          mor == "Activation" ~ 1)) %>%
   filter(tf %in% tfs)
 
-write_csv(trrust_clean,
-          "inst/extdata/networks/curated/trrust/network_with_pubmed.sif")
+saveRDS(trrust_clean,
+        "inst/extdata/networks/curated/trrust/network_with_pubmed.rds")
 
 #### IntAct ####
 int_act = read_delim(
@@ -107,8 +107,8 @@ int_act_clean = network %>%
   arrange(tf, target) %>%
   distinct()
 
-write_csv(int_act_clean,
-          "inst/extdata/networks/curated/int_act/network_with_pubmed.sif")
+saveRDS(int_act_clean,
+        "inst/extdata/networks/curated/int_act/network_with_pubmed.rds")
 
 #### Oreganno ####
 df = read_delim(pipe("grep sapiens inst/extdata/tf_target_sources/curated/oreganno/ORegAnno_Combined_2016.01.19.tsv | grep TRANSCRIPTION | grep hg38"),
@@ -144,10 +144,10 @@ pazar = df_clean %>%
   filter(source == "PAZAR") %>%
   distinct(tf, target, mor)
 
-write_csv(oreganno,
-          "inst/extdata/networks/curated/oreganno/network_with_pubmed.sif")
-write_csv(regulome, "inst/extdata/networks/curated/nfi_regulome_db/network.sif")
-write_csv(pazar, "inst/extdata/networks/curated/pazar/network.sif")
+saveRDS(oreganno,
+        "inst/extdata/networks/curated/oreganno/network_with_pubmed.rds")
+saveRDS(regulome, "inst/extdata/networks/curated/nfi_regulome_db/network.rds")
+saveRDS(pazar, "inst/extdata/networks/curated/pazar/network.rds")
 
 
 #### TFact ####
@@ -188,9 +188,9 @@ trrd = df_clean %>%
   arrange(tf, target)
 
 
-write_csv(tf_act,
-          "inst/extdata/networks/curated/tf_act/network_with_pubmed.sif")
-write_csv(trrd, "inst/extdata/networks/curated/trrd_via_tf_act/network.sif")
+saveRDS(tf_act,
+        "inst/extdata/networks/curated/tf_act/network_with_pubmed.rds")
+saveRDS(trrd, "inst/extdata/networks/curated/trrd_via_tf_act/network.rds")
 
 #### Reviews ####
 review_paths = list.files("inst/extdata/tf_target_sources/curated/reviews",
@@ -202,7 +202,7 @@ reviews = review_paths %>%
   map_dfr(function(path) {
     pubmed_id = path %>%
       str_split("/") %>%
-      pluck(1,5) %>%
+      pluck(1,6) %>%
       str_split("_") %>%
       pluck(1) %>%
       tail(1)
@@ -214,7 +214,8 @@ reviews = review_paths %>%
       mutate(pubmed_id = pubmed_id)
   })
 
-write_csv(reviews, "inst/extdata/networks/curated/reviews/network_with_pubmed.sif")
+saveRDS(reviews,
+        "inst/extdata/networks/curated/reviews/network_with_pubmed.rds")
 
 #### TRED ####
 tred = read_csv(
@@ -225,8 +226,8 @@ tred_clean = tred %>%
   arrange(tf, target) %>%
   filter(tf %in% tfs)
 
-write_csv(tred_clean,
-          "inst/extdata/networks/curated/tred_via_reg_network/network.sif")
+saveRDS(tred_clean,
+        "inst/extdata/networks/curated/tred_via_reg_network/network.rds")
 
 #### HTRIdb ####
 htri = read_delim("inst/extdata/tf_target_sources/curated/htri_db/tf-target_network_052016_literaturecurated.txt",
@@ -236,9 +237,11 @@ htri_clean = htri %>%
   distinct(tf = SYMBOL_TF, target = SYMBOL_TG, pubmed_id = PUBMED_ID) %>%
   filter(tf %in% tfs) %>%
   arrange(tf, target) %>%
-  distinct()
+  distinct() %>%
+  mutate(pubmed_id = as.character(pubmed_id))
 
-write_csv(htri_clean, "inst/extdata/networks/curated/htri_db/network_with_pubmed.sif")
+saveRDS(htri_clean,
+        "inst/extdata/networks/curated/htri_db/network_with_pubmed.rds")
 
 #### KEGG ####
 
@@ -295,4 +298,4 @@ network = x %>%
   filter(tf %in% tfs) %>%
   arrange(tf, target)
 
-write_csv(network, "inst/extdata/networks/curated/kegg/network.sif")
+saveRDS(network, "inst/extdata/networks/curated/kegg/network.rds")
