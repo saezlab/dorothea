@@ -3,7 +3,7 @@ Type: Package
 Title: Collection Of Human And Mouse TF Regulons
 Version: 0.99.0
 Author: Christian H. Holland, Luz Garcia-Alonso, Alberto Valdeolivas, Minoo 
-    Ashtiani 
+    Ashtiani, Attila Gabor 
 Maintainer: Christian H. Holland <cholland2408@gmail.com>
 Description: This package contains human and mouse TF regulons.
     The human regulons were curated and collected from different types of 
