@@ -5,6 +5,7 @@ library(readr)
 library(tidyr)
 
 
+
 # Gene annotation with protein ids
 ensembl = useMart("ensembl",dataset="hsapiens_gene_ensembl")
 biomart_output = getBM(mart = ensembl,
