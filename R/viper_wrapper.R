@@ -82,7 +82,7 @@ run_viper.Seurat <- function(input, regulons, options = list(), tidy = FALSE) {
 run_viper.matrix <- function(input, regulons, options = list(), tidy=FALSE) {
   viper_res <- do.call(viper::viper,
                       c(list(eset = input,
-                             regulon = df2regulon(regulons)),
+                             regulon = .df2regulon(regulons)),
                         options))
 
   if (tidy) {

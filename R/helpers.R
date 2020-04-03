@@ -6,7 +6,9 @@
 #' @param df A regulon table from dorothea package.
 #'
 #' @return Regulons in the \code{viper} format.
-df2regulon <- function(df) {
+#'
+#' @keywords internal
+.df2regulon <- function(df) {
   regulon_list = split(df, df$tf)
 
   viper_regulons = lapply(regulon_list, function(regulon) {

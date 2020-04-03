@@ -1,6 +1,6 @@
 test_that("test df2regulon", {
 
-  res = df2regulon(dorothea_hs)
+  res = .df2regulon(dorothea_hs)
 
   # test if a list is returned
   expect_equal(class(res), "list")
