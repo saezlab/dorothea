@@ -10,8 +10,9 @@ run_viper(input, regulons, options = list(), tidy = FALSE)
 \item{input}{An object containing a gene expression matrix with genes
 (HGNC/MGI symbols) in rows and samples in columns. The object can be a
 simple matrix/data frame or complexer objects such as
-\code{Biobase::\link[Biobase:ExpressionSet]{ExpressionSet}} or
-\code{Seurat::\link[Seurat:Seurat]{Seurat}} objects.}
+\code{Biobase::\link[Biobase:ExpressionSet]{ExpressionSet}},
+\code{Seurat::\link[Seurat:Seurat]{Seurat}} or
+\code{SingleCellExperiment::\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment}} objects.}
 
 \item{regulons}{\code{\link[=dorothea_hs]{DoRothEA}} regulons in table
 format.}
@@ -26,11 +27,12 @@ in a tidy format.}
 }
 \value{
 A matrix of normalized enrichment scores for each TF across all
- samples. Of note, if you provide a Seurat object as input the function will
- return also a Seurat object with a new assay called \code{dorothea}. For all
+ samples. Of note, if you provide Bioconductor objects as input the function
+ will return this object with added tf activities at appropiate slots. e.g.
+ Seurat object with a new assay called \code{dorothea}. For all
  other inputs the function will return a matrix. If \code{tidy} is
  \code{TRUE} the normalized enrichment scores are retured in a tidy format
- (not supported for Seurat objects).
+ (not supported for Bioconductor objects).
 }
 \description{
 This function is a convenient wrapper for the
