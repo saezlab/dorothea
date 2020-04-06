@@ -2,14 +2,12 @@ citEntry(entry="article",
     author = c(person("Christian H.", "Holland"),
                person("Luz", "Garcia-Alonso"),
                person("Alberto", "Valdeolivas"),
-               person("Minoo", "Ashtiani"),
                person("Attila", "Gabor")),
-    title = "DoRothEA: A resource of transcriptional regulation in human and
-             mouse",
+    title = "DoRothEA: Collection of human and mouse TF regulons",
     journal = "Bioconductor Package",
     year = 2020,
 
-    textVersion = "CH Holland, L Garcia-Alonso, A Valdeoivas, M Ashtiani,
-    A Gabor. 2020. 'DoRothEA: A resource of transcriptional regulation in human
-    and mouse.' Bioconductor Package."
+    textVersion = "CH Holland, L Garcia-Alonso, A Valdeoivas,A Gabor. 2020.
+    'DoRothEA: Collection of human and mouse TF regulons.'
+    Bioconductor Package."
 )
