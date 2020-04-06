@@ -52,7 +52,7 @@ test_that("test run_viper with eset as input", {
                                    eset.filter = FALSE,
                                    verbose = FALSE),
               tidy = TRUE),
-    paste0("The argument 'tidy' cannot be TRUE for ExpressionSet objects. ",
+    paste0("The argument 'tidy' cannot be TRUE for 'ExpressionSet' objects. ",
            "'tidy' is set to FALSE"))
 
 })
@@ -88,11 +88,47 @@ test_that("test run_viper with seurat as input", {
                                    eset.filter = FALSE,
                                    verbose = FALSE),
               tidy = TRUE),
-    paste0("The argument 'tidy' cannot be TRUE for Seurat objects. ",
+    paste0("The argument 'tidy' cannot be TRUE for 'Seurat' objects. ",
            "'tidy' is set to FALSE"))
 
   # Check key of seurat assays
   expect_equal(unname(Seurat::Key(res)), c("rna_","dorothea_"))
+})
 
+
+test_that("test run_viper with sce as input", {
+  m <- readRDS(
+    system.file("testdata", "toy_sce.rds", package = "dorothea")
+  )
+  r <- dplyr::filter(dorothea_mm, confidence %in% c("A", "B"))
+
+  res <- run_viper(m, r, options =  list(method = "scale", minsize = 4,
+                                         eset.filter = FALSE, verbose = FALSE))
+
+  suppressWarnings(
+    tidy_res <- run_viper(m, r, options =  list(method = "scale", minsize = 4,
+                                                eset.filter = FALSE,
+                                                verbose = FALSE),
+                          tidy = TRUE)
+  )
+
+  expected_res <- readRDS(
+    system.file("testdata", "output_sce.rds", package = "dorothea")
+  )
+
+  expect_equal(res, expected_res)
+  expect_equal(tidy_res, expected_res)
+
+  # check raised warning when tidy is set to T
+  expect_warning(
+    run_viper(m, r, options = list(method = "scale", minsize = 4,
+                                   eset.filter = FALSE,
+                                   verbose = FALSE),
+              tidy = TRUE),
+    paste0("The argument 'tidy' cannot be TRUE for 'SingleCellExperiment' ",
+           "objects. ", "'tidy' is set to FALSE"))
+
+  # Check name of alternative experiment
+  expect_equal(altExpNames(res), "dorothea")
 })
 
