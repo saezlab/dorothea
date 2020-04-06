@@ -1,7 +1,7 @@
 #' Construction of dorothea regulons for viper analysis
 #'
 #' This function converts DoRothEA's regulons that are stored in a table to the
-#' format required by the \code{viper::\link[viper]{viper}} function.
+#' format required by the \code{\link[viper]{viper}} function.
 #'
 #' @param df A regulon table from dorothea package.
 #'

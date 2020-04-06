@@ -10,15 +10,16 @@ run_viper(input, regulons, options = list(), tidy = FALSE)
 \item{input}{An object containing a gene expression matrix with genes
 (HGNC/MGI symbols) in rows and samples in columns. The object can be a
 simple matrix/data frame or complexer objects such as
-\code{Biobase::\link[Biobase:ExpressionSet]{ExpressionSet}},
-\code{Seurat::\link[Seurat:Seurat]{Seurat}} or
-\code{SingleCellExperiment::\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment}} objects.}
+\code{\link[Biobase:ExpressionSet]{ExpressionSet}},
+\code{\link[Seurat:Seurat-class]{Seurat}} or
+\code{\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment}}
+objects.}
 
 \item{regulons}{\code{\link[=dorothea_hs]{DoRothEA}} regulons in table
 format.}
 
 \item{options}{A list of named options to pass to
-\code{viper::\link[viper]{viper}} such as \code{minsize} or
+\code{\link[viper]{viper}} such as \code{minsize} or
 \code{method}. These options should not include, \code{eset} or
 \code{regulon}.}
 
@@ -36,7 +37,7 @@ A matrix of normalized enrichment scores for each TF across all
 }
 \description{
 This function is a convenient wrapper for the
-\code{viper::\link[viper]{viper}} function using DoRothEA regulons.
+\code{\link[viper]{viper}} function using DoRothEA regulons.
 }
 \examples{
 # use example gene expression matrix from bcellViper package
