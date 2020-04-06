@@ -1,0 +1,13 @@
+citEntry(entry="article",
+    author = c(person("Christian H.", "Holland"),
+               person("Luz", "Garcia-Alonso"),
+               person("Alberto", "Valdeolivas"),
+               person("Attila", "Gabor")),
+    title = "DoRothEA: Collection of human and mouse TF regulons",
+    journal = "Bioconductor Package",
+    year = 2020,
+
+    textVersion = "CH Holland, L Garcia-Alonso, A Valdeoivas,A Gabor. 2020.
+    'DoRothEA: Collection of human and mouse TF regulons.'
+    Bioconductor Package."
+)

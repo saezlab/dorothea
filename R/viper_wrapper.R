@@ -6,8 +6,10 @@
 #' @param input An object containing a gene expression matrix with genes
 #'   (HGNC/MGI symbols) in rows and samples in columns. The object can be a
 #'   simple matrix/data frame or complexer objects such as
-#'   \code{\link[Biobase]{ExpressionSet}} or
-#'   \code{\link[Seurat]{Seurat}} objects.
+#'   \code{\link[Biobase:ExpressionSet]{ExpressionSet}},
+#'   \code{\link[Seurat:Seurat-class]{Seurat}} or
+#'   \code{\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment}}
+#'   objects.
 #' @param regulons \code{\link[=dorothea_hs]{DoRothEA}} regulons in table
 #'   format.
 #' @param options A list of named options to pass to
@@ -18,11 +20,12 @@
 #'  in a tidy format.
 #'
 #' @return A matrix of normalized enrichment scores for each TF across all
-#'  samples. Of note, if you provide a Seurat object as input the function will
-#'  return also a Seurat object with a new assay called \code{dorothea}. For all
+#'  samples. Of note, if you provide Bioconductor objects as input the function
+#'  will return this object with added tf activities at appropiate slots. e.g.
+#'  Seurat object with a new assay called \code{dorothea}. For all
 #'  other inputs the function will return a matrix. If \code{tidy} is
 #'  \code{TRUE} the normalized enrichment scores are retured in a tidy format
-#'  (not supported for Seurat objects).
+#'  (not supported for Bioconductor objects).
 #'
 #' @export
 #' @import dplyr
@@ -47,8 +50,20 @@ run_viper <- function(input, regulons, options = list(), tidy = FALSE) {
 #' @export
 run_viper.ExpressionSet <- function(input, regulons, options = list(),
                                     tidy=FALSE) {
-  run_viper(input@assayData$exprs, regulons = regulons, options = options,
-            tidy = tidy)
+
+  if (tidy) {
+    tidy <- FALSE
+    warning("The argument 'tidy' cannot be TRUE for 'ExpressionSet' objects. ",
+            "'tidy' is set to FALSE")
+  }
+
+  tf_activities <- run_viper(Biobase::exprs(input), regulons = regulons,
+                             options = options, tidy = tidy)
+
+  eset <- Biobase::ExpressionSet(assayData = tf_activities,
+                                 phenoData = Biobase::phenoData(input))
+
+  return(eset)
 }
 
 #' @export
@@ -59,10 +74,32 @@ run_viper.data.frame <- function(input, regulons, options = list(),
 }
 
 #' @export
+run_viper.SingleCellExperiment <- function(input, regulons, options = list(),
+                                           tidy = FALSE) {
+  if (tidy) {
+    tidy <- FALSE
+    warning("The argument 'tidy' cannot be TRUE for 'SingleCellExperiment' ",
+            "objects. ","'tidy' is set to FALSE")
+  }
+
+  mat <- as.matrix(SingleCellExperiment::logcounts(input))
+
+  tf_activities <- run_viper(mat, regulons = regulons, options = options,
+                             tidy = FALSE)
+
+  # include TF activities into SingleCellExperiment object
+  dorothea_se <- SummarizedExperiment::SummarizedExperiment(tf_activities)
+  SummarizedExperiment::assayNames(dorothea_se) <- "tf_activities"
+  SingleCellExperiment::altExp(input, "dorothea") <- dorothea_se
+
+  return(input)
+}
+
+#' @export
 run_viper.Seurat <- function(input, regulons, options = list(), tidy = FALSE) {
   if (tidy) {
     tidy <- FALSE
-    warning("The argument 'tidy' cannot be TRUE for Seurat objects. ",
+    warning("The argument 'tidy' cannot be TRUE for 'Seurat' objects. ",
             "'tidy' is set to FALSE")
   }
   mat <- as.matrix(Seurat::GetAssayData(input, assay = "RNA", slot = "data"))
