@@ -2,6 +2,7 @@
 
 S3method(run_viper,ExpressionSet)
 S3method(run_viper,Seurat)
+S3method(run_viper,SingleCellExperiment)
 S3method(run_viper,data.frame)
 S3method(run_viper,default)
 S3method(run_viper,matrix)
