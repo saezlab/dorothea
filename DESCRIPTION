@@ -1,7 +1,7 @@
 Package: dorothea
 Type: Package
 Title: Collection Of Human And Mouse TF Regulons
-Version: 0.99.1
+Version: 0.99.2
 Author: Christian H. Holland, Luz Garcia-Alonso, Alberto Valdeolivas, 
     Minoo Ashtiani, Attila Gabor 
 Maintainer: Christian H. Holland <cholland2408@gmail.com>
@@ -15,7 +15,7 @@ Description: This package contains human and mouse TF regulons.
     data. Preferably the statistical method viper is used.
 URL: https://github.com/saezlab/dorothea
 BugReports: https://github.com/saezlab/dorothea/issues
-Depends: R (>= 3.6.0)
+Depends: R (>= 4.0)
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
