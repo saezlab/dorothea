@@ -38,10 +38,10 @@ test_that("test run_viper with eset as input", {
                           tidy = TRUE)
   )
 
-
-  expected_res <- readRDS(
-    system.file("testdata", "output_eset.rds", package = "dorothea")
-  )
+  # we need to create the expected result on the fly because the created object 
+  # is dependent on the used Rversion (see .@__classVersion__).
+  expected_res <- viper::viper(m, .df2regulon(r), method = "scale", minsize=4,
+                               eset.filter = F, verbose = F)
 
   expect_equal(res, expected_res)
   expect_equal(tidy_res, expected_res)
