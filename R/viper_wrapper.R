@@ -6,8 +6,7 @@
 #' @param input An object containing a gene expression matrix with genes
 #'   (HGNC/MGI symbols) in rows and samples in columns. The object can be a
 #'   simple matrix/data frame or complexer objects such as
-#'   \code{\link[Biobase:ExpressionSet]{ExpressionSet}},
-#'   \code{\link[Seurat:Seurat-class]{Seurat}} or
+#'   \code{Biobase::ExpressionSet} \code{\link[Seurat:Seurat-class]{Seurat}} or
 #'   \code{\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment}}
 #'   objects.
 #' @param regulons \code{\link[=dorothea_hs]{DoRothEA}} regulons in table
