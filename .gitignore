@@ -10,5 +10,10 @@ vignettes/.Rhistory
 # raw data
 inst/extdata/tf_target_sources/*
 inst/extdata/benchmark/*
+
+inst/scripts/benchmark.R
+inst/scripts/chea3.R
+inst/scripts/construct_benchmark_data.R
+
 packrat/
 vignettes/*_cache
