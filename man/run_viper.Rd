@@ -10,7 +10,8 @@ run_viper(input, regulons, options = list(), tidy = FALSE)
 \item{input}{An object containing a gene expression matrix with genes
 (HGNC/MGI symbols) in rows and samples in columns. The object can be a
 simple matrix/data frame or complexer objects such as
-\code{Biobase::ExpressionSet} \code{\link[Seurat:Seurat-class]{Seurat}} or
+\code{\link[Biobase:class.ExpressionSet]{ExpressionSet}} 
+\code{\link[Seurat:Seurat-class]{Seurat}} or
 \code{\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment}}
 objects.}
 
