@@ -1,13 +1,62 @@
-citEntry(entry="article",
-    author = c(person("Christian H.", "Holland"),
-               person("Luz", "Garcia-Alonso"),
-               person("Alberto", "Valdeolivas"),
-               person("Attila", "Gabor")),
-    title = "DoRothEA: Collection of human and mouse TF regulons",
-    journal = "Bioconductor Package",
-    year = 2020,
+citEntry(
+    entry="article",
+    author = c(person("Luz", "Garcia-Alonso"),
+               person("Christian H.", "Holland"),
+               person("Mahmoud M.", "Ibrahim"),
+               person("Denes", "Turei"),
+               person("Julio", "Saez-Rodriguez")),
+    title = "Benchmark and integration of resources for the estimation of human 
+    transcription factor activities",
+    journal = "Genome Research",
+    year = 2019,
+    doi = "10.1101/gr.240663.118",
+    
+    textVersion = "Garcia-Alonso L, Holland CH, Ibrahim MM, Turei D, 
+    Saez-Rodriguez J. 'Benchmark and integration of resources for the estimation 
+    of human transcription factor activities.' Genome Research. 2019. DOI: 
+    10.1101/gr.240663.118."
+)
 
-    textVersion = "CH Holland, L Garcia-Alonso, A Valdeoivas,A Gabor. 2020.
-    'DoRothEA: Collection of human and mouse TF regulons.'
-    Bioconductor Package."
+citEntry(
+    entry="article",
+    author = c(person("Christian H.", "Holland"),
+               person("Bence", "Szalai"),
+               person("Julio", "Saez-Rodriguez")),
+    title = "Transfer of regulatory knowledge from human to mouse for functional 
+    genomics analysis",
+    journal = "BBAGRM",
+    year = 2019,
+    doi = "10.1016/j.bbagrm.2019.194431",
+    
+    textVersion = "Holland CH, Szalai B, Saez-Rodriguez J. 'Transfer of 
+    regulatory knowledge from human to mouse for functional genomics analysis.' 
+    Biochimica et Biophysica Acta (BBA) - Gene Regulatory Mechanisms. 2019. 
+    DOI: 10.1016/j.bbagrm.2019.194431."
+)
+
+citEntry(
+    entry="article",
+    author = c(person("Christian H.", "Holland"),
+               person("Jovan", "Tanevski"),
+               person("Javier", "Perales-Patón"),
+               person("Jan", "Gleixner"),
+               person("Manu P.", "Kumar"),
+               person("Elisabetta", "Mereu"),
+               person("Brian A.", "Joughin"),
+               person("Oliver", "Stegle"),
+               person("Douglas A.", "Lauffenburger"),
+               person("Holger", "Heyn"),
+               person("Bence", "Szalai"),
+               person("Julio", "Saez-Rodriguez")),
+    title = "Robustness and applicability of transcription factor and pathway 
+    analysis tools on single-cell RNA-seq data",
+    journal = "Genome Biology",
+    year = 2020,
+    doi = "10.1186/s13059-020-1949-z",
+    
+    textVersion = "Holland CH, Tanevski J, Perales-Patón J, Gleixner J, 
+    Kumar MP, Mereu E, Joughin BA, Stegle O, Lauffenburger DA, Heyn H, Szalai B, 
+    Saez-Rodriguez, J. 'Robustness and applicability of transcription factor and 
+    pathway analysis tools on single-cell RNA-seq data.' Genome Biology. 2020. 
+    DOI: 10.1186/s13059-020-1949-z."
 )
