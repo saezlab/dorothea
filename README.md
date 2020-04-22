@@ -1,12 +1,10 @@
-# DoRothEA
+# dorothea <img src="man/figures/tool_logo.png" align="right" height="139">
 
-<img src="man/figures/tool_logo.png" align="right" height="139">
-
+<!-- badges: start -->
 [![Build Status](https://travis-ci.com/saezlab/dorothea.svg?branch=master)](https://travis-ci.com/saezlab/dorothea)
 [![codecov](https://codecov.io/gh/saezlab/dorothea/branch/master/graph/badge.svg)](https://codecov.io/gh/saezlab/dorothea)
 ![GitHub](https://img.shields.io/github/license/saezlab/dorothea)
-
-***
+<!-- badges: end -->
 
 ## Introduction
 ### Overview
@@ -23,8 +21,6 @@ Typcially, DoRothEA is coupled with the statistical method [VIPER](https://www.b
 ### Usage of DoRothEA for commercial purpose
 DoRothEA as it stands is intended only for academic use as in contains resources whose licenses don't permit commerical use. Howevever, we developed a non-academic version of DoRothEA by removing the critically resources (namely KEGG and TRED from the curated databases). You find the non-academic package with the regulons [here](https://github.com/saezlab/dorothea/tree/non-academic)
 
-***
-
 ## Installation
 
 ```r
@@ -38,8 +34,6 @@ BiocManager::install("dorothea")
 # install.packages("devtools")
 devtools::install_github("saezlab/dorothea")
 ```
-
-***
 
 ## Updates
 ### Update #1 - extension to mouse
