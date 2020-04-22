@@ -1,0 +1,18 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
+language: r
+
+os:
+  - linux
+  - osx
+
+cache: packages
+
+# R for codecov: see documentation at https://github.com/codecov/example-r
+
+r_packages:
+  - covr
+
+after_success:
+  - Rscript -e 'library(covr); codecov()'
+
