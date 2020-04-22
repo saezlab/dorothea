@@ -1,10 +1,26 @@
 Package: dorothea
 Type: Package
 Title: Collection Of Human And Mouse TF Regulons
-Version: 0.99.7
-Author: Christian H. Holland, Luz Garcia-Alonso, Alberto Valdeolivas, 
-    Minoo Ashtiani, Attila Gabor 
-Maintainer: Christian H. Holland <cholland2408@gmail.com>
+Version: 0.99.8
+Authors@R: c(
+    person(given = "Christian H.",
+           family = "Holland",
+           role = c("cre", "aut"),
+           email = "cholland2408@gmail.com",
+           comment = c(ORCID = "0000-0002-3060-5786")),
+    person(given = "Luz",
+           family = "Garcia-Alonso",
+           role = "aut"),
+    person(given = "Alberto",
+           family = "Valdeolivas",
+           role = "ctb"),
+    person(given = "Minoo",
+           family = "Ashtiani",
+           role = "ctb"),
+    person(given = "Attila",
+           family = "Gabor",
+           role = "ctb")
+           )
 Description: This package contains human and mouse TF regulons.
     The human regulons were curated and collected from different types of 
     evidence such as literature curated resources, ChIP-seq peaks, TF binding 
