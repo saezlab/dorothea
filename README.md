@@ -6,8 +6,7 @@
 ![GitHub](https://img.shields.io/github/license/saezlab/dorothea)
 <!-- badges: end -->
 
-## Introduction
-### Overview
+## Overview
 DoRothEA is a gene set resource containing signed transcription factor (TF) - target interactions developed by [Garcia-Alonso et al., 2019](https://doi.org/10.1101/gr.240663.118). The collection of a TF and its transcriptional targets is defined as regulon. DoRothEA regulons were curated and collected from different types of evidence such as literature curated resources, ChIP-seq peaks, TF binding site motifs and interactions inferred directly from gene expression. 
 
 <img src="man/figures/overview.png" align="center" width="400">
@@ -18,8 +17,6 @@ DoRothEA regulons can be coupled with several statistical method yielding a *fun
 
 Typcially, DoRothEA is coupled with the statistical method [VIPER](https://www.bioconductor.org/packages/release/bioc/html/viper.html) as it incorporates the mode of regulation of each TF-target interaction. However, VIPER can be replaced by any other statistical method that aims to analyse gene sets, e.g. GSEA.
 
-### Usage of DoRothEA for commercial purpose
-DoRothEA as it stands is intended only for academic use as in contains resources whose licenses don't permit commerical use. Howevever, we developed a non-academic version of DoRothEA by removing the critically resources (namely KEGG and TRED from the curated databases). You find the non-academic package with the regulons [here](https://github.com/saezlab/dorothea/tree/non-academic)
 
 ## Installation
 
@@ -53,3 +50,7 @@ Beside the original paper there are two additional papers expanding the usage of
 
 * If you apply DoRothEA's regulons on single-cell RNA-seq data please cite additionally:
 > Holland CH, Tanevski J, Perales-Patón J, Gleixner J, Kumar MP, Mereu E, Joughin BA, Stegle O, Lauffenburger DA, Heyn H, Szalai B, Saez-Rodriguez, J. "Robustness and applicability of transcription factor and pathway analysis tools on single-cell RNA-seq data." _Genome Biology._ 2020. DOI: [10.1186/s13059-020-1949-z](https://doi.org/10.1186/s13059-020-1949-z).
+
+
+## Usage of DoRothEA for commercial purpose
+DoRothEA as it stands is intended only for academic use as in contains resources whose licenses don't permit commerical use. However, we developed a non-academic version of DoRothEA by removing the critically resources (namely KEGG and TRED from the curated databases). You find the non-academic package with the regulons [here](https://github.com/saezlab/dorothea/tree/non-academic).

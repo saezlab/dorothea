@@ -4,5 +4,8 @@ pkgdown_sha: ~
 articles:
   bulk_vignette: bulk_vignette.html
   single_cell_vignette: single_cell_vignette.html
-last_built: 2020-04-22T16:03Z
+last_built: 2020-04-23T08:03Z
+urls:
+  reference: https://saezlab.github.io/dorothea/reference
+  article: https://saezlab.github.io/dorothea/articles
 
