@@ -5,8 +5,7 @@ citEntry(
                person("Mahmoud M.", "Ibrahim"),
                person("Denes", "Turei"),
                person("Julio", "Saez-Rodriguez")),
-    title = "Benchmark and integration of resources for the estimation of human 
-    transcription factor activities",
+    title = "Benchmark and integration of resources for the estimation of human transcription factor activities",
     journal = "Genome Research",
     year = 2019,
     doi = "10.1101/gr.240663.118",
@@ -22,8 +21,7 @@ citEntry(
     author = c(person("Christian H.", "Holland"),
                person("Bence", "Szalai"),
                person("Julio", "Saez-Rodriguez")),
-    title = "Transfer of regulatory knowledge from human to mouse for functional 
-    genomics analysis",
+    title = "Transfer of regulatory knowledge from human to mouse for functional genomics analysis",
     journal = "BBAGRM",
     year = 2019,
     doi = "10.1016/j.bbagrm.2019.194431",
@@ -48,8 +46,7 @@ citEntry(
                person("Holger", "Heyn"),
                person("Bence", "Szalai"),
                person("Julio", "Saez-Rodriguez")),
-    title = "Robustness and applicability of transcription factor and pathway 
-    analysis tools on single-cell RNA-seq data",
+    title = "Robustness and applicability of transcription factor and pathway analysis tools on single-cell RNA-seq data",
     journal = "Genome Biology",
     year = 2020,
     doi = "10.1186/s13059-020-1949-z",
