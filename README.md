@@ -7,7 +7,7 @@
 <!-- badges: end -->
 
 ## Overview
-DoRothEA is a gene set resource containing signed transcription factor (TF) - target interactions developed by [Garcia-Alonso et al., 2019](https://doi.org/10.1101/gr.240663.118). The collection of a TF and its transcriptional targets is defined as regulon. DoRothEA regulons were curated and collected from different types of evidence such as literature curated resources, ChIP-seq peaks, TF binding site motifs and interactions inferred directly from gene expression. 
+DoRothEA is a gene set resource containing signed transcription factor (TF) - target interactions first described in [Garcia-Alonso et al., 2019](https://doi.org/10.1101/gr.240663.118). The collection of a TF and its transcriptional targets is defined as regulon. DoRothEA regulons were curated and collected from different types of evidence such as literature curated resources, ChIP-seq peaks, TF binding site motifs and interactions inferred directly from gene expression. 
 
 <img src="man/figures/overview.png" align="center" width="400">
 

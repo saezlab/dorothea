@@ -86,7 +86,7 @@
   </a>
 </li>
 <li>
-  <a href="www.saezlab.org">
+  <a href="http://www.saezlab.org">
     <span class="fas fa fas fa-university"></span>
      
   </a>
@@ -112,7 +112,7 @@
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
-<p>DoRothEA is a gene set resource containing signed transcription factor (TF) - target interactions developed by <a href="https://doi.org/10.1101/gr.240663.118">Garcia-Alonso et al., 2019</a>. The collection of a TF and its transcriptional targets is defined as regulon. DoRothEA regulons were curated and collected from different types of evidence such as literature curated resources, ChIP-seq peaks, TF binding site motifs and interactions inferred directly from gene expression.</p>
+<p>DoRothEA is a gene set resource containing signed transcription factor (TF) - target interactions first described in <a href="https://doi.org/10.1101/gr.240663.118">Garcia-Alonso et al., 2019</a>. The collection of a TF and its transcriptional targets is defined as regulon. DoRothEA regulons were curated and collected from different types of evidence such as literature curated resources, ChIP-seq peaks, TF binding site motifs and interactions inferred directly from gene expression.</p>
 <p><img src="reference/figures/overview.png" align="center" width="400"></p>
 <p>For each TF-target interaction we assigned a confidence level based on the number of supporting evidence. The confidence assigment comprises five levels, ranging from A (highest confidence) to E (lowest confidence). Interactions that are supported by all four lines of evidence, manually curated by experts in specific reviews, or supported both in at least two curated resources are considered to be highly reliable and were assigned an A level. Level B-D are reserved for curated and/or ChIP-seq interactions with different levels of additional evidence. Finally, E level is used for interactions that are uniquely supported by computational predictions. To provide the most confident regulon for each TF, we aggregated the TF-target interactions with the highest possible confidence score that resulted in a regulon size equal to or greater than ten targets. The final confidence level assigned to the TF regulon is the lowest confidence score of its component targets.</p>
 <p>DoRothEA regulons can be coupled with several statistical method yielding a <em>functional analysis</em>-tool to infer TF activity from gene expression data. The activity is computed by considering not the gene expression of the TFs itself but the mRNA levels of their direct transcriptional targets. We define the transcriptional targets to as footprints of a TF on gene expression. A more detailed description of the concept of <em>footprint-based</em> analysis is available in the review <a href="https://doi.org/10.1016/j.coisb.2019.04.002">Dugourd et al., 2019</a>.</p>

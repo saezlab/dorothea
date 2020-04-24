@@ -215,7 +215,7 @@ names(new.cluster.ids) <- levels(pbmc)
 pbmc <- RenameIdents(pbmc, new.cluster.ids)
 ```
 
-```{r "tf umap", message = FALSE, warning = FALSE}
+```{r "tf_umap", message = FALSE, warning = FALSE}
 DimPlot(pbmc, reduction = "umap", label = TRUE, pt.size = 0.5) + NoLegend()
 ```
 
@@ -273,7 +273,7 @@ summarized_viper_scores_df <- summarized_viper_scores %>%
   data.frame(row.names = 1, check.names = FALSE, stringsAsFactors = FALSE) 
 ```
 
-```{r "tf heatmap"}
+```{r "tf_heatmap"}
 palette_length = 100
 my_color = colorRampPalette(c("Darkblue", "white","red"))(palette_length)
 
