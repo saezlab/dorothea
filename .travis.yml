@@ -3,7 +3,8 @@
 language: r
 
 r:
-  - r-4.0.0
+  - devel
+  - bioc-devel
   
 os:
   - linux
