@@ -3,10 +3,8 @@
 language: r
 
 r:
-  - release
-  - bioc-devel
-  - bioc-release
-
+  - r-4.0.0
+  
 os:
   - linux
   - osx
