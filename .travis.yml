@@ -1,16 +1,21 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: r
+cache: packages
 
-r:
-  - devel
-  - bioc-devel
   
 os:
   - linux
   - osx
 
-cache: packages
+r:
+  - release
+  - devel
+  
+jobs:
+  exclude:
+    - r: devel
+      os: osx
 
 # R for codecov: see documentation at https://github.com/codecov/example-r
 
