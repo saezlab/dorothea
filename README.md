@@ -2,6 +2,7 @@
 
 <!-- badges: start -->
 [![Build Status](https://travis-ci.com/saezlab/dorothea.svg?branch=master)](https://travis-ci.com/saezlab/dorothea)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/saezlab/dorothea?branch=master&svg=true)](https://ci.appveyor.com/project/saezlab/dorothea)
 [![codecov](https://codecov.io/gh/saezlab/dorothea/branch/master/graph/badge.svg)](https://codecov.io/gh/saezlab/dorothea)
 ![GitHub](https://img.shields.io/github/license/saezlab/dorothea)
 <!-- badges: end -->
@@ -9,7 +10,7 @@
 ## Overview
 DoRothEA is a gene set resource containing signed transcription factor (TF) - target interactions first described in [Garcia-Alonso et al., 2019](https://doi.org/10.1101/gr.240663.118). The collection of a TF and its transcriptional targets is defined as regulon. DoRothEA regulons were curated and collected from different types of evidence such as literature curated resources, ChIP-seq peaks, TF binding site motifs and interactions inferred directly from gene expression. 
 
-<img src="man/figures/overview.png" align="center" width="400">
+<img src="man/figures/overview.png" align="center" width="600">
 
 For each TF-target interaction we assigned a confidence level based on the number of supporting evidence. The confidence assigment comprises five levels, ranging from A (highest confidence) to E (lowest confidence). Interactions that are supported by all four lines of evidence, manually curated by experts in specific reviews, or supported both in at least two curated resources are considered to be highly reliable and were assigned an A level. Level B-D are reserved for curated and/or ChIP-seq interactions with different levels of additional evidence. Finally, E level is used for interactions that are uniquely supported by computational predictions. To provide the most confident regulon for each TF, we aggregated the TF-target interactions with the highest possible confidence score that resulted in a regulon size equal to or greater than ten targets. The final confidence level assigned to the TF regulon is the lowest confidence score of its component targets.
 
