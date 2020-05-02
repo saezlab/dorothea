@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://saezlab.github.io/dorothea/index.html</loc>
+  </url>
+  <url>
+    <loc>https://saezlab.github.io/dorothea/reference/dorothea-package.html</loc>
+  </url>
+  <url>
+    <loc>https://saezlab.github.io/dorothea/reference/dorothea_hs.html</loc>
+  </url>
+  <url>
+    <loc>https://saezlab.github.io/dorothea/reference/dorothea_mm.html</loc>
+  </url>
+  <url>
+    <loc>https://saezlab.github.io/dorothea/reference/dot-df2regulon.html</loc>
+  </url>
+  <url>
+    <loc>https://saezlab.github.io/dorothea/reference/entire_database.html</loc>
+  </url>
+  <url>
+    <loc>https://saezlab.github.io/dorothea/reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://saezlab.github.io/dorothea/reference/run_viper.html</loc>
+  </url>
+  <url>
+    <loc>https://saezlab.github.io/dorothea/articles/bulk_vignette.html</loc>
+  </url>
+  <url>
+    <loc>https://saezlab.github.io/dorothea/articles/single_cell_vignette.html</loc>
+  </url>
+</urlset>
