@@ -47,6 +47,7 @@ Suggests:
     BiocStyle,
     knitr,
     pheatmap,
+    pkgdown,
     Seurat,
     SingleCellExperiment,
     SummarizedExperiment,
