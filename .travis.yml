@@ -29,10 +29,10 @@ after_success:
 
 deploy:
   provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_PAT
-  keep-history: true
-  local-dir: docs
+  skip_cleanup: true
+  token: $GITHUB_PAT
+  keep_history: true
+  local_dir: docs
   on:
     branch: master
 
