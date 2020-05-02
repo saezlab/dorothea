@@ -1,5 +1,4 @@
-destination: docs
-url: https://saezlab.github.io/dorothea
+destination: doc
 navbar:
   structure:
     left: [home, intro, reference, articles, tutorials, news]
