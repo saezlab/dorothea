@@ -12,6 +12,8 @@ r:
   - release
   - devel
   
+development:
+  mode: auto
   
 jobs:
   exclude:
