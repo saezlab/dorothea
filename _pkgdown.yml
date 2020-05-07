@@ -1,4 +1,4 @@
-destination: doc
+destination: docs
 navbar:
   structure:
     left: [home, intro, reference, articles, tutorials, news]

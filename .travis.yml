@@ -33,7 +33,7 @@ deploy:
   skip_cleanup: true
   token: $GITHUB_PAT
   keep_history: true
-  local_dir: doc
+  local_dir: docs
   on:
     branch: master
 
