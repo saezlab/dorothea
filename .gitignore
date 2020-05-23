@@ -17,4 +17,4 @@ inst/scripts/construct_benchmark_data.R
 
 vignettes/*_cache
 
-doc/
+docs/
