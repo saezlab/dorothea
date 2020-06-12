@@ -1,9 +1,12 @@
+# dorothea 1.0.1 (2020-06-12)
+* Improved package documentation
+
 # dorothea 1.0.0 (2020-04-27)
 * Official release in Bioconductor 3.11
 
 # dorothea 0.99.9 (2020-04-22)
 * Integration of `Travis CI`
-* Integrated unit test coverage with `codecov`
+* Integrated unit test coverage with `covr::codecov`
 * Build github page via `pkgdown`
 
 # dorothea 0.99.1 (2020-04-06)
