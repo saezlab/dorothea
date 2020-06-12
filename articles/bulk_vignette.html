@@ -134,7 +134,7 @@
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
-<p>First of all, you need a current version of R (<a href="http://www.r-project.org" class="uri">http://www.r-project.org</a>). In addition you need <em><a href="https://bioconductor.org/packages/3.12/dorothea">dorothea</a></em>, a freely available package deposited on <a href="http://bioconductor.org/" class="uri">http://bioconductor.org/</a> and <a href="https://github.com/saezlab/dorothea" class="uri">https://github.com/saezlab/dorothea</a>.</p>
+<p>First of all, you need a current version of R (<a href="http://www.r-project.org" class="uri">http://www.r-project.org</a>). In addition you need <em><a href="https://bioconductor.org/packages/3.11/dorothea">dorothea</a></em>, a freely available package deposited on <a href="http://bioconductor.org/" class="uri">http://bioconductor.org/</a> and <a href="https://github.com/saezlab/dorothea" class="uri">https://github.com/saezlab/dorothea</a>.</p>
 <p>You can install it by running the following commands on an R console:</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"BiocManager"</span>, <span class="kw">quietly</span> <span class="kw">=</span> <span class="fl">TRUE</span>))
     <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"BiocManager"</span>)
@@ -150,11 +150,11 @@
 <div id="example-of-usage" class="section level1">
 <h1 class="hasAnchor">
 <a href="#example-of-usage" class="anchor"></a>Example of usage</h1>
-<p>According to the vignette from the <em><a href="https://bioconductor.org/packages/3.12/viper">viper</a></em> package we demonstrate how to combine viper with regulons from DoRothEA.</p>
+<p>According to the vignette from the <em><a href="https://bioconductor.org/packages/3.11/viper">viper</a></em> package we demonstrate how to combine viper with regulons from DoRothEA.</p>
 <div id="accessing-example-data-and-dorothea-regulons-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#accessing-example-data-and-dorothea-regulons-" class="anchor"></a>Accessing example data and DoRothEA regulons.</h2>
-<p>Similiar to the <em><a href="https://bioconductor.org/packages/3.12/viper">viper</a></em> vignette we use the gene expression matrix from the <em><a href="https://bioconductor.org/packages/3.12/bcellViper">bcellViper</a></em> package. Click <a href="https://bioconductor.org/packages/release/bioc/vignettes/viper/inst/doc/viper.pdf">here</a> for more information about the gene expression matrix. The regulons from DoRothEA are provided within the dorothea package and can be acessed via the <code><a href="https://rdrr.io/r/utils/data.html">data()</a></code> function. As the gene expression matrix contains human data we also load the human version of DoRothEA.</p>
+<p>Similiar to the <em><a href="https://bioconductor.org/packages/3.11/viper">viper</a></em> vignette we use the gene expression matrix from the <em><a href="https://bioconductor.org/packages/3.11/bcellViper">bcellViper</a></em> package. Click <a href="https://bioconductor.org/packages/release/bioc/vignettes/viper/inst/doc/viper.pdf">here</a> for more information about the gene expression matrix. The regulons from DoRothEA are provided within the dorothea package and can be acessed via the <code><a href="https://rdrr.io/r/utils/data.html">data()</a></code> function. As the gene expression matrix contains human data we also load the human version of DoRothEA.</p>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># accessing expression data from bcellViper</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="no">bcellViper</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"bcellViper"</span>)
 
@@ -178,45 +178,40 @@
 <div id="session-info" class="section level1">
 <h1 class="hasAnchor">
 <a href="#session-info" class="anchor"></a>Session info</h1>
-<pre><code>## R Under development (unstable) (2020-06-12 r78687)
-## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 16.04.6 LTS
+<pre><code>## R version 4.0.1 (2020-06-06)
+## Platform: x86_64-apple-darwin17.0 (64-bit)
+## Running under: macOS High Sierra 10.13.6
 ## 
 ## Matrix products: default
-## BLAS:   /home/travis/R-bin/lib/R/lib/libRblas.so
-## LAPACK: /home/travis/R-bin/lib/R/lib/libRlapack.so
+## BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
 ## 
 ## locale:
-##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
-##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 ## 
 ## attached base packages:
 ## [1] parallel  stats     graphics  grDevices utils     datasets  methods  
 ## [8] base     
 ## 
 ## other attached packages:
-## [1] viper_1.23.0        dplyr_1.0.0         bcellViper_1.25.0  
-## [4] Biobase_2.49.0      BiocGenerics_0.35.4 dorothea_1.0.0     
-## [7] BiocStyle_2.17.0   
+## [1] viper_1.22.0        dplyr_1.0.0         bcellViper_1.24.0  
+## [4] Biobase_2.48.0      BiocGenerics_0.34.0 dorothea_1.0.0     
+## [7] BiocStyle_2.16.0   
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.4.6        compiler_4.1.0      pillar_1.4.4       
+##  [1] Rcpp_1.0.4.6        compiler_4.0.1      pillar_1.4.4       
 ##  [4] BiocManager_1.30.10 mixtools_1.2.0      class_7.3-17       
-##  [7] tools_4.1.0         digest_0.6.25       lattice_0.20-41    
+##  [7] tools_4.0.1         digest_0.6.25       lattice_0.20-41    
 ## [10] evaluate_0.14       memoise_1.1.0       lifecycle_0.2.0    
 ## [13] tibble_3.0.1        pkgconfig_2.0.3     rlang_0.4.6        
 ## [16] Matrix_1.2-18       yaml_2.2.1          pkgdown_1.5.1      
 ## [19] xfun_0.14           e1071_1.7-3         stringr_1.4.0      
 ## [22] knitr_1.28          desc_1.2.0          generics_0.0.2     
-## [25] fs_1.4.1            vctrs_0.3.1         grid_4.1.0         
+## [25] fs_1.4.1            vctrs_0.3.1         grid_4.0.1         
 ## [28] segmented_1.1-0     rprojroot_1.3-2     tidyselect_1.1.0   
 ## [31] glue_1.4.1          R6_2.4.1            survival_3.1-12    
 ## [34] rmarkdown_2.2       bookdown_0.19       kernlab_0.9-29     
-## [37] purrr_0.3.4         magrittr_1.5        splines_4.1.0      
+## [37] purrr_0.3.4         magrittr_1.5        splines_4.0.1      
 ## [40] backports_1.1.7     htmltools_0.4.0     ellipsis_0.3.1     
 ## [43] MASS_7.3-51.6       assertthat_0.2.1    KernSmooth_2.23-17 
 ## [46] stringi_1.4.6       crayon_1.3.4</code></pre>
