@@ -272,7 +272,7 @@
   <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>() <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html">rownames_to_column</a></span>(<span class="st">"cell"</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/gather.html">gather</a></span>(<span class="no">tf</span>, <span class="no">activity</span>, -<span class="no">cell</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(<span class="no">CellsClusters</span>)
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span>(<span class="no">CellsClusters</span>)
 
 <span class="co">## We summarize the Viper scores by cellpopulation</span>
 <span class="no">summarized_viper_scores</span> <span class="kw">&lt;-</span> <span class="no">viper_scores_clusters</span> <span class="kw">%&gt;%</span>
@@ -290,7 +290,7 @@
 
 <span class="co">## We prepare the data for the plot</span>
 <span class="no">summarized_viper_scores_df</span> <span class="kw">&lt;-</span> <span class="no">summarized_viper_scores</span> <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join.html">semi_join</a></span>(<span class="no">highly_variable_tfs</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="st">"tf"</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join</a></span>(<span class="no">highly_variable_tfs</span>, <span class="kw">by</span> <span class="kw">=</span> <span class="st">"tf"</span>) <span class="kw">%&gt;%</span>
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(-<span class="no">std</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/spread.html">spread</a></span>(<span class="no">tf</span>, <span class="no">avg</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="kw">row.names</span> <span class="kw">=</span> <span class="fl">1</span>, <span class="kw">check.names</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">stringsAsFactors</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
@@ -315,15 +315,20 @@
 <h1 class="hasAnchor">
 <a href="#session-info" class="anchor"></a>Session info</h1>
 <pre><code>## R version 4.0.0 (2020-04-24)
-## Platform: x86_64-apple-darwin17.0 (64-bit)
-## Running under: macOS High Sierra 10.13.6
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 16.04.6 LTS
 ## 
 ## Matrix products: default
-## BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
-## LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+## BLAS:   /home/travis/R-bin/lib/R/lib/libRblas.so
+## LAPACK: /home/travis/R-bin/lib/R/lib/libRlapack.so
 ## 
 ## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
 ## [1] parallel  stats     graphics  grDevices utils     datasets  methods  
@@ -332,7 +337,7 @@
 ## other attached packages:
 ##  [1] viper_1.22.0        Biobase_2.48.0      BiocGenerics_0.34.0
 ##  [4] tidyr_1.1.0         pheatmap_1.0.12     tibble_3.0.1       
-##  [7] Seurat_3.1.5        dplyr_0.8.5         dorothea_1.0.0     
+##  [7] Seurat_3.1.5        dplyr_1.0.0         dorothea_1.0.0     
 ## [10] BiocStyle_2.16.0   
 ## 
 ## loaded via a namespace (and not attached):
@@ -345,29 +350,30 @@
 ## [19] gridExtra_2.3       compiler_4.0.0      desc_1.2.0         
 ## [22] plotly_4.9.2.1      labeling_0.3        bookdown_0.19      
 ## [25] scales_1.1.1        lmtest_0.9-37       ggridges_0.5.2     
-## [28] pbapply_1.4-2       pkgdown_1.5.1       stringr_1.4.0      
-## [31] digest_0.6.25       mixtools_1.2.0      rmarkdown_2.1      
-## [34] pkgconfig_2.0.3     htmltools_0.4.0     bcellViper_1.24.0  
-## [37] htmlwidgets_1.5.1   rlang_0.4.6         farver_2.0.3       
-## [40] zoo_1.8-8           jsonlite_1.6.1      ica_1.0-2          
-## [43] magrittr_1.5        patchwork_1.0.0     Matrix_1.2-18      
-## [46] Rcpp_1.0.4.6        munsell_0.5.0       ape_5.3            
-## [49] reticulate_1.15     lifecycle_0.2.0     stringi_1.4.6      
-## [52] yaml_2.2.1          MASS_7.3-51.5       Rtsne_0.15         
-## [55] plyr_1.8.6          grid_4.0.0          listenv_0.8.0      
-## [58] ggrepel_0.8.2       crayon_1.3.4        lattice_0.20-41    
-## [61] cowplot_1.0.0       splines_4.0.0       knitr_1.28         
-## [64] pillar_1.4.4        igraph_1.2.5        future.apply_1.5.0 
-## [67] reshape2_1.4.4      codetools_0.2-16    leiden_0.3.3       
-## [70] glue_1.4.1          evaluate_0.14       data.table_1.12.8  
-## [73] BiocManager_1.30.10 vctrs_0.3.0         png_0.1-7          
-## [76] gtable_0.3.0        RANN_2.6.1          purrr_0.3.4        
-## [79] kernlab_0.9-29      future_1.17.0       assertthat_0.2.1   
-## [82] ggplot2_3.3.0       xfun_0.14           rsvd_1.0.3         
-## [85] RSpectra_0.16-0     e1071_1.7-3         class_7.3-16       
-## [88] survival_3.1-12     viridisLite_0.3.0   memoise_1.1.0      
-## [91] cluster_2.1.0       globals_0.12.5      fitdistrplus_1.1-1 
-## [94] ellipsis_0.3.1      ROCR_1.0-11</code></pre>
+## [28] pbapply_1.4-2       rappdirs_0.3.1      pkgdown_1.5.1      
+## [31] stringr_1.4.0       digest_0.6.25       mixtools_1.2.0     
+## [34] rmarkdown_2.2       pkgconfig_2.0.3     htmltools_0.4.0    
+## [37] bcellViper_1.24.0   htmlwidgets_1.5.1   rlang_0.4.6        
+## [40] farver_2.0.3        generics_0.0.2      zoo_1.8-8          
+## [43] jsonlite_1.6.1      ica_1.0-2           magrittr_1.5       
+## [46] patchwork_1.0.0     Matrix_1.2-18       Rcpp_1.0.4.6       
+## [49] munsell_0.5.0       ape_5.4             reticulate_1.16    
+## [52] lifecycle_0.2.0     stringi_1.4.6       yaml_2.2.1         
+## [55] MASS_7.3-51.5       Rtsne_0.15          plyr_1.8.6         
+## [58] grid_4.0.0          listenv_0.8.0       ggrepel_0.8.2      
+## [61] crayon_1.3.4        lattice_0.20-41     cowplot_1.0.0      
+## [64] splines_4.0.0       knitr_1.28          pillar_1.4.4       
+## [67] igraph_1.2.5        future.apply_1.5.0  reshape2_1.4.4     
+## [70] codetools_0.2-16    leiden_0.3.3        glue_1.4.1         
+## [73] evaluate_0.14       data.table_1.12.8   BiocManager_1.30.10
+## [76] vctrs_0.3.1         png_0.1-7           gtable_0.3.0       
+## [79] RANN_2.6.1          purrr_0.3.4         kernlab_0.9-29     
+## [82] future_1.17.0       assertthat_0.2.1    ggplot2_3.3.1      
+## [85] xfun_0.14           rsvd_1.0.3          RSpectra_0.16-0    
+## [88] e1071_1.7-3         class_7.3-16        survival_3.1-12    
+## [91] viridisLite_0.3.0   memoise_1.1.0       cluster_2.1.0      
+## [94] globals_0.12.5      fitdistrplus_1.1-1  ellipsis_0.3.1     
+## [97] ROCR_1.0-11</code></pre>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">
