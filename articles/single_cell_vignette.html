@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dorothea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.2</span>
       </span>
     </div>
 
@@ -158,7 +158,7 @@
 <p>In the following paragraphs, we provide examples describing how to run <strong>VIPER</strong> on <strong>DoRothEA</strong> regulons in a scRNA-seq dataset. In particular, we use the <em><a href="https://CRAN.R-project.org/package=Seurat">Seurat</a></em> toolkit for single cell genomics <span class="citation">(Stuart et al. 2019)</span>. For the sake of simplicity, we follow the example provided in the following <em><a href="https://CRAN.R-project.org/package=Seurat">Seurat</a></em> vignette:</p>
 <p><a href="https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html" class="uri">https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html</a></p>
 <p>The dataset contains 2700 Peripheral Blood Mononuclear Cells (PBMC) that were sequenced on the Illumina NextSeq 500. This dataset is freely available in 10X Genomics:</p>
-<p><a href="https://s3-us-west-2.amazonaws.com/10x.files/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz" class="uri">https://s3-us-west-2.amazonaws.com/10x.files/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz</a></p>
+<p><a href="https://cf.10xgenomics.com/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz" class="uri">https://cf.10xgenomics.com/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz</a></p>
 <div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co">## Load the PBMC dataset</span>
 <span class="no">pbmc.data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Seurat/man/Read10X.html">Read10X</a></span>(<span class="kw">data.dir</span> <span class="kw">=</span> <span class="st">"filtered_gene_bc_matrices/hg19/"</span>)
 
@@ -314,16 +314,21 @@
 <div id="session-info" class="section level1">
 <h1 class="hasAnchor">
 <a href="#session-info" class="anchor"></a>Session info</h1>
-<pre><code>## R version 4.0.1 (2020-06-06)
-## Platform: x86_64-apple-darwin17.0 (64-bit)
-## Running under: macOS High Sierra 10.13.6
+<pre><code>## R version 4.0.0 (2020-04-24)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 16.04.6 LTS
 ## 
 ## Matrix products: default
-## BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
-## LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+## BLAS:   /home/travis/R-bin/lib/R/lib/libRblas.so
+## LAPACK: /home/travis/R-bin/lib/R/lib/libRlapack.so
 ## 
 ## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
 ## [1] parallel  stats     graphics  grDevices utils     datasets  methods  
@@ -331,43 +336,44 @@
 ## 
 ## other attached packages:
 ##  [1] viper_1.22.0        Biobase_2.48.0      BiocGenerics_0.34.0
-##  [4] tidyr_1.1.0         pheatmap_1.0.12     tibble_3.0.1       
-##  [7] Seurat_3.1.5        dplyr_1.0.0         dorothea_1.0.1     
+##  [4] tidyr_1.1.0         pheatmap_1.0.12     tibble_3.0.3       
+##  [7] Seurat_3.1.5        dplyr_1.0.0         dorothea_1.0.2     
 ## [10] BiocStyle_2.16.0   
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] segmented_1.1-0     nlme_3.1-148        tsne_0.1-3         
-##  [4] fs_1.4.1            RcppAnnoy_0.0.16    RColorBrewer_1.1-2 
+##  [1] segmented_1.2-0     nlme_3.1-147        tsne_0.1-3         
+##  [4] fs_1.4.2            RcppAnnoy_0.0.16    RColorBrewer_1.1-2 
 ##  [7] httr_1.4.1          rprojroot_1.3-2     sctransform_0.2.1  
-## [10] tools_4.0.1         backports_1.1.7     R6_2.4.1           
-## [13] irlba_2.3.3         KernSmooth_2.23-17  uwot_0.1.8         
+## [10] tools_4.0.0         backports_1.1.8     R6_2.4.1           
+## [13] irlba_2.3.3         KernSmooth_2.23-16  uwot_0.1.8         
 ## [16] lazyeval_0.2.2      colorspace_1.4-1    tidyselect_1.1.0   
-## [19] gridExtra_2.3       compiler_4.0.1      desc_1.2.0         
-## [22] plotly_4.9.2.1      labeling_0.3        bookdown_0.19      
+## [19] gridExtra_2.3       compiler_4.0.0      desc_1.2.0         
+## [22] plotly_4.9.2.1      labeling_0.3        bookdown_0.20      
 ## [25] scales_1.1.1        lmtest_0.9-37       ggridges_0.5.2     
-## [28] pbapply_1.4-2       pkgdown_1.5.1       stringr_1.4.0      
-## [31] digest_0.6.25       mixtools_1.2.0      rmarkdown_2.2      
-## [34] pkgconfig_2.0.3     htmltools_0.4.0     bcellViper_1.24.0  
-## [37] htmlwidgets_1.5.1   rlang_0.4.6         farver_2.0.3       
-## [40] generics_0.0.2      zoo_1.8-8           jsonlite_1.6.1     
-## [43] ica_1.0-2           magrittr_1.5        patchwork_1.0.0    
-## [46] Matrix_1.2-18       Rcpp_1.0.4.6        munsell_0.5.0      
-## [49] ape_5.4             reticulate_1.16     lifecycle_0.2.0    
-## [52] stringi_1.4.6       yaml_2.2.1          MASS_7.3-51.6      
-## [55] Rtsne_0.15          plyr_1.8.6          grid_4.0.1         
-## [58] listenv_0.8.0       ggrepel_0.8.2       crayon_1.3.4       
-## [61] lattice_0.20-41     cowplot_1.0.0       splines_4.0.1      
-## [64] knitr_1.28          pillar_1.4.4        igraph_1.2.5       
-## [67] future.apply_1.5.0  reshape2_1.4.4      codetools_0.2-16   
-## [70] leiden_0.3.3        glue_1.4.1          evaluate_0.14      
-## [73] data.table_1.12.8   BiocManager_1.30.10 vctrs_0.3.1        
-## [76] png_0.1-7           gtable_0.3.0        RANN_2.6.1         
-## [79] purrr_0.3.4         kernlab_0.9-29      future_1.17.0      
-## [82] assertthat_0.2.1    ggplot2_3.3.1       xfun_0.14          
-## [85] rsvd_1.0.3          RSpectra_0.16-0     e1071_1.7-3        
-## [88] class_7.3-17        survival_3.1-12     viridisLite_0.3.0  
-## [91] memoise_1.1.0       cluster_2.1.0       globals_0.12.5     
-## [94] fitdistrplus_1.1-1  ellipsis_0.3.1      ROCR_1.0-11</code></pre>
+## [28] pbapply_1.4-2       rappdirs_0.3.1      pkgdown_1.5.1      
+## [31] stringr_1.4.0       digest_0.6.25       mixtools_1.2.0     
+## [34] rmarkdown_2.3       pkgconfig_2.0.3     htmltools_0.5.0    
+## [37] bcellViper_1.24.0   htmlwidgets_1.5.1   rlang_0.4.7        
+## [40] farver_2.0.3        generics_0.0.2      zoo_1.8-8          
+## [43] jsonlite_1.7.0      ica_1.0-2           magrittr_1.5       
+## [46] patchwork_1.0.1     Matrix_1.2-18       Rcpp_1.0.5         
+## [49] munsell_0.5.0       ape_5.4             reticulate_1.16    
+## [52] lifecycle_0.2.0     stringi_1.4.6       yaml_2.2.1         
+## [55] MASS_7.3-51.5       Rtsne_0.15          plyr_1.8.6         
+## [58] grid_4.0.0          listenv_0.8.0       ggrepel_0.8.2      
+## [61] crayon_1.3.4        lattice_0.20-41     cowplot_1.0.0      
+## [64] splines_4.0.0       knitr_1.29          pillar_1.4.6       
+## [67] igraph_1.2.5        future.apply_1.6.0  reshape2_1.4.4     
+## [70] codetools_0.2-16    leiden_0.3.3        glue_1.4.1         
+## [73] evaluate_0.14       data.table_1.12.8   BiocManager_1.30.10
+## [76] vctrs_0.3.1         png_0.1-7           gtable_0.3.0       
+## [79] RANN_2.6.1          purrr_0.3.4         kernlab_0.9-29     
+## [82] future_1.18.0       assertthat_0.2.1    ggplot2_3.3.2      
+## [85] xfun_0.15           rsvd_1.0.3          RSpectra_0.16-0    
+## [88] e1071_1.7-3         class_7.3-16        survival_3.1-12    
+## [91] viridisLite_0.3.0   memoise_1.1.0       cluster_2.1.0      
+## [94] globals_0.12.5      fitdistrplus_1.1-1  ellipsis_0.3.1     
+## [97] ROCR_1.0-11</code></pre>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">
