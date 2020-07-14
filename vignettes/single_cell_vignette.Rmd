@@ -89,7 +89,7 @@ The dataset contains 2700 Peripheral Blood Mononuclear Cells (PBMC) that were
 sequenced on the Illumina NextSeq 500. This dataset is freely available in 
 10X Genomics: 
 
-https://s3-us-west-2.amazonaws.com/10x.files/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz
+https://cf.10xgenomics.com/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz
 
 ```{r "load data", eval=FALSE}
 ## Load the PBMC dataset

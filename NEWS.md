@@ -1,3 +1,6 @@
+# dorothea 1.0.2 (2020-07-14)
+* Updated link to 10x genomics data set in single-cell vignette
+
 # dorothea 1.0.1 (2020-06-12)
 * Improved package documentation
 
