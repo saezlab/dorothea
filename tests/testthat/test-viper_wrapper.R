@@ -79,8 +79,8 @@ test_that("test run_viper with seurat as input", {
     system.file("testdata", "output_seurat.rds", package = "dorothea")
   )
 
-  expect_equal(res, expected_res)
-  expect_equal(tidy_res, expected_res)
+  expect_equal(res@assays$dorothea, expected_res@assays$dorothea)
+  expect_equal(tidy_res@assays$dorothea, expected_res@assays$dorothea)
 
   # check raised warning when tidy is set to T
   expect_warning(
