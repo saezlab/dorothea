@@ -97,6 +97,7 @@ test_that("test run_viper with seurat as input", {
 
 
 test_that("test run_viper with sce as input", {
+  library(SingleCellExperiment)
   m <- readRDS(
     system.file("testdata", "toy_sce.rds", package = "dorothea")
   )
@@ -116,8 +117,8 @@ test_that("test run_viper with sce as input", {
     system.file("testdata", "output_sce.rds", package = "dorothea")
   )
 
-  expect_equal(res, expected_res)
-  expect_equal(tidy_res, expected_res)
+  expect_equal(altExp(res), altExp(expected_res))
+  expect_equal(altExp(tidy_res), altExp(expected_res))
 
   # check raised warning when tidy is set to T
   expect_warning(
