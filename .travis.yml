@@ -3,7 +3,6 @@
 language: r
 cache: packages
 
-  
 os:
   - linux
   - osx
@@ -11,9 +10,6 @@ os:
 r:
   - release
   - devel
-  
-development:
-  mode: auto
   
 jobs:
   exclude:
