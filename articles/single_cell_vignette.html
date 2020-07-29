@@ -136,7 +136,7 @@
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
-<p>First of all, you need a current version of R (<a href="http://www.r-project.org" class="uri">http://www.r-project.org</a>). <em><a href="https://bioconductor.org/packages/3.11/DoRothEA">DoRothEA</a></em> is a freely available annotation package deposited on <a href="http://bioconductor.org/" class="uri">http://bioconductor.org/</a> and <a href="https://github.com/saezlab/dorothea" class="uri">https://github.com/saezlab/dorothea</a>.</p>
+<p>First of all, you need a current version of R (<a href="http://www.r-project.org" class="uri">http://www.r-project.org</a>). <em><a href="https://bioconductor.org/packages/3.12/DoRothEA">DoRothEA</a></em> is a freely available annotation package deposited on <a href="http://bioconductor.org/" class="uri">http://bioconductor.org/</a> and <a href="https://github.com/saezlab/dorothea" class="uri">https://github.com/saezlab/dorothea</a>.</p>
 <p>You can install it by running the following commands on an R console:</p>
 <div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"BiocManager"</span>, <span class="kw">quietly</span> <span class="kw">=</span> <span class="fl">TRUE</span>))
     <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"BiocManager"</span>)
@@ -314,26 +314,31 @@
 <div id="session-info" class="section level1">
 <h1 class="hasAnchor">
 <a href="#session-info" class="anchor"></a>Session info</h1>
-<pre><code>## R version 4.0.2 (2020-06-22)
-## Platform: x86_64-apple-darwin17.0 (64-bit)
-## Running under: macOS High Sierra 10.13.6
+<pre><code>## R Under development (unstable) (2020-07-29 r78933)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 16.04.6 LTS
 ## 
 ## Matrix products: default
-## BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
-## LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+## BLAS:   /home/travis/R-bin/lib/R/lib/libRblas.so
+## LAPACK: /home/travis/R-bin/lib/R/lib/libRlapack.so
 ## 
 ## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
 ## [1] parallel  stats     graphics  grDevices utils     datasets  methods  
 ## [8] base     
 ## 
 ## other attached packages:
-##  [1] viper_1.22.0        Biobase_2.48.0      BiocGenerics_0.34.0
+##  [1] viper_1.23.0        Biobase_2.49.0      BiocGenerics_0.35.4
 ##  [4] tidyr_1.1.0         pheatmap_1.0.12     tibble_3.0.3       
 ##  [7] Seurat_3.2.0        dplyr_1.0.0         dorothea_1.1.0     
-## [10] BiocStyle_2.16.0   
+## [10] BiocStyle_2.17.0   
 ## 
 ## loaded via a namespace (and not attached):
 ##   [1] Rtsne_0.15            colorspace_1.4-1      deldir_0.1-28        
@@ -341,39 +346,39 @@
 ##   [7] rprojroot_1.3-2       fs_1.4.2              spatstat.data_1.4-3  
 ##  [10] farver_2.0.3          leiden_0.3.3          listenv_0.8.0        
 ##  [13] ggrepel_0.8.2         RSpectra_0.16-0       codetools_0.2-16     
-##  [16] splines_4.0.2         knitr_1.29            polyclip_1.10-0      
-##  [19] jsonlite_1.7.0        bcellViper_1.24.0     ica_1.0-2            
+##  [16] splines_4.1.0         knitr_1.29            polyclip_1.10-0      
+##  [19] jsonlite_1.7.0        bcellViper_1.25.0     ica_1.0-2            
 ##  [22] kernlab_0.9-29        cluster_2.1.0         png_0.1-7            
 ##  [25] uwot_0.1.8            shiny_1.5.0           sctransform_0.2.1    
-##  [28] BiocManager_1.30.10   compiler_4.0.2        httr_1.4.2           
+##  [28] BiocManager_1.30.10   compiler_4.1.0        httr_1.4.2           
 ##  [31] backports_1.1.8       assertthat_0.2.1      Matrix_1.2-18        
 ##  [34] fastmap_1.0.1         lazyeval_0.2.2        later_1.1.0.1        
-##  [37] htmltools_0.5.0       tools_4.0.2           rsvd_1.0.3           
+##  [37] htmltools_0.5.0       tools_4.1.0           rsvd_1.0.3           
 ##  [40] igraph_1.2.5          gtable_0.3.0          glue_1.4.1           
-##  [43] RANN_2.6.1            reshape2_1.4.4        Rcpp_1.0.5           
-##  [46] spatstat_1.64-1       pkgdown_1.5.1         vctrs_0.3.2          
-##  [49] ape_5.4               nlme_3.1-148          lmtest_0.9-37        
-##  [52] xfun_0.16             stringr_1.4.0         globals_0.12.5       
-##  [55] mime_0.9              miniUI_0.1.1.1        lifecycle_0.2.0      
-##  [58] irlba_2.3.3           goftest_1.2-2         future_1.18.0        
-##  [61] MASS_7.3-51.6         zoo_1.8-8             scales_1.1.1         
-##  [64] promises_1.1.1        spatstat.utils_1.17-0 RColorBrewer_1.1-2   
-##  [67] yaml_2.2.1            memoise_1.1.0         reticulate_1.16      
-##  [70] pbapply_1.4-2         gridExtra_2.3         ggplot2_3.3.2        
-##  [73] segmented_1.2-0       rpart_4.1-15          stringi_1.4.6        
-##  [76] desc_1.2.0            e1071_1.7-3           rlang_0.4.7          
-##  [79] pkgconfig_2.0.3       evaluate_0.14         lattice_0.20-41      
-##  [82] ROCR_1.0-11           purrr_0.3.4           tensor_1.5           
-##  [85] labeling_0.3          patchwork_1.0.1       htmlwidgets_1.5.1    
-##  [88] cowplot_1.0.0         tidyselect_1.1.0      RcppAnnoy_0.0.16     
-##  [91] plyr_1.8.6            magrittr_1.5          bookdown_0.20        
-##  [94] R6_2.4.1              generics_0.0.2        pillar_1.4.6         
-##  [97] mgcv_1.8-31           mixtools_1.2.0        fitdistrplus_1.1-1   
-## [100] survival_3.1-12       abind_1.4-5           future.apply_1.6.0   
-## [103] crayon_1.3.4          KernSmooth_2.23-17    plotly_4.9.2.1       
-## [106] rmarkdown_2.3         grid_4.0.2            data.table_1.13.0    
-## [109] digest_0.6.25         xtable_1.8-4          httpuv_1.5.4         
-## [112] munsell_0.5.0         viridisLite_0.3.0</code></pre>
+##  [43] RANN_2.6.1            reshape2_1.4.4        rappdirs_0.3.1       
+##  [46] Rcpp_1.0.5            spatstat_1.64-1       pkgdown_1.5.1        
+##  [49] vctrs_0.3.2           ape_5.4               nlme_3.1-148         
+##  [52] lmtest_0.9-37         xfun_0.16             stringr_1.4.0        
+##  [55] globals_0.12.5        mime_0.9              miniUI_0.1.1.1       
+##  [58] lifecycle_0.2.0       irlba_2.3.3           goftest_1.2-2        
+##  [61] future_1.18.0         MASS_7.3-51.6         zoo_1.8-8            
+##  [64] scales_1.1.1          promises_1.1.1        spatstat.utils_1.17-0
+##  [67] RColorBrewer_1.1-2    yaml_2.2.1            memoise_1.1.0        
+##  [70] reticulate_1.16       pbapply_1.4-2         gridExtra_2.3        
+##  [73] ggplot2_3.3.2         segmented_1.2-0       rpart_4.1-15         
+##  [76] stringi_1.4.6         desc_1.2.0            e1071_1.7-3          
+##  [79] rlang_0.4.7           pkgconfig_2.0.3       evaluate_0.14        
+##  [82] lattice_0.20-41       ROCR_1.0-11           purrr_0.3.4          
+##  [85] tensor_1.5            labeling_0.3          patchwork_1.0.1      
+##  [88] htmlwidgets_1.5.1     cowplot_1.0.0         tidyselect_1.1.0     
+##  [91] RcppAnnoy_0.0.16      plyr_1.8.6            magrittr_1.5         
+##  [94] bookdown_0.20         R6_2.4.1              generics_0.0.2       
+##  [97] pillar_1.4.6          mgcv_1.8-31           mixtools_1.2.0       
+## [100] fitdistrplus_1.1-1    survival_3.2-3        abind_1.4-5          
+## [103] future.apply_1.6.0    crayon_1.3.4          KernSmooth_2.23-17   
+## [106] plotly_4.9.2.1        rmarkdown_2.3         grid_4.1.0           
+## [109] data.table_1.13.0     digest_0.6.25         xtable_1.8-4         
+## [112] httpuv_1.5.4          munsell_0.5.0         viridisLite_0.3.0</code></pre>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">
