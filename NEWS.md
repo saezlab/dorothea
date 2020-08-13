@@ -1,8 +1,7 @@
-# dorothea 1.0.2 (2020-07-14)
-* Updated link to 10x genomics data set in single-cell vignette
-
-# dorothea 1.0.1 (2020-06-12)
+# dorothea 1.0.1 (2020-08-13)
 * Improved package documentation
+* Updated link to 10x genomics data set in single-cell vignette
+* Fixed tests related to Seurat and SCE class
 
 # dorothea 1.0.0 (2020-04-27)
 * Official release in Bioconductor 3.11
