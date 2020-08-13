@@ -41,25 +41,25 @@ n = list.files("inst/extdata/networks", pattern = "network",
   }) %>%
   distinct()
 
-# update deprecated gene symbols of tfs and targets
-target_aliases = n %>%
-  distinct(target) %>%
-  mutate(alias = alias2SymbolTable(target)) %>%
-  mutate(alias = coalesce(alias, target))
-
-tf_aliases = n %>%
-  distinct(tf) %>%
-  mutate(alias = alias2SymbolTable(tf)) %>%
-  mutate(alias = coalesce(alias, tf))
-
-n = n %>% 
-  inner_join(target_aliases, by="target") %>%
-  rename(old_target = target) %>%
-  select(tf, target = alias, mor, evidence, database, old_target) %>%
-  inner_join(tf_aliases, by="tf") %>%
-  rename(old_tf = tf) %>%
-  select(tf = alias, target, mor, evidence, database, old_tf, old_target) %>%
-  select(-old_tf, -old_target)
+# # update deprecated gene symbols of tfs and targets
+# target_aliases = n %>%
+#   distinct(target) %>%
+#   mutate(alias = alias2SymbolTable(target)) %>%
+#   mutate(alias = coalesce(alias, target))
+# 
+# tf_aliases = n %>%
+#   distinct(tf) %>%
+#   mutate(alias = alias2SymbolTable(tf)) %>%
+#   mutate(alias = coalesce(alias, tf))
+# 
+# n = n %>% 
+#   inner_join(target_aliases, by="target") %>%
+#   rename(old_target = target) %>%
+#   select(tf, target = alias, mor, evidence, database, old_target) %>%
+#   inner_join(tf_aliases, by="tf") %>%
+#   rename(old_tf = tf) %>%
+#   select(tf = alias, target, mor, evidence, database, old_tf, old_target) %>%
+#   select(-old_tf, -old_target)
 
 
 
@@ -451,13 +451,13 @@ top_10_database_mouse = final_database_mouse %>%
 #### Save data ####
 ### Human
 # entire database with meta data
-save(entire_database, file = "data/entire_database_updated.rda", compress="xz")
+save(entire_database, file = "data/entire_database.rda", compress="xz")
 
 # top 10 database
 dorothea_hs = top_10_database_human
-save(dorothea_hs, file = "data/dorothea_hs_updated.rda", compress="xz")
+save(dorothea_hs, file = "data/dorothea_hs.rda", compress="xz")
 
 ### Mouse
 # top 10 database
 dorothea_mm = top_10_database_mouse
-save(dorothea_mm, file = "data/dorothea_mm_updated.rda", compress="xz")
+save(dorothea_mm, file = "data/dorothea_mm.rda", compress="xz")
