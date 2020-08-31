@@ -1,3 +1,7 @@
+# dorothea 1.1.0 (2020-08-31)
+* Export df2regulon function
+* Improved documentation (added gh page URL to DESCRIPTION)
+
 # dorothea 1.0.1 (2020-08-13)
 * Improved package documentation
 * Updated link to 10x genomics data set in single-cell vignette
