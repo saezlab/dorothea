@@ -7,8 +7,8 @@
 #'
 #' @return Regulons in the \code{viper} format.
 #'
-#' @keywords internal
-.df2regulon <- function(df) {
+#' @export
+df2regulon <- function(df) {
   regulon_list = split(df, df$tf)
 
   viper_regulons = lapply(regulon_list, function(regulon) {
