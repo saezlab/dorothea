@@ -1,7 +1,7 @@
 Package: dorothea
 Type: Package
 Title: Collection Of Human And Mouse TF Regulons
-Version: 1.0.1
+Version: 1.1.0
 Authors@R: c(
     person(given = "Christian H.",
            family = "Holland",
@@ -29,13 +29,13 @@ Description: This package contains human and mouse TF regulons.
     orthologs in mice. Those regulons can be coupled with any statistical method
     that aims to analyse gene sets to infer TF activity from gene expression 
     data. Preferably the statistical method viper is used.
-URL: https://github.com/saezlab/dorothea
+URL: https://saezlab.github.io/dorothea/, https://github.com/saezlab/dorothea
 BugReports: https://github.com/saezlab/dorothea/issues
 Depends: R (>= 4.0)
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 biocViews: ExperimentData, Homo_sapiens_Data, Mus_musculus_Data
 Imports:

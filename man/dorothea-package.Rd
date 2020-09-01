@@ -15,6 +15,7 @@ This package contains human and mouse TF regulons.
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://saezlab.github.io/dorothea/}
   \item \url{https://github.com/saezlab/dorothea}
   \item Report bugs at \url{https://github.com/saezlab/dorothea/issues}
 }

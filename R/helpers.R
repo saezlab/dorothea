@@ -7,8 +7,14 @@
 #'
 #' @return Regulons in the \code{viper} format.
 #'
-#' @keywords internal
-.df2regulon <- function(df) {
+#' @export
+#' @examples
+#' # acessing (human) dorothea regulons
+#' # for mouse regulons: data(dorothea_mm, package = "dorothea")
+#' data(dorothea_hs, package = "dorothea")
+#' # convert to the format required by viper
+#' viper_regulons = df2regulon(dorothea_hs)
+df2regulon <- function(df) {
   regulon_list = split(df, df$tf)
 
   viper_regulons = lapply(regulon_list, function(regulon) {
