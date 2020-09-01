@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Construction of dorothea regulons for viper analysis — .df2regulon • dorothea</title>
+<title>Construction of dorothea regulons for viper analysis — df2regulon • dorothea</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Construction of dorothea regulons for viper analysis — .df2regulon" />
+<meta property="og:title" content="Construction of dorothea regulons for viper analysis — df2regulon" />
 <meta property="og:description" content="This function converts DoRothEA's regulons that are stored in a table to the
 format required by the viper function." />
 
@@ -83,7 +83,7 @@ format required by the viper function." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dorothea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -151,7 +151,7 @@ format required by the viper function." />
     <div class="page-header">
     <h1>Construction of dorothea regulons for viper analysis</h1>
     <small class="dont-index">Source: <a href='https://github.com/saezlab/dorothea/blob/master/R/helpers.R'><code>R/helpers.R</code></a></small>
-    <div class="hidden name"><code>dot-df2regulon.Rd</code></div>
+    <div class="hidden name"><code>df2regulon.Rd</code></div>
     </div>
 
     <div class="ref-description">
@@ -159,7 +159,7 @@ format required by the viper function." />
 format required by the <code><a href='https://rdrr.io/pkg/viper/man/viper.html'>viper</a></code> function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>.df2regulon</span>(<span class='no'>df</span>)</pre>
+    <pre class="usage"><span class='fu'>df2regulon</span>(<span class='no'>df</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -174,6 +174,12 @@ format required by the <code><a href='https://rdrr.io/pkg/viper/man/viper.html'>
 
     <p>Regulons in the <code>viper</code> format.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># acessing (human) dorothea regulons</span>
+<span class='co'># for mouse regulons: data(dorothea_mm, package = "dorothea")</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>dorothea_hs</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"dorothea"</span>)
+<span class='co'># convert to the format required by viper</span>
+<span class='no'>viper_regulons</span> <span class='kw'>=</span> <span class='fu'>df2regulon</span>(<span class='no'>dorothea_hs</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
