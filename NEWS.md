@@ -1,4 +1,4 @@
-# dorothea 1.1.0 (2020-08-31)
+# dorothea 1.1.1 (2020-09-02)
 * Export df2regulon function
 * Improved documentation (added gh page URL to DESCRIPTION)
 
