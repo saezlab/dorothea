@@ -34,7 +34,8 @@ saveRDS(updated_tf_annotation, "inst/extdata/annotations/tf_annotation.rds")
 
 
 # Gene annotation with protein ids
-ensembl = useMart("ensembl",dataset="hsapiens_gene_ensembl")
+ensembl = useMart("ensembl",dataset="hsapiens_gene_ensembl", 
+                  "http://aug2020.archive.ensembl.org")
 biomart_output = getBM(mart = ensembl,
                        attributes=c("hgnc_symbol","uniprotswissprot",
                                     "ensembl_gene_id", "uniprot_gn_id"),
@@ -47,8 +48,10 @@ biomart_output = getBM(mart = ensembl,
 saveRDS(biomart_output, "inst/extdata/annotations/gene_annotation.rds")
 
 # hgnc - mgi mapping
-mouse_ensembl = useMart("ensembl",dataset="mmusculus_gene_ensembl")
-human_ensembl = useMart("ensembl", dataset = "hsapiens_gene_ensembl")
+mouse_ensembl = useMart("ensembl",dataset="mmusculus_gene_ensembl", 
+                        host = "http://aug2020.archive.ensembl.org")
+human_ensembl = useMart("ensembl", dataset = "hsapiens_gene_ensembl", 
+                        host = "http://aug2020.archive.ensembl.org")
 # mgi symbol - hgnc symbol
 hgnc_mgi_mapping = getLDS(attributes = c("mgi_symbol"),
        mart = mouse_ensembl,
@@ -63,7 +66,7 @@ saveRDS(hgnc_mgi_mapping, "inst/extdata/annotations/hgnc_mgi_annotation.rds")
 
 
 # Uniprot entry annotation
-uniprot_anno = read_delim('data/annotations/hsa_uniprot_20180314.txt',
+uniprot_anno = read_delim('inst/extdata/annotations/hsa_uniprot_20180314.txt',
                           delim = "\t") %>%
   janitor::clean_names() %>%
   drop_na(gene_names) %>%
