@@ -14,3 +14,4 @@ navbar:
 template:
   params:
     ganalytics: UA-119440867-7
+  path: inst/templates
