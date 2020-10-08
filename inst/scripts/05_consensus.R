@@ -41,27 +41,26 @@ n = list.files("inst/extdata/networks", pattern = "network",
   }) %>%
   distinct()
 
-# # update deprecated gene symbols of tfs and targets
-# target_aliases = n %>%
-#   distinct(target) %>%
-#   mutate(alias = alias2SymbolTable(target)) %>%
-#   mutate(alias = coalesce(alias, target))
-# 
-# tf_aliases = n %>%
-#   distinct(tf) %>%
-#   mutate(alias = alias2SymbolTable(tf)) %>%
-#   mutate(alias = coalesce(alias, tf))
-# 
-# n = n %>% 
-#   inner_join(target_aliases, by="target") %>%
-#   rename(old_target = target) %>%
-#   select(tf, target = alias, mor, evidence, database, old_target) %>%
-#   inner_join(tf_aliases, by="tf") %>%
-#   rename(old_tf = tf) %>%
-#   select(tf = alias, target, mor, evidence, database, old_tf, old_target) %>%
-#   select(-old_tf, -old_target)
+# update deprecated gene symbols of tfs and targets
+target_aliases = n %>%
+  distinct(target) %>%
+  mutate(alias = alias2SymbolTable(target)) %>%
+  mutate(alias = coalesce(alias, target))
 
+tf_aliases = n %>%
+  distinct(tf) %>%
+  mutate(alias = alias2SymbolTable(tf)) %>%
+  mutate(alias = coalesce(alias, tf))
 
+n = n %>%
+  inner_join(target_aliases, by="target") %>%
+  rename(old_target = target) %>%
+  select(tf, target = alias, mor, evidence, database, old_target) %>%
+  inner_join(tf_aliases, by="tf") %>%
+  rename(old_tf = tf) %>%
+  select(tf = alias, target, mor, evidence, database, old_tf, old_target) %>%
+  select(-old_tf, -old_target) %>%
+  distinct()
 
 #### Confidence class A ####
 # interactions in >= 2 curated databases
@@ -342,7 +341,7 @@ final_database_mouse = final_database_human %>%
   # now translate targets
   rename(hgnc_symbol = target) %>%
   inner_join(anno, by="hgnc_symbol") %>%
-  distinct(tf, target, mor, confidence, target = mgi_symbol) %>%
+  distinct(tf, mor, confidence, target = mgi_symbol) %>%
   group_by(tf, target) %>%
   # due to the mapping it can happen that now an interactions has several
   # confidence levels/mors. To be more conservative the lowest level/max
