@@ -1,8 +1,7 @@
 ## TF properties
 load_tf_census = function(){
-  message("Load TF census")
-  tf_census = read_delim("inst/extdata/annotations/human_tf_census.txt",
-                         delim = "\t", col_names = "tf") %>%
+  message("Load tf census")
+  tf_census = readRDS("inst/extdata/annotations/tf_annotation.rds") %>%
     distinct(tf) %>%
     pull(tf)
 
