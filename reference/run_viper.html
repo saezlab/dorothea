@@ -83,7 +83,7 @@ viper function using DoRothEA regulons." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dorothea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -159,7 +159,7 @@ viper function using DoRothEA regulons." />
 <code><a href='https://rdrr.io/pkg/viper/man/viper.html'>viper</a></code> function using DoRothEA regulons.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>run_viper</span>(<span class='no'>input</span>, <span class='no'>regulons</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(), <span class='kw'>tidy</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>run_viper</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>regulons</span>, options <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, tidy <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -176,7 +176,7 @@ objects.</p></td>
     </tr>
     <tr>
       <th>regulons</th>
-      <td><p><code>DoRothEA</code> regulons in table
+      <td><p><code><a href='dorothea_hs.html'>DoRothEA</a></code> regulons in table
 format.</p></td>
     </tr>
     <tr>
@@ -205,7 +205,8 @@ in a tidy format.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># use example gene expression matrix from bcellViper package</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>bcellViper</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: Biobase</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: BiocGenerics</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: parallel</span></div><div class='output co'>#&gt; <span class='message'></span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: Biobase</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: BiocGenerics</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: parallel</span></div><div class='output co'>#&gt; <span class='message'></span>
 #&gt; <span class='message'>Attaching package: ‘BiocGenerics’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:parallel’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,</span>
@@ -223,15 +224,16 @@ in a tidy format.</p></td>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    Vignettes contain introductory material; view with</span>
 #&gt; <span class='message'>    'browseVignettes()'. To cite Bioconductor, see</span>
-#&gt; <span class='message'>    'citation("Biobase")', and for packages 'citation("pkgname")'.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>bcellViper</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"bcellViper"</span>)
+#&gt; <span class='message'>    'citation("Biobase")', and for packages 'citation("pkgname")'.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>bcellViper</span>, package <span class='op'>=</span> <span class='st'>"bcellViper"</span><span class='op'>)</span>
 <span class='co'># acessing (human) dorothea regulons</span>
 <span class='co'># for mouse regulons: data(dorothea_mm, package = "dorothea")</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>dorothea_hs</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"dorothea"</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>dorothea_hs</span>, package <span class='op'>=</span> <span class='st'>"dorothea"</span><span class='op'>)</span>
 <span class='co'># run viper</span>
-<span class='no'>tf_activities</span> <span class='kw'>&lt;-</span> <span class='fu'>run_viper</span>(<span class='no'>dset</span>, <span class='no'>dorothea_hs</span>,
-                          <span class='kw'>options</span> <span class='kw'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"scale"</span>, <span class='kw'>minsize</span> <span class='kw'>=</span> <span class='fl'>4</span>,
-                          <span class='kw'>eset.filter</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>cores</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-                          <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>))</div></pre>
+<span class='va'>tf_activities</span> <span class='op'>&lt;-</span> <span class='fu'>run_viper</span><span class='op'>(</span><span class='va'>dset</span>, <span class='va'>dorothea_hs</span>,
+                          options <span class='op'>=</span>  <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"scale"</span>, minsize <span class='op'>=</span> <span class='fl'>4</span>,
+                          eset.filter <span class='op'>=</span> <span class='cn'>FALSE</span>, cores <span class='op'>=</span> <span class='fl'>1</span>,
+                          verbose <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -247,7 +249,7 @@ in a tidy format.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

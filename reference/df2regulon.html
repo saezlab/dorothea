@@ -83,7 +83,7 @@ format required by the viper function." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dorothea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -159,7 +159,7 @@ format required by the viper function." />
 format required by the <code><a href='https://rdrr.io/pkg/viper/man/viper.html'>viper</a></code> function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>df2regulon</span>(<span class='no'>df</span>)</pre>
+    <pre class="usage"><span class='fu'>df2regulon</span><span class='op'>(</span><span class='va'>df</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -177,9 +177,10 @@ format required by the <code><a href='https://rdrr.io/pkg/viper/man/viper.html'>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># acessing (human) dorothea regulons</span>
 <span class='co'># for mouse regulons: data(dorothea_mm, package = "dorothea")</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>dorothea_hs</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"dorothea"</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>dorothea_hs</span>, package <span class='op'>=</span> <span class='st'>"dorothea"</span><span class='op'>)</span>
 <span class='co'># convert to the format required by viper</span>
-<span class='no'>viper_regulons</span> <span class='kw'>=</span> <span class='fu'>df2regulon</span>(<span class='no'>dorothea_hs</span>)</div></pre>
+<span class='va'>viper_regulons</span> <span class='op'>=</span> <span class='fu'>df2regulon</span><span class='op'>(</span><span class='va'>dorothea_hs</span><span class='op'>)</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -195,7 +196,7 @@ format required by the <code><a href='https://rdrr.io/pkg/viper/man/viper.html'>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
