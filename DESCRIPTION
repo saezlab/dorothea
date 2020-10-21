@@ -41,7 +41,8 @@ biocViews: ExperimentData, Homo_sapiens_Data, Mus_musculus_Data
 Imports:
     dplyr,
     magrittr,
-    bcellViper
+    bcellViper,
+    viper
 Suggests:
     Biobase,
     BiocStyle,
@@ -54,5 +55,4 @@ Suggests:
     testthat (>= 2.1.0),
     tibble,
     tidyr,
-    utils,
-    viper
+    utils
