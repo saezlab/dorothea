@@ -1,7 +1,8 @@
 # dorothea 1.1.2 (2020-10-08)
 * Changed TF census from [TFclass](https://doi.org/10.1093/nar/gkx987) to the more recent version from [Lambert et al.](10.1016/j.cell.2018.01.029). Information of mode of regulation for each TF (activator, supressor, dual) is still taken from [Garcia-Alonso et al.](http://www.genome.org/cgi/doi/10.1101/gr.240663.118).
 * Updated deprecated gene symbols to their latest version with the limma package (version 3.44.3).
-* Shifted viper package from 'suggest' to 'depends' in the DESCRIPTION file.
+* Shifted viper package from `suggest` to `depends` in the DESCRIPTION file.
+* Added a further argument specifially for `run_viper().Seurat` to select a specific assay name to extract the normalized gene expression values from.
 
 # dorothea 1.1.1 (2020-09-02)
 * Export df2regulon function

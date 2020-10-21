@@ -4,13 +4,13 @@
 \alias{run_viper}
 \title{VIPER wrapper}
 \usage{
-run_viper(input, regulons, options = list(), tidy = FALSE)
+run_viper(input, regulons, options = list(), tidy = FALSE, assay_key = "RNA")
 }
 \arguments{
 \item{input}{An object containing a gene expression matrix with genes
 (HGNC/MGI symbols) in rows and samples in columns. The object can be a
-simple matrix/data frame or complexer objects such as
-\code{\link[Biobase:class.ExpressionSet]{ExpressionSet}} 
+simple matrix/data frame or more complex objects such as
+\code{\link[Biobase:class.ExpressionSet]{ExpressionSet}},
 \code{\link[Seurat:Seurat-class]{Seurat}} or
 \code{\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment}}
 objects.}
@@ -23,16 +23,20 @@ format.}
 \code{method}. These options should not include, \code{eset} or
 \code{regulon}.}
 
-\item{tidy}{Logical, whether computed tf activities scores should be returned
+\item{tidy}{Logical, whether computed TF activities scores should be returned
 in a tidy format.}
+
+\item{assay_key}{Only applies if the input is a 
+\code{\link[Seurat:Seurat-class]{Seurat}} object. It selects the
+name of the assay from where to extract the normalized expression data.}
 }
 \value{
 A matrix of normalized enrichment scores for each TF across all
  samples. Of note, if you provide Bioconductor objects as input the function
- will return this object with added tf activities at appropiate slots. e.g.
+ will return this object with added TF activities at appropriate slots. e.g.
  Seurat object with a new assay called \code{dorothea}. For all
  other inputs the function will return a matrix. If \code{tidy} is
- \code{TRUE} the normalized enrichment scores are retured in a tidy format
+ \code{TRUE} the normalized enrichment scores are returned in a tidy format
  (not supported for Bioconductor objects).
 }
 \description{
