@@ -159,7 +159,7 @@ viper function using DoRothEA regulons." />
 <code><a href='https://rdrr.io/pkg/viper/man/viper.html'>viper</a></code> function using DoRothEA regulons.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>run_viper</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>regulons</span>, options <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, tidy <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>run_viper</span><span class='op'>(</span><span class='va'>input</span>, <span class='va'>regulons</span>, options <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='op'>)</span>, tidy <span class='op'>=</span> <span class='cn'>FALSE</span>, assay_key <span class='op'>=</span> <span class='st'>"RNA"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -168,8 +168,8 @@ viper function using DoRothEA regulons." />
       <th>input</th>
       <td><p>An object containing a gene expression matrix with genes
 (HGNC/MGI symbols) in rows and samples in columns. The object can be a
-simple matrix/data frame or complexer objects such as
-<code>ExpressionSet</code> 
+simple matrix/data frame or more complex objects such as
+<code>ExpressionSet</code>,
 <code><a href='https://rdrr.io/pkg/Seurat/man/Seurat-class.html'>Seurat</a></code> or
 <code><a href='https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html'>SingleCellExperiment</a></code>
 objects.</p></td>
@@ -188,8 +188,14 @@ format.</p></td>
     </tr>
     <tr>
       <th>tidy</th>
-      <td><p>Logical, whether computed tf activities scores should be returned
+      <td><p>Logical, whether computed TF activities scores should be returned
 in a tidy format.</p></td>
+    </tr>
+    <tr>
+      <th>assay_key</th>
+      <td><p>Only applies if the input is a 
+<code><a href='https://rdrr.io/pkg/Seurat/man/Seurat-class.html'>Seurat</a></code> object. It selects the
+name of the assay from where to extract the normalized expression data.</p></td>
     </tr>
     </table>
 
@@ -197,10 +203,10 @@ in a tidy format.</p></td>
 
     <p>A matrix of normalized enrichment scores for each TF across all
  samples. Of note, if you provide Bioconductor objects as input the function
- will return this object with added tf activities at appropiate slots. e.g.
+ will return this object with added TF activities at appropriate slots. e.g.
  Seurat object with a new assay called <code>dorothea</code>. For all
  other inputs the function will return a matrix. If <code>tidy</code> is
- <code>TRUE</code> the normalized enrichment scores are retured in a tidy format
+ <code>TRUE</code> the normalized enrichment scores are returned in a tidy format
  (not supported for Bioconductor objects).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
