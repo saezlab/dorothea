@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dorothea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
       </span>
     </div>
 
@@ -254,12 +254,7 @@
                      <span class="st">"FCGR3A+ Mono"</span>, <span class="st">"NK"</span>, <span class="st">"DC"</span>, <span class="st">"Platelet"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">new.cluster.ids</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span>
 <span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Seurat/man/Idents.html">RenameIdents</a></span><span class="op">(</span><span class="va">pbmc</span>, <span class="va">new.cluster.ids</span><span class="op">)</span></pre></div>
-<pre><code>## Warning: Cannot find identity NA
-
-## Warning: Cannot find identity NA
-
-## Warning: Cannot find identity NA</code></pre>
-<div class="sourceCode" id="cb10"><pre class="downlit">
+<div class="sourceCode" id="cb9"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/pkg/Seurat/man/DimPlot.html">DimPlot</a></span><span class="op">(</span><span class="va">pbmc</span>, reduction <span class="op">=</span> <span class="st">"umap"</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, pt.size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/pkg/Seurat/man/SeuratTheme.html">NoLegend</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <p><img src="single_cell_vignette_files/figure-html/tf_umap-1.png" width="700"></p>
 </div>
@@ -267,18 +262,18 @@
 <h2 class="hasAnchor">
 <a href="#tf-activity-per-cell-population" class="anchor"></a>TF activity per cell population</h2>
 <p>Finally, we characterise the different cell populations based on their TF activities thanks to the previously computed <strong>VIPER</strong> scores on <strong>DoRothEA’s</strong> regulons.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
+<div class="sourceCode" id="cb10"><pre class="downlit">
 <span class="co">## We transform Viper scores, scaled by seurat, into a data frame to better </span>
 <span class="co">## handling the results</span>
 <span class="va">viper_scores_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Seurat/man/GetAssayData.html">GetAssayData</a></span><span class="op">(</span><span class="va">pbmc</span>, slot <span class="op">=</span> <span class="st">"scale.data"</span>, 
                                     assay <span class="op">=</span> <span class="st">"dorothea"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>check.names <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="co">## We create a data frame containing the cells and their clusters</span>
 <span class="va">CellsClusters</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>cell <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Seurat/man/Idents.html">Idents</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span><span class="op">)</span>, 
                             cell_type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Seurat/man/Idents.html">Idents</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span><span class="op">)</span>,
-                            stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+                            check.names <span class="op">=</span> <span class="cn">F</span><span class="op">)</span>
 
 <span class="co">## We create a data frame with the Viper score per cell and its clusters</span>
 <span class="va">viper_scores_clusters</span> <span class="op">&lt;-</span> <span class="va">viper_scores_df</span>  <span class="op">%&gt;%</span>
@@ -293,7 +288,7 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>avg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">activity</span><span class="op">)</span>,
             std <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">activity</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p>For visualization purposes, we select the 20 most variable TFs across clusters according to our scores.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
+<div class="sourceCode" id="cb11"><pre class="downlit">
 <span class="co">## We select the 20 most variable TFs. (20*9 populations = 180)</span>
 <span class="va">highly_variable_tfs</span> <span class="op">&lt;-</span> <span class="va">summarized_viper_scores</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">tf</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -307,8 +302,8 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">semi_join</a></span><span class="op">(</span><span class="va">highly_variable_tfs</span>, by <span class="op">=</span> <span class="st">"tf"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">std</span><span class="op">)</span> <span class="op">%&gt;%</span>   
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/spread.html">spread</a></span><span class="op">(</span><span class="va">tf</span>, <span class="va">avg</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>row.names <span class="op">=</span> <span class="fl">1</span>, check.names <span class="op">=</span> <span class="cn">FALSE</span>, stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit">
+  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>row.names <span class="op">=</span> <span class="fl">1</span>, check.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit">
 <span class="va">palette_length</span> <span class="op">=</span> <span class="fl">100</span>
 <span class="va">my_color</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Darkblue"</span>, <span class="st">"white"</span>,<span class="st">"red"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="va">palette_length</span><span class="op">)</span>
 
@@ -347,7 +342,7 @@
 ## other attached packages:
 ##  [1] viper_1.22.0        Biobase_2.48.0      BiocGenerics_0.34.0
 ##  [4] tidyr_1.1.2         pheatmap_1.0.12     tibble_3.0.4       
-##  [7] Seurat_3.2.2        dplyr_1.0.2         dorothea_1.1.2     
+##  [7] Seurat_3.2.2        dplyr_1.0.2         dorothea_1.1.3     
 ## [10] BiocStyle_2.16.1   
 ## 
 ## loaded via a namespace (and not attached):
