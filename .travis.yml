@@ -4,12 +4,12 @@ language: r
 cache: packages
 
 os:
-  - linux
+  # - linux
   - osx
 
 r:
   - release
-  - devel
+  # - devel
   
 jobs:
   exclude:
