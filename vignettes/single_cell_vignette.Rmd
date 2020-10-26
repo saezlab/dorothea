@@ -100,9 +100,9 @@ pbmc <- CreateSeuratObject(counts = pbmc.data, project = "pbmc3k",
                            min.cells = 3, min.features = 200)
 ```
 
-```{r "load data2", eval=TRUE , include=FALSE}
-load(file="../inst/extdata/for_vignette/seurat_object.RData", 
-     verbose = FALSE)
+```{r "load data2", eval=TRUE, include=FALSE}
+load(file="../inst/extdata/for_vignette/seurat_object.RData",
+    verbose = FALSE)
 ```
 
 ## Pre-processing, normalization and identification of highly variable features
@@ -195,7 +195,7 @@ pbmc <- run_viper(pbmc, regulon,
 We then apply `r CRANpkg("Seurat")` to cluster the cells following the same 
 protocol than above but using TF activity scores.
 
-```{r "tf clustering", message=FALSE}
+```{r "tf clustering", message=FALSE, warning=FALSE}
 ## We compute the Nearest Neighbours to perform cluster
 DefaultAssay(object = pbmc) <- "dorothea"
 pbmc <- ScaleData(pbmc)
@@ -230,13 +230,13 @@ TF activities thanks to the previously computed **VIPER** scores on
 ## handling the results
 viper_scores_df <- GetAssayData(pbmc, slot = "scale.data", 
                                     assay = "dorothea") %>%
-  data.frame() %>%
+  data.frame(check.names = F) %>%
   t()
 
 ## We create a data frame containing the cells and their clusters
 CellsClusters <- data.frame(cell = names(Idents(pbmc)), 
                             cell_type = as.character(Idents(pbmc)),
-                            stringsAsFactors = FALSE)
+                            check.names = F)
 
 ## We create a data frame with the Viper score per cell and its clusters
 viper_scores_clusters <- viper_scores_df  %>%
@@ -270,7 +270,7 @@ summarized_viper_scores_df <- summarized_viper_scores %>%
   semi_join(highly_variable_tfs, by = "tf") %>%
   dplyr::select(-std) %>%   
   spread(tf, avg) %>%
-  data.frame(row.names = 1, check.names = FALSE, stringsAsFactors = FALSE) 
+  data.frame(row.names = 1, check.names = FALSE) 
 ```
 
 ```{r "tf_heatmap"}
