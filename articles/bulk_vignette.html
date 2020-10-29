@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dorothea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.3.0</span>
       </span>
     </div>
 
@@ -135,7 +135,7 @@
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
-<p>First of all, you need a current version of R (<a href="http://www.r-project.org" class="uri">http://www.r-project.org</a>). In addition you need <em><a href="https://bioconductor.org/packages/3.11/dorothea">dorothea</a></em>, a freely available package deposited on <a href="http://bioconductor.org/" class="uri">http://bioconductor.org/</a> and <a href="https://github.com/saezlab/dorothea" class="uri">https://github.com/saezlab/dorothea</a>.</p>
+<p>First of all, you need a current version of R (<a href="http://www.r-project.org" class="uri">http://www.r-project.org</a>). In addition you need <em><a href="https://bioconductor.org/packages/3.12/dorothea">dorothea</a></em>, a freely available package deposited on <a href="http://bioconductor.org/" class="uri">http://bioconductor.org/</a> and <a href="https://github.com/saezlab/dorothea" class="uri">https://github.com/saezlab/dorothea</a>.</p>
 <p>You can install it by running the following commands on an R console:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
@@ -153,11 +153,11 @@
 <div id="example-of-usage" class="section level1">
 <h1 class="hasAnchor">
 <a href="#example-of-usage" class="anchor"></a>Example of usage</h1>
-<p>According to the vignette from the <em><a href="https://bioconductor.org/packages/3.11/viper">viper</a></em> package we demonstrate how to combine viper with regulons from DoRothEA.</p>
+<p>According to the vignette from the <em><a href="https://bioconductor.org/packages/3.12/viper">viper</a></em> package we demonstrate how to combine viper with regulons from DoRothEA.</p>
 <div id="accessing-example-data-and-dorothea-regulons-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#accessing-example-data-and-dorothea-regulons-" class="anchor"></a>Accessing example data and DoRothEA regulons.</h2>
-<p>Similiar to the <em><a href="https://bioconductor.org/packages/3.11/viper">viper</a></em> vignette we use the gene expression matrix from the <em><a href="https://bioconductor.org/packages/3.11/bcellViper">bcellViper</a></em> package. Click <a href="https://bioconductor.org/packages/release/bioc/vignettes/viper/inst/doc/viper.pdf">here</a> for more information about the gene expression matrix. The regulons from DoRothEA are provided within the dorothea package and can be acessed via the <code><a href="https://rdrr.io/r/utils/data.html">data()</a></code> function. As the gene expression matrix contains human data we also load the human version of DoRothEA.</p>
+<p>Similiar to the <em><a href="https://bioconductor.org/packages/3.12/viper">viper</a></em> vignette we use the gene expression matrix from the <em><a href="https://bioconductor.org/packages/3.12/bcellViper">bcellViper</a></em> package. Click <a href="https://bioconductor.org/packages/release/bioc/vignettes/viper/inst/doc/viper.pdf">here</a> for more information about the gene expression matrix. The regulons from DoRothEA are provided within the dorothea package and can be acessed via the <code><a href="https://rdrr.io/r/utils/data.html">data()</a></code> function. As the gene expression matrix contains human data we also load the human version of DoRothEA.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="co"># accessing expression data from bcellViper</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">bcellViper</span>, package <span class="op">=</span> <span class="st">"bcellViper"</span><span class="op">)</span>
@@ -199,9 +199,9 @@
 ## [8] base     
 ## 
 ## other attached packages:
-## [1] viper_1.22.0        dplyr_1.0.2         bcellViper_1.24.0  
-## [4] Biobase_2.48.0      BiocGenerics_0.34.0 dorothea_1.1.3     
-## [7] BiocStyle_2.16.1   
+## [1] viper_1.24.0        dplyr_1.0.2         bcellViper_1.25.0  
+## [4] Biobase_2.50.0      BiocGenerics_0.36.0 dorothea_1.3.0     
+## [7] BiocStyle_2.18.0   
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] compiler_4.0.3      pillar_1.4.6        BiocManager_1.30.10
@@ -213,8 +213,8 @@
 ## [19] e1071_1.7-4         stringr_1.4.0       knitr_1.30         
 ## [22] desc_1.2.0          generics_0.0.2      fs_1.5.0           
 ## [25] vctrs_0.3.4         systemfonts_0.3.2   grid_4.0.3         
-## [28] segmented_1.2-0     rprojroot_1.3-2     tidyselect_1.1.0   
-## [31] glue_1.4.2          R6_2.4.1            textshaping_0.1.2  
+## [28] segmented_1.3-0     rprojroot_1.3-2     tidyselect_1.1.0   
+## [31] glue_1.4.2          R6_2.5.0            textshaping_0.1.2  
 ## [34] survival_3.2-7      rmarkdown_2.5       bookdown_0.21      
 ## [37] kernlab_0.9-29      purrr_0.3.4         magrittr_1.5       
 ## [40] splines_4.0.3       MASS_7.3-53         backports_1.1.10   
