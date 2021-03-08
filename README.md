@@ -1,11 +1,12 @@
 # dorothea <img src="man/figures/tool_logo.png" align="right" height="139">
 
 <!-- badges: start -->
-[![Build Status](https://travis-ci.com/saezlab/dorothea.svg?branch=master)](https://travis-ci.com/saezlab/dorothea)
+[![R-CMD-check](https://github.com/saezlab/dorothea/workflows/R-CMD-check/badge.svg)](https://github.com/saezlab/dorothea/actions)
+[![BioC status](http://www.bioconductor.org/shields/build/release/bioc/dorothea.svg)](https://bioconductor.org/checkResults/release/bioc-LATEST/dorothea)
 [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/saezlab/dorothea?branch=master&svg=true)](https://ci.appveyor.com/project/saezlab/dorothea)
 [![codecov](https://codecov.io/gh/saezlab/dorothea/branch/master/graph/badge.svg)](https://codecov.io/gh/saezlab/dorothea)
-[![BioC status](http://bioconductor.org/shields/build/release/data-experiment/dorothea.svg)](https://bioconductor.org/checkResults/release/data-experiment-LATEST/dorothea)
 ![GitHub](https://img.shields.io/github/license/saezlab/dorothea)
+
 <!-- badges: end -->
 
 ## Overview
