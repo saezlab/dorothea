@@ -19,7 +19,7 @@ DoRothEA regulons can be coupled with several statistical method yielding a *fun
 
 Typically, DoRothEA is coupled with the statistical method [VIPER](https://www.bioconductor.org/packages/release/bioc/html/viper.html) as it incorporates the mode of regulation of each TF-target interaction. However, VIPER can be replaced by any other statistical method that aims to analyze gene sets, e.g. GSEA.
 
-We provide for human and mouse, respectively, two different DoRothEA version's that differ solely in the analyzed gene expression data for the network inference evidence. For the standard versions `dorothea_hs`/`dorothea_mm`, we analyzed tissue specific gene expression data from the [GTEx portal](https://www.gtexportal.org/home/). For the versions `dorothea_hs_pancancer`/`dorothea_mm_pancancer` we used gene expression data from the [TCGA programm](https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga) which makes DoRothEA more applicable to cancer-related studies.
+We provide for human and mouse, respectively, two different DoRothEA version's that differ solely in the analyzed gene expression data for the network inference evidence. For the standard versions `dorothea_hs`/`dorothea_mm`, we analyzed tissue specific gene expression data from the [GTEx portal](https://www.gtexportal.org/home/). For the versions `dorothea_hs_pancancer`/`dorothea_mm_pancancer` we used gene expression data of several primary cancers from the [TCGA programm](https://www.cancer.gov/about-nci/organization/ccg/research/structural-genomics/tcga) which is supposed to make DoRothEA more applicable to cancer-related studies.
 
 
 ## Installation
