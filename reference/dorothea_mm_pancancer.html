@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Human DoRothEA — dorothea_hs • dorothea</title>
+<title>Mouse DoRothEA (pancancer) — dorothea_mm_pancancer • dorothea</title>
 
 
 <!-- jquery -->
@@ -39,12 +39,14 @@
 
 
 
-<meta property="og:title" content="Human DoRothEA — dorothea_hs" />
-<meta property="og:description" content="A table reporting signed human TF-target interactions. This database covers
-  in total 1395 TFs targeting 20,244 genes with 486,676 unique interactions.
-  In addition, each TF is accompanied with an empirical confidence level that
-  was derived from the number of supporting evidences for this
-  TF/interaction. The range is from A (high quality) to E (low quality)." />
+<meta property="og:title" content="Mouse DoRothEA (pancancer) — dorothea_mm_pancancer" />
+<meta property="og:description" content="A table reporting signed human TF-target interactions. The difference to 
+  &quot;dorothea_mm&quot; is that TGCA gene expression data was used instead of GTEx to 
+  infer the networks with ARACNE.This database covers in total 1096 TFs 
+  targeting 17,695 genes with 187,955 unique interactions. In addition, each 
+  TF is accompanied with an empirical confidence level that was derived from 
+  the number of supporting evidences for this TF/interaction. The range is 
+  from A (high quality) to E (low quality)." />
 
 
 
@@ -152,28 +154,30 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Human DoRothEA</h1>
+    <h1>Mouse DoRothEA (pancancer)</h1>
     <small class="dont-index">Source: <a href='https://github.com/saezlab/dorothea/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>dorothea_hs.Rd</code></div>
+    <div class="hidden name"><code>dorothea_mm_pancancer.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A table reporting signed human TF-target interactions. This database covers
-  in total 1395 TFs targeting 20,244 genes with 486,676 unique interactions.
-  In addition, each TF is accompanied with an empirical confidence level that
-  was derived from the number of supporting evidences for this
-  TF/interaction. The range is from A (high quality) to E (low quality).</p>
+    <p>A table reporting signed human TF-target interactions. The difference to 
+  "dorothea_mm" is that TGCA gene expression data was used instead of GTEx to 
+  infer the networks with ARACNE.This database covers in total 1096 TFs 
+  targeting 17,695 genes with 187,955 unique interactions. In addition, each 
+  TF is accompanied with an empirical confidence level that was derived from 
+  the number of supporting evidences for this TF/interaction. The range is 
+  from A (high quality) to E (low quality).</p>
     </div>
 
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A table of human TF-target interactions:</p><dl>
-    <dt>tf</dt><dd><p>TF identifier as HGNC symbols</p></dd>
-    <dt>confidence</dt><dd><p>Summary confidence score classifying regulons based on
+    <p>A table of mouse TF-target interactions:</p><dl>
+    <dt>tf</dt><dd><p>TF identifier as MGI symbols</p></dd>
+    <dt>confidence</dt><dd><p>summary confidence score classifying regulons based on
         their quality</p></dd>
-    <dt>target</dt><dd><p>target identifier as HGNC symbols</p></dd>
+    <dt>target</dt><dd><p>target identifier as MGI symbols</p></dd>
     <dt>mor</dt><dd><p>mode of regulation indicating the effect of a TF on the
         target</p></dd>
 
@@ -181,7 +185,7 @@
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6673718/'>https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6673718/</a></p>
+    <p><a href='https://www.ncbi.nlm.nih.gov/pubmed/31525460'>https://www.ncbi.nlm.nih.gov/pubmed/31525460</a></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

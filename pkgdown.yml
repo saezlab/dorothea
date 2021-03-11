@@ -1,8 +1,8 @@
-pandoc: '2.2'
+pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   bulk_vignette: bulk_vignette.html
   single_cell_vignette: single_cell_vignette.html
-last_built: 2020-10-29T19:57Z
+last_built: 2021-03-11T12:07Z
 
