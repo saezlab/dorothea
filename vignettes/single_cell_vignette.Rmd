@@ -193,7 +193,7 @@ pbmc <- run_viper(pbmc, regulon,
 ```
 
 We then apply `r CRANpkg("Seurat")` to cluster the cells following the same 
-protocol than above but using TF activity scores.
+protocol than above but using TF activity scores. Please note, that we do this step only to demonstrate that TF activities are another relevant feature space to perform clustering analysis on. Nevertheless we recommend to keep the original clusters derived from gene expression and use the contextualize the clusters with TF activities.
 
 ```{r "tf clustering", message=FALSE, warning=FALSE}
 ## We compute the Nearest Neighbours to perform cluster

@@ -1,3 +1,6 @@
+# dorothea 1.3.32 (2021-03-011)
+* Changing single-cell vignette to no longer perform a separate clustering on TF activities.
+
 # dorothea 1.2.1 (2021-02-08)
 * Fixed bug in Seurat's related unit tests due to Seurats package update to version 4.0. `s@assays$dorothea@misc` is now `list()`, before it was `NULL`.
 
