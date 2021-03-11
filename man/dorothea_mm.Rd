@@ -20,7 +20,7 @@ A table of mouse TF-target interactions:
 \description{
 A table reporting signed human TF-target interactions. This database covers
   in total 1179 TFs targeting 17,410 genes with 410,455 unique interactions.
-  In addition, each TF is accompanied with an emperical confidence level that
+  In addition, each TF is accompanied with an empirical confidence level that
   was derived from the number of supporting evidences for this
   TF/interaction. The range is from A (high quality) to E (low quality).
 }
