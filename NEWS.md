@@ -1,4 +1,4 @@
-# dorothea 1.3.3 (2021-03-09)
+# dorothea 1.3.2 (2021-03-09)
 * Added pancancer regulons for application in cancer.
 
 # dorothea 1.2.1 (2021-02-08)
