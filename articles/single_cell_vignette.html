@@ -148,8 +148,10 @@
 <code class="sourceCode R"><span class="co">## We load the required packages</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://saezlab.github.io/dorothea/">dorothea</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://satijalab.org/seurat">Seurat</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://satijalab.org/seurat">Seurat</a></span><span class="op">)</span></code></pre></div>
+<pre><code>## Warning: package 'Seurat' was built under R version 4.0.4</code></pre>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tibble.tidyverse.org/">tibble</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">pheatmap</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">viper</span><span class="op">)</span></code></pre></div>
@@ -161,7 +163,7 @@
 <p><a href="https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html" class="uri">https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html</a></p>
 <p>The dataset contains 2700 Peripheral Blood Mononuclear Cells (PBMC) that were sequenced on the Illumina NextSeq 500. This dataset is freely available in 10X Genomics:</p>
 <p><a href="https://cf.10xgenomics.com/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz" class="uri">https://cf.10xgenomics.com/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz</a></p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Load the PBMC dataset</span>
 <span class="va">pbmc.data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/Read10X.html">Read10X</a></span><span class="op">(</span>data.dir <span class="op">=</span> <span class="st">"filtered_gene_bc_matrices/hg19/"</span><span class="op">)</span>
 
@@ -172,7 +174,7 @@
 <h2 class="hasAnchor">
 <a href="#pre-processing-normalization-and-identification-of-highly-variable-features" class="anchor"></a>Pre-processing, normalization and identification of highly variable features</h2>
 <p>We follow the standard pre-processing steps as described in the aforementioned <em><a href="https://CRAN.R-project.org/package=Seurat">Seurat</a></em> vignette before going deeper into the data analysis. These steps carry out the selection and filtration of cells based on quality control metrics, the data normalization and scaling, and the detection of highly variable features (see <a href="https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html" class="uri">https://satijalab.org/seurat/v3.1/pbmc3k_tutorial.html</a>).</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## Identification of mithocondrial genes</span>
 <span class="va">pbmc</span><span class="op">[[</span><span class="st">"percent.mt"</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/PercentageFeatureSet.html">PercentageFeatureSet</a></span><span class="op">(</span><span class="va">pbmc</span>, pattern <span class="op">=</span> <span class="st">"^MT-"</span><span class="op">)</span>
 
@@ -197,7 +199,7 @@
 <h2 class="hasAnchor">
 <a href="#clustering-cells" class="anchor"></a>Clustering cells</h2>
 <p>One of the most relevant steps in scRNA-seq data analysis is clustering. Cells are grouped based on the similarity of their transcriptomic profiles. We first apply the <em><a href="https://CRAN.R-project.org/package=Seurat">Seurat</a></em> v3 classical approach as described in their aforementioned vignette. We visualize the cell clusters using UMAP:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/RunPCA.html">RunPCA</a></span><span class="op">(</span><span class="va">pbmc</span>, features <span class="op">=</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/VariableFeatures.html">VariableFeatures</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">pbmc</span><span class="op">)</span>, 
                verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 <span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/FindNeighbors.html">FindNeighbors</a></span><span class="op">(</span><span class="va">pbmc</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
@@ -212,7 +214,7 @@
                      <span class="st">"FCGR3A+ Mono"</span>, <span class="st">"NK"</span>, <span class="st">"DC"</span>, <span class="st">"Platelet"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">new.cluster.ids</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span>
 <span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/Idents.html">RenameIdents</a></span><span class="op">(</span><span class="va">pbmc</span>, <span class="va">new.cluster.ids</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://satijalab.org/seurat/reference/DimPlot.html">DimPlot</a></span><span class="op">(</span><span class="va">pbmc</span>, reduction <span class="op">=</span> <span class="st">"umap"</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, pt.size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/SeuratTheme.html">NoLegend</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="single_cell_vignette_files/figure-html/pca-1.png" width="700"></p>
 </div>
@@ -221,7 +223,7 @@
 <a href="#clustering-cells-with-tf-activity" class="anchor"></a>Clustering cells with TF activity</h2>
 <p><span class="citation">Holland et al. (2020)</span> showed that clustering the cells based on their TF activity profiles can also be very interesting. Indeed, clustering cells using TF activity computed with <strong>VIPER</strong> and <strong>DoRothEA</strong> performs better than using the expression level of the same TFs. In addition, it brings complementary information to the clusters based on transcriptomics profiles.</p>
 <p>Here, we first run <strong>VIPER</strong> on <strong>DoRothEA’s</strong> regulons to obtain TFs activity, by using the wrapper function <code><a href="../reference/run_viper.html">run_viper()</a></code>. This function can deal with different input types such as matrix, dataframe, ExpressionSet or even Seurat objects. In case of a seurat object the function returns the same seurat object with an additonal assay called <code>dorothea</code> containing the TF activities in the slot <code>data</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## We read Dorothea Regulons for Human:</span>
 <span class="va">dorothea_regulon_human</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/get.html">get</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"dorothea_hs"</span>, package <span class="op">=</span> <span class="st">"dorothea"</span><span class="op">)</span><span class="op">)</span>
 
@@ -235,7 +237,7 @@
                                  eset.filter <span class="op">=</span> <span class="cn">FALSE</span>, cores <span class="op">=</span> <span class="fl">1</span>, 
                                  verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>We then apply <em><a href="https://CRAN.R-project.org/package=Seurat">Seurat</a></em> to cluster the cells following the same protocol than above but using TF activity scores.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## We compute the Nearest Neighbours to perform cluster</span>
 <span class="fu"><a href="https://satijalab.org/seurat/reference/DefaultAssay.html">DefaultAssay</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">pbmc</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"dorothea"</span>
 <span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/ScaleData.html">ScaleData</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span>
@@ -253,7 +255,7 @@
                      <span class="st">"FCGR3A+ Mono"</span>, <span class="st">"NK"</span>, <span class="st">"DC"</span>, <span class="st">"Platelet"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">new.cluster.ids</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span>
 <span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/Idents.html">RenameIdents</a></span><span class="op">(</span><span class="va">pbmc</span>, <span class="va">new.cluster.ids</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://satijalab.org/seurat/reference/DimPlot.html">DimPlot</a></span><span class="op">(</span><span class="va">pbmc</span>, reduction <span class="op">=</span> <span class="st">"umap"</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, pt.size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/SeuratTheme.html">NoLegend</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="single_cell_vignette_files/figure-html/tf_umap-1.png" width="700"></p>
 </div>
@@ -261,7 +263,7 @@
 <h2 class="hasAnchor">
 <a href="#tf-activity-per-cell-population" class="anchor"></a>TF activity per cell population</h2>
 <p>Finally, we characterise the different cell populations based on their TF activities thanks to the previously computed <strong>VIPER</strong> scores on <strong>DoRothEA’s</strong> regulons.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## We transform Viper scores, scaled by seurat, into a data frame to better </span>
 <span class="co">## handling the results</span>
 <span class="va">viper_scores_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/AssayData.html">GetAssayData</a></span><span class="op">(</span><span class="va">pbmc</span>, slot <span class="op">=</span> <span class="st">"scale.data"</span>, 
@@ -287,7 +289,7 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>avg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">activity</span><span class="op">)</span>,
             std <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">activity</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>For visualization purposes, we select the 20 most variable TFs across clusters according to our scores.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## We select the 20 most variable TFs. (20*9 populations = 180)</span>
 <span class="va">highly_variable_tfs</span> <span class="op">&lt;-</span> <span class="va">summarized_viper_scores</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">tf</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -302,7 +304,7 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">std</span><span class="op">)</span> <span class="op">%&gt;%</span>   
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/spread.html">spread</a></span><span class="op">(</span><span class="va">tf</span>, <span class="va">avg</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>row.names <span class="op">=</span> <span class="fl">1</span>, check.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">palette_length</span> <span class="op">=</span> <span class="fl">100</span>
 <span class="va">my_color</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Darkblue"</span>, <span class="st">"white"</span>,<span class="st">"red"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="va">palette_length</span><span class="op">)</span>
 
@@ -345,51 +347,52 @@
 ## other attached packages:
 ##  [1] viper_1.24.0        Biobase_2.50.0      BiocGenerics_0.36.0
 ##  [4] tidyr_1.1.3         pheatmap_1.0.12     tibble_3.1.0       
-##  [7] SeuratObject_4.0.0  Seurat_4.0.0        dplyr_1.0.5        
+##  [7] SeuratObject_4.0.0  Seurat_4.0.1        dplyr_1.0.5        
 ## [10] dorothea_1.3.2      BiocStyle_2.18.1   
 ## 
 ## loaded via a namespace (and not attached):
-##   [1] Rtsne_0.15           colorspace_2.0-0     deldir_0.2-10       
-##   [4] class_7.3-18         ellipsis_0.3.1       ggridges_0.5.3      
-##   [7] rprojroot_2.0.2      fs_1.5.0             spatstat.data_2.0-0 
-##  [10] farver_2.1.0         leiden_0.3.7         listenv_0.8.0       
-##  [13] ggrepel_0.9.1        RSpectra_0.16-0      fansi_0.4.2         
-##  [16] codetools_0.2-18     splines_4.0.3        cachem_1.0.4        
-##  [19] knitr_1.31           polyclip_1.10-0      jsonlite_1.7.2      
-##  [22] bcellViper_1.26.0    ica_1.0-2            kernlab_0.9-29      
-##  [25] cluster_2.1.1        png_0.1-7            uwot_0.1.10         
-##  [28] shiny_1.6.0          sctransform_0.3.2    BiocManager_1.30.10 
-##  [31] compiler_4.0.3       httr_1.4.2           Matrix_1.3-2        
-##  [34] fastmap_1.1.0        lazyeval_0.2.2       later_1.1.0.1       
-##  [37] htmltools_0.5.1.1    tools_4.0.3          igraph_1.2.6        
-##  [40] gtable_0.3.0         glue_1.4.2           RANN_2.6.1          
-##  [43] reshape2_1.4.4       Rcpp_1.0.6           spatstat_1.64-1     
-##  [46] scattermore_0.7      jquerylib_0.1.3      pkgdown_1.6.1       
-##  [49] vctrs_0.3.6          nlme_3.1-152         lmtest_0.9-38       
-##  [52] xfun_0.21            stringr_1.4.0        globals_0.14.0      
-##  [55] mime_0.10            miniUI_0.1.1.1       lifecycle_1.0.0     
-##  [58] irlba_2.3.3          goftest_1.2-2        future_1.21.0       
-##  [61] MASS_7.3-53.1        zoo_1.8-9            scales_1.1.1        
-##  [64] ragg_1.1.1           promises_1.2.0.1     spatstat.utils_2.0-0
-##  [67] RColorBrewer_1.1-2   yaml_2.2.1           memoise_2.0.0       
-##  [70] reticulate_1.18      pbapply_1.4-3        gridExtra_2.3       
-##  [73] ggplot2_3.3.3        sass_0.3.1           segmented_1.3-3     
-##  [76] rpart_4.1-15         stringi_1.5.3        highr_0.8           
-##  [79] desc_1.3.0           e1071_1.7-4          rlang_0.4.10        
-##  [82] pkgconfig_2.0.3      systemfonts_1.0.1    matrixStats_0.58.0  
-##  [85] evaluate_0.14        lattice_0.20-41      tensor_1.5          
-##  [88] ROCR_1.0-11          purrr_0.3.4          labeling_0.4.2      
-##  [91] patchwork_1.1.1      htmlwidgets_1.5.3    cowplot_1.1.1       
-##  [94] tidyselect_1.1.0     parallelly_1.23.0    RcppAnnoy_0.0.18    
-##  [97] plyr_1.8.6           magrittr_2.0.1       bookdown_0.21       
-## [100] R6_2.5.0             generics_0.1.0       mgcv_1.8-34         
-## [103] pillar_1.5.1         mixtools_1.2.0       fitdistrplus_1.1-3  
-## [106] abind_1.4-5          survival_3.2-7       future.apply_1.7.0  
-## [109] crayon_1.4.1         KernSmooth_2.23-18   utf8_1.1.4          
-## [112] plotly_4.9.3         rmarkdown_2.7        grid_4.0.3          
-## [115] data.table_1.14.0    digest_0.6.27        xtable_1.8-4        
-## [118] httpuv_1.5.5         textshaping_0.3.1    munsell_0.5.0       
-## [121] viridisLite_0.3.0    bslib_0.2.4</code></pre>
+##   [1] systemfonts_1.0.1     plyr_1.8.6            igraph_1.2.6         
+##   [4] lazyeval_0.2.2        splines_4.0.3         listenv_0.8.0        
+##   [7] scattermore_0.7       ggplot2_3.3.3         digest_0.6.27        
+##  [10] htmltools_0.5.1.1     fansi_0.4.2           magrittr_2.0.1       
+##  [13] memoise_2.0.0         tensor_1.5            cluster_2.1.1        
+##  [16] mixtools_1.2.0        ROCR_1.0-11           globals_0.14.0       
+##  [19] matrixStats_0.58.0    pkgdown_1.6.1         spatstat.sparse_2.0-0
+##  [22] colorspace_2.0-0      ggrepel_0.9.1         textshaping_0.3.3    
+##  [25] xfun_0.22             crayon_1.4.1          jsonlite_1.7.2       
+##  [28] spatstat.data_2.1-0   survival_3.2-10       zoo_1.8-9            
+##  [31] glue_1.4.2            polyclip_1.10-0       gtable_0.3.0         
+##  [34] leiden_0.3.7          kernlab_0.9-29        future.apply_1.7.0   
+##  [37] abind_1.4-5           scales_1.1.1          miniUI_0.1.1.1       
+##  [40] Rcpp_1.0.6            viridisLite_0.3.0     xtable_1.8-4         
+##  [43] reticulate_1.18       spatstat.core_2.0-0   proxy_0.4-25         
+##  [46] htmlwidgets_1.5.3     httr_1.4.2            RColorBrewer_1.1-2   
+##  [49] ellipsis_0.3.1        ica_1.0-2             pkgconfig_2.0.3      
+##  [52] farver_2.1.0          sass_0.3.1            uwot_0.1.10          
+##  [55] deldir_0.2-10         utf8_1.2.1            tidyselect_1.1.0     
+##  [58] labeling_0.4.2        rlang_0.4.10          reshape2_1.4.4       
+##  [61] later_1.1.0.1         munsell_0.5.0         tools_4.0.3          
+##  [64] cachem_1.0.4          generics_0.1.0        ggridges_0.5.3       
+##  [67] evaluate_0.14         stringr_1.4.0         fastmap_1.1.0        
+##  [70] yaml_2.2.1            ragg_1.1.2            goftest_1.2-2        
+##  [73] knitr_1.31            fs_1.5.0              fitdistrplus_1.1-3   
+##  [76] bcellViper_1.26.0     purrr_0.3.4           RANN_2.6.1           
+##  [79] pbapply_1.4-3         future_1.21.0         nlme_3.1-152         
+##  [82] mime_0.10             compiler_4.0.3        plotly_4.9.3         
+##  [85] png_0.1-7             e1071_1.7-6           spatstat.utils_2.1-0 
+##  [88] bslib_0.2.4           stringi_1.5.3         highr_0.8            
+##  [91] desc_1.3.0            RSpectra_0.16-0       lattice_0.20-41      
+##  [94] Matrix_1.3-2          vctrs_0.3.6           pillar_1.5.1         
+##  [97] lifecycle_1.0.0       BiocManager_1.30.12   spatstat.geom_2.0-1  
+## [100] lmtest_0.9-38         jquerylib_0.1.3       RcppAnnoy_0.0.18     
+## [103] data.table_1.14.0     cowplot_1.1.1         irlba_2.3.3          
+## [106] httpuv_1.5.5          patchwork_1.1.1       R6_2.5.0             
+## [109] bookdown_0.21         promises_1.2.0.1      KernSmooth_2.23-18   
+## [112] gridExtra_2.3         parallelly_1.24.0     codetools_0.2-18     
+## [115] MASS_7.3-53.1         rprojroot_2.0.2       sctransform_0.3.2    
+## [118] mgcv_1.8-34           grid_4.0.3            rpart_4.1-15         
+## [121] class_7.3-18          rmarkdown_2.7         segmented_1.3-3      
+## [124] Rtsne_0.15            shiny_1.6.0</code></pre>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="hasAnchor">
