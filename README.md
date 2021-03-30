@@ -35,6 +35,9 @@ BiocManager::install("dorothea")
 devtools::install_github("saezlab/dorothea")
 ```
 
+## More information
+DoRothEA is also part of our [transcripttutorial](https://github.com/saezlab/transcriptutorial). There you will find additional information on how DoRothEA's regulons can be used to analyze RNA-seq data and how TF activities can help to contextualize signaling networks.
+
 ## Updates
 ### Update #1 - extension to mouse
 Originally DoRothEA contained only human regulons. In a benchmark study we showed that DoRothEA in combination with VIPER is also applicable to mouse data, as described in [Holland et al., 2019](https://doi.org/10.1016/j.bbagrm.2019.194431). Accordingly, we developed a mouse version of DoRothEA by transforming the human genes to their mouse orthologs.
