@@ -100,6 +100,29 @@ run_viper.SingleCellExperiment <- function(input, regulons, options = list(),
 }
 
 #' @export
+run_viper.SpatialExperiment <- function(input, regulons, options = list(),
+                                           tidy = FALSE, assay_key = "RNA") {
+  if (tidy) {
+    tidy <- FALSE
+    warning("The argument 'tidy' cannot be TRUE for 'SpatialExperiment' ",
+            "objects. ","'tidy' is set to FALSE")
+  }
+
+  mat <- as.matrix(SingleCellExperiment::logcounts(input))
+
+  tf_activities <- run_viper(mat, regulons = regulons, options = options,
+                             tidy = FALSE)
+
+  # include TF activities into SingleCellExperiment object
+  dorothea_se <- SummarizedExperiment::SummarizedExperiment(tf_activities)
+  SummarizedExperiment::assayNames(dorothea_se) <- "tf_activities"
+  SingleCellExperiment::altExp(input, "dorothea") <- dorothea_se
+
+  return(input)
+}
+
+
+#' @export
 run_viper.Seurat <- function(input, regulons, options = list(), tidy = FALSE,
                              assay_key = "RNA") {
   if (tidy) {
