@@ -3,7 +3,6 @@
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/saezlab/dorothea/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/saezlab/dorothea/actions)
 [![BioC status](http://bioconductor.org/shields/build/release/data-experiment/dorothea.svg)](https://bioconductor.org/checkResults/release/data-experiment-LATEST/dorothea)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/saezlab/dorothea?branch=master&svg=true)](https://ci.appveyor.com/project/saezlab/dorothea)
 [![codecov](https://codecov.io/gh/saezlab/dorothea/branch/master/graph/badge.svg)](https://codecov.io/gh/saezlab/dorothea)
 ![GitHub](https://img.shields.io/github/license/saezlab/dorothea)
 <!-- badges: end -->
