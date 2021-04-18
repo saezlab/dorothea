@@ -1,7 +1,7 @@
 Package: dorothea
 Type: Package
 Title: Collection Of Human And Mouse TF Regulons
-Version: 1.2.1
+Version: 1.2.2
 Authors@R: c(
     person(given = "Christian H.",
            family = "Holland",
@@ -49,6 +49,7 @@ Suggests:
     knitr,
     pheatmap,
     pkgdown,
+    rmarkdown,
     Seurat,
     SingleCellExperiment,
     SummarizedExperiment,
