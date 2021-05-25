@@ -133,3 +133,11 @@ test_that("test run_viper with sce as input", {
   expect_equal(altExpNames(res), "dorothea")
 })
 
+test_that("test run_viper with numeric vector as input", {
+  
+  expect_error(
+    run_viper(c(1,2,3), dorothea_hs),
+    "Do not know how to access the data matrix from class numeric"
+    )
+})
+
