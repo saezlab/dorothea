@@ -347,6 +347,10 @@ final_database_mouse_pancancer = final_database_human_pancancer %>%
   # confidence levels/mors. To be more conservative the lowest level/max
   # letter is chosen
   filter(confidence == max(confidence)) %>%
+  # when multiple human gene symbols map to a single mouse symbol there can 
+  # be ambiguous mor's (e.g. tf == "Egr1" & target == "Klk1b5"). For those cases
+  # we assign a +1 as mor
+  slice_max(order_by = mor, n=1) %>%
   ungroup() %>%
   distinct()
 

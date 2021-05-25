@@ -1,3 +1,6 @@
+# dorothea 1.4.1 (2021-05-25)
+* Fixed ambiguously mode of regulation in mouse regulons
+
 # dorothea 1.3.2 (2021-03-09)
 * Added pancancer regulons for application in cancer.
 
