@@ -1,4 +1,5 @@
 # dorothea 1.4.1 (2021-05-25)
+* Rebuild all regulons
 * Fixed ambiguously mode of regulation in mouse regulons
 
 # dorothea 1.3.2 (2021-03-09)
