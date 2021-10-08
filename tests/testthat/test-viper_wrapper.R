@@ -133,11 +133,36 @@ test_that("test run_viper with sce as input", {
   expect_equal(altExpNames(res), "dorothea")
 })
 
-test_that("test run_viper with numeric vector as input", {
+test_that("test run_viper with data.frame as input", {
   
   expect_error(
     run_viper(c(1,2,3), dorothea_hs),
     "Do not know how to access the data matrix from class numeric"
-    )
+  )
+})
+
+test_that("test run_viper with numeric vector as input", {
+  m <- readRDS(
+    system.file("testdata", "toy_dataframe.rds", package = "dorothea")
+  )
+  r <- dplyr::filter(dorothea_hs, confidence %in% c("A", "B"))
+  res <- run_viper(m, r, options =  list(method = "scale", minsize = 4,
+                                         eset.filter = FALSE, verbose = FALSE))
+  
+  tidy_res <- run_viper(m, r, options =  list(method = "scale", minsize = 4,
+                                              eset.filter = FALSE,
+                                              verbose = FALSE),
+                        tidy = TRUE)
+  
+  expected_res <- readRDS(
+    system.file("testdata", "output_matrix.rds", package = "dorothea")
+  )
+  
+  expected_res_tidy <- readRDS(
+    system.file("testdata", "output_matrix_tidy.rds", package = "dorothea")
+  )
+  
+  expect_equal(res, expected_res)
+  expect_equal(tidy_res, expected_res_tidy)
 })
 
