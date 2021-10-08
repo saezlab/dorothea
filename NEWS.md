@@ -1,3 +1,7 @@
+# dorothea 1.4.2 (2021-10-08)
+* Fixed lazy data warning
+* Improved test coverage
+
 # dorothea 1.4.1 (2021-05-25)
 * Rebuild all regulons
 * Fixed ambiguously mode of regulation in mouse regulons
