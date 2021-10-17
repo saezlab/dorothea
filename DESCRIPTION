@@ -1,7 +1,7 @@
 Package: dorothea
 Type: Package
 Title: Collection Of Human And Mouse TF Regulons
-Version: 1.5.2
+Version: 1.5.3
 Authors@R: c(
     person(given = "Daniel",
            family = "Dimitrov",
@@ -41,7 +41,7 @@ License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 VignetteBuilder: knitr
 biocViews: ExperimentData, Homo_sapiens_Data, Mus_musculus_Data
 Imports:
