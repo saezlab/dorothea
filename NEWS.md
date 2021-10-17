@@ -1,7 +1,7 @@
-#dorothea 1.5.2 (2021-10-13)
+# dorothea 1.5.2 (2021-10-13)
 * Daniel Dimitrov is assigned as the new maintainer
 
-#dorothea 1.4.2 (2021-10-08)
+# dorothea 1.4.2 (2021-10-08)
 * Fixed lazy data warning
 * Improved test coverage
 
