@@ -101,8 +101,7 @@ pbmc <- CreateSeuratObject(counts = pbmc.data, project = "pbmc3k",
 ```
 
 ```{r "load data2", eval=TRUE, include=FALSE}
-load(file="../inst/extdata/for_vignette/seurat_object.RData",
-    verbose = FALSE)
+pbmc <- readRDS("../inst/extdata/for_vignette/seurat_object.RDS")
 ```
 
 ## Pre-processing, normalization and identification of highly variable features
@@ -130,7 +129,7 @@ pbmc <- NormalizeData(pbmc)
 ## Identify the 2000 most highly variable genes
 pbmc <- FindVariableFeatures(pbmc, selection.method = "vst", nfeatures = 2000)
 
-## In addition we scale the data
+## We scale the data prior to clustering
 all.genes <- rownames(pbmc)
 pbmc <- ScaleData(pbmc, features = all.genes)
 ```
@@ -157,26 +156,27 @@ new.cluster.ids <- c("Naive CD4 T", "Memory CD4 T", "CD14+ Mono", "B", "CD8 T",
                      "FCGR3A+ Mono", "NK", "DC", "Platelet")
 names(new.cluster.ids) <- levels(pbmc)
 pbmc <- RenameIdents(pbmc, new.cluster.ids)
+
 ```
 
 ```{r "pca", message = FALSE, warning = FALSE}
 DimPlot(pbmc, reduction = "umap", label = TRUE, pt.size = 0.5) + NoLegend()
 ```
 
-## Clustering cells with TF activity
+## Estimate TF activity at the single-cell level
 
-@Holland2020 showed that clustering the cells based on their TF activity 
-profiles can also be very interesting. Indeed, clustering cells using TF 
-activity computed with **VIPER** and **DoRothEA** performs better than 
-using the expression level of the same TFs. In addition, it brings 
-complementary information to the clusters based on transcriptomics profiles.
-
-Here, we first run **VIPER** on **DoRothEA's** regulons to obtain TFs activity,
-by using the wrapper function `run_viper()`. This function can deal with 
+We first run the **VIPER** method on **DoRothEA's** regulons to obtain TFs activity,
+by using *DoRothEA's* wrapper function `run_viper()`. This function can deal with 
 different input types such as matrix, dataframe, ExpressionSet or even Seurat 
 objects. In case of a seurat object the function returns the same seurat object 
 with an additonal assay called `dorothea` containing the TF activities in the 
 slot `data`.
+
+We kindly refer the user to [decoupleR](https://github.com/saezlab/decoupleR) which provides a wide range of methods
+and best practices for enrichment analysis, also available in [Python](https://github.com/saezlab/decoupler-py).
+decoupleR is described in detail [here](https://doi.org/10.1093/bioadv/vbac016)).
+
+
 ```{r "viper", message=FALSE}
 ## We read Dorothea Regulons for Human:
 dorothea_regulon_human <- get(data("dorothea_hs", package = "dorothea"))
@@ -187,43 +187,27 @@ regulon <- dorothea_regulon_human %>%
 
 ## We compute Viper Scores 
 pbmc <- run_viper(pbmc, regulon,
-                  options = list(method = "scale", minsize = 4, 
+                  options = list(minsize = 4, 
                                  eset.filter = FALSE, cores = 1, 
                                  verbose = FALSE))
+
+# Change assay and scale data
+DefaultAssay(object = pbmc) <- "dorothea"
+pbmc <- ScaleData(pbmc)
 ```
 
 We then apply `r CRANpkg("Seurat")` to cluster the cells following the same 
 protocol than above but using TF activity scores.
 
-```{r "tf clustering", message=FALSE, warning=FALSE}
-## We compute the Nearest Neighbours to perform cluster
-DefaultAssay(object = pbmc) <- "dorothea"
-pbmc <- ScaleData(pbmc)
-pbmc <- RunPCA(pbmc, features = rownames(pbmc), verbose = FALSE)
-pbmc <- FindNeighbors(pbmc, dims = 1:10, verbose = FALSE)
-pbmc <- FindClusters(pbmc, resolution = 0.5, verbose = FALSE)
-
-pbmc <- RunUMAP(pbmc, dims = 1:10, umap.method = "uwot", metric = "cosine")
-
-pbmc.markers <- FindAllMarkers(pbmc, only.pos = TRUE, min.pct = 0.25, 
-                               logfc.threshold = 0.25, verbose = FALSE)
-
-## Assigning cell type identity to clusters
-new.cluster.ids <- c("Naive CD4 T", "Memory CD4 T", "CD14+ Mono", "B", "CD8 T", 
-                     "FCGR3A+ Mono", "NK", "DC", "Platelet")
-names(new.cluster.ids) <- levels(pbmc)
-pbmc <- RenameIdents(pbmc, new.cluster.ids)
-```
-
-```{r "tf_umap", message = FALSE, warning = FALSE}
-DimPlot(pbmc, reduction = "umap", label = TRUE, pt.size = 0.5) + NoLegend()
-```
 
 ## TF activity per cell population
 
 Finally, we characterise the different cell populations based on their 
 TF activities thanks to the previously computed **VIPER** scores on 
 **DoRothEA's** regulons. 
+Note that in this case we use the scaled data by  rows, thus this allows us to distinguish TFs across cells.
+One could also run  the enrichment analysis on the normalized (non-scaled) counts,
+depending on the goals of the analysis of question.
 
 ```{r "tf activity", message = FALSE}
 ## We transform Viper scores, scaled by seurat, into a data frame to better 
