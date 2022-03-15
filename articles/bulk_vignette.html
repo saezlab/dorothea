@@ -25,8 +25,6 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -39,17 +37,23 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dorothea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -69,19 +73,19 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/saezlab/dorothea/" class="external-link">
+  <a href="https://github.com/saezlab/dorothea/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="https://twitter.com/saezlab" class="external-link">
+  <a href="https://twitter.com/saezlab">
     <span class="fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="http://www.saezlab.org" class="external-link">
+  <a href="http://www.saezlab.org">
     <span class="fas fa-university"></span>
      
   </a>
@@ -96,19 +100,19 @@
 
       
 
-      </header><div class="row">
+      </header><script src="bulk_vignette_files/header-attrs-2.7/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>TF activity inference from bulk transcriptomic data with DoRothEA as regulon resource.</h1>
-                        <h4 data-toc-skip class="author">Christian H. Holland</h4>
+                        <h4 class="author">Christian H. Holland</h4>
             <address class="author_afil">
       Institute for Computational Biomedicine, Heidelberg University<br><a class="author_email" href="mailto:#"></a><a href="mailto:christian.holland@bioquant.uni-heidelberg.de" class="email">christian.holland@bioquant.uni-heidelberg.de</a>
       </address>
-                              <h4 data-toc-skip class="author">Alberto Valdeolivas</h4>
+                              <h4 class="author">Alberto Valdeolivas</h4>
             <address class="author_afil">
-      Institute for Computational Biomedicine, Heidelberg University<br><h4 data-toc-skip class="author">Julio Saez-Rodriguez</h4>
+      Institute for Computational Biomedicine, Heidelberg University<br><h4 class="author">Julio Saez-Rodriguez</h4>
             <address class="author_afil">
-      Institute for Computational Biomedicine, Heidelberg University<br><small class="dont-index">Source: <a href="https://github.com/saezlab/dorothea/blob/HEAD/vignettes/bulk_vignette.Rmd" class="external-link"><code>vignettes/bulk_vignette.Rmd</code></a></small>
+      Institute for Computational Biomedicine, Heidelberg University<br><small class="dont-index">Source: <a href="https://github.com/saezlab/dorothea/blob/master/vignettes/bulk_vignette.Rmd"><code>vignettes/bulk_vignette.Rmd</code></a></small>
       <div class="hidden name"><code>bulk_vignette.Rmd</code></div>
 
     </address>
@@ -121,123 +125,124 @@
       <p>This vignette describes how to infer transcription factor activity from bulk transcriptome data by using DoRothEA’s curated regulons with viper.</p>
     </div>
     
-<div class="section level2">
-<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
-</h2>
+<div id="introduction" class="section level1">
+<h1 class="hasAnchor">
+<a href="#introduction" class="anchor"></a>Introduction</h1>
 <p><strong>DoRothEA</strong> is a comprehensive resource containing a curated collection of transcription factors (TFs) and its transcriptional targets. The set of genes regulated by a specific transcription factor is known as regulon. DoRothEA’s regulons were gathered from different types of evidence. Each TF-target interaction is defined by a confidence level based on the number of supporting evidence. The confidence levels ranges from A (highest confidence) to E (lowest confidence) <span class="citation">(Garcia-Alonso et al. 2019)</span>. While DoRothEA was originally developed for the application on human data it can be applied also on mouse data with comparable performace but better coverage than dedicated mouse regulons <span class="citation">(Holland, Szalai, and Saez-Rodriguez 2019)</span>.</p>
 <p><strong>DoRothEA</strong> regulons are usually coupled with the statistical method <strong>VIPER</strong> <span class="citation">(Alvarez et al. 2016)</span>. In this context, TF activities are computed based on the mRNA expression levels of its targets. We therefore can consider TF activity as a proxy of a given transcriptional state <span class="citation">(Dugourd and Saez-Rodriguez 2019)</span>. However, it is up to the user to decide which statistcal method to use. Alternatives could be for instance classical Gene Set Enrichment Analysis or simply mean statistic.</p>
 </div>
-<div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h2>
-<p>First of all, you need a current version of R (<a href="http://www.r-project.org" class="external-link uri">http://www.r-project.org</a>). In addition you need <em><a href="https://bioconductor.org/packages/3.13/dorothea" class="external-link">dorothea</a></em>, a freely available package deposited on <a href="http://bioconductor.org/" class="external-link uri">http://bioconductor.org/</a> and <a href="https://github.com/saezlab/dorothea" class="external-link uri">https://github.com/saezlab/dorothea</a>.</p>
+<div id="installation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h1>
+<p>First of all, you need a current version of R (<a href="http://www.r-project.org" class="uri">http://www.r-project.org</a>). In addition you need <em><a href="https://bioconductor.org/packages/3.12/dorothea">dorothea</a></em>, a freely available package deposited on <a href="http://bioconductor.org/" class="uri">http://bioconductor.org/</a> and <a href="https://github.com/saezlab/dorothea" class="uri">https://github.com/saezlab/dorothea</a>.</p>
 <p>You can install it by running the following commands on an R console:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
 
-<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"dorothea"</span><span class="op">)</span></code></pre></div>
+<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"dorothea"</span><span class="op">)</span></code></pre></div>
 <p>We also load here the packages required to run this vignette</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## We load the required packages</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://saezlab.github.io/dorothea/" class="external-link">dorothea</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">viper</span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://saezlab.github.io/dorothea/">dorothea</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">viper</span><span class="op">)</span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="example-of-usage">Example of usage<a class="anchor" aria-label="anchor" href="#example-of-usage"></a>
-</h2>
-<p>According to the vignette from the <em><a href="https://bioconductor.org/packages/3.13/viper" class="external-link">viper</a></em> package we demonstrate how to combine viper with regulons from DoRothEA.</p>
-<div class="section level3">
-<h3 id="accessing-example-data-and-dorothea-regulons-">Accessing example data and DoRothEA regulons.<a class="anchor" aria-label="anchor" href="#accessing-example-data-and-dorothea-regulons-"></a>
-</h3>
-<p>Similiar to the <em><a href="https://bioconductor.org/packages/3.13/viper" class="external-link">viper</a></em> vignette we use the gene expression matrix from the <em><a href="https://bioconductor.org/packages/3.13/bcellViper" class="external-link">bcellViper</a></em> package. Click <a href="https://bioconductor.org/packages/release/bioc/vignettes/viper/inst/doc/viper.pdf" class="external-link">here</a> for more information about the gene expression matrix. The regulons from DoRothEA are provided within the dorothea package and can be acessed via the <code><a href="https://rdrr.io/r/utils/data.html" class="external-link">data()</a></code> function. As the gene expression matrix contains human data we also load the human version of DoRothEA.</p>
+<div id="example-of-usage" class="section level1">
+<h1 class="hasAnchor">
+<a href="#example-of-usage" class="anchor"></a>Example of usage</h1>
+<p>According to the vignette from the <em><a href="https://bioconductor.org/packages/3.12/viper">viper</a></em> package we demonstrate how to combine viper with regulons from DoRothEA.</p>
+<div id="accessing-example-data-and-dorothea-regulons-" class="section level2">
+<h2 class="hasAnchor">
+<a href="#accessing-example-data-and-dorothea-regulons-" class="anchor"></a>Accessing example data and DoRothEA regulons.</h2>
+<p>Similiar to the <em><a href="https://bioconductor.org/packages/3.12/viper">viper</a></em> vignette we use the gene expression matrix from the <em><a href="https://bioconductor.org/packages/3.12/bcellViper">bcellViper</a></em> package. Click <a href="https://bioconductor.org/packages/release/bioc/vignettes/viper/inst/doc/viper.pdf">here</a> for more information about the gene expression matrix. The regulons from DoRothEA are provided within the dorothea package and can be acessed via the <code><a href="https://rdrr.io/r/utils/data.html">data()</a></code> function. As the gene expression matrix contains human data we also load the human version of DoRothEA.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># accessing expression data from bcellViper</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">bcellViper</span>, package <span class="op">=</span> <span class="st">"bcellViper"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">bcellViper</span>, package <span class="op">=</span> <span class="st">"bcellViper"</span><span class="op">)</span>
 
 <span class="co"># acessing (human) dorothea regulons</span>
 <span class="co"># for mouse regulons: data(dorothea_mm, package = "dorothea")</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dorothea_hs</span>, package <span class="op">=</span> <span class="st">"dorothea"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">dorothea_hs</span>, package <span class="op">=</span> <span class="st">"dorothea"</span><span class="op">)</span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="running-viper-with-dorothea-regulons">Running VIPER with DoRothEA regulons<a class="anchor" aria-label="anchor" href="#running-viper-with-dorothea-regulons"></a>
-</h3>
+<div id="running-viper-with-dorothea-regulons" class="section level2">
+<h2 class="hasAnchor">
+<a href="#running-viper-with-dorothea-regulons" class="anchor"></a>Running VIPER with DoRothEA regulons</h2>
 <p>We implemented a wrapper for the viper function that can deal with different input types such as matrix, dataframe, ExpressionSet or Seurat objects (see dedicated vignette for single-cell analysis). We subset DoRothEA to the confidence levels A and B to include only the high quality regulons.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">regulons</span> <span class="op">=</span> <span class="va">dorothea_hs</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">confidence</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">regulons</span> <span class="op">=</span> <span class="va">dorothea_hs</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">confidence</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">tf_activities</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run_viper.html">run_viper</a></span><span class="op">(</span><span class="va">dset</span>, <span class="va">regulons</span>, 
-                           options <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"scale"</span>, minsize <span class="op">=</span> <span class="fl">4</span>, 
+                           options <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"scale"</span>, minsize <span class="op">=</span> <span class="fl">4</span>, 
                                            eset.filter <span class="op">=</span> <span class="cn">FALSE</span>, cores <span class="op">=</span> <span class="fl">1</span>, 
                                            verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div class="section level2">
-<h2 id="session-info">Session info<a class="anchor" aria-label="anchor" href="#session-info"></a>
-</h2>
-<pre><code><span class="co">## R version 4.1.1 (2021-08-10)</span>
-<span class="co">## Platform: x86_64-pc-linux-gnu (64-bit)</span>
-<span class="co">## Running under: Ubuntu 20.04.3 LTS</span>
-<span class="co">## </span>
-<span class="co">## Matrix products: default</span>
-<span class="co">## BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so</span>
-<span class="co">## </span>
-<span class="co">## locale:</span>
-<span class="co">##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span>
-<span class="co">##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span>
-<span class="co">##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C             </span>
-<span class="co">##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span>
-<span class="co">##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span>
-<span class="co">## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span>
-<span class="co">## </span>
-<span class="co">## attached base packages:</span>
-<span class="co">## [1] parallel  stats     graphics  grDevices utils     datasets  methods  </span>
-<span class="co">## [8] base     </span>
-<span class="co">## </span>
-<span class="co">## other attached packages:</span>
-<span class="co">## [1] viper_1.26.0        dplyr_1.0.8         bcellViper_1.28.0  </span>
-<span class="co">## [4] Biobase_2.52.0      BiocGenerics_0.38.0 dorothea_1.7.0     </span>
-<span class="co">## [7] BiocStyle_2.20.2   </span>
-<span class="co">## </span>
-<span class="co">## loaded via a namespace (and not attached):</span>
-<span class="co">##  [1] mixtools_1.2.0      tidyselect_1.1.2    xfun_0.30          </span>
-<span class="co">##  [4] bslib_0.3.1         kernlab_0.9-29      purrr_0.3.4        </span>
-<span class="co">##  [7] lattice_0.20-45     splines_4.1.1       vctrs_0.3.8        </span>
-<span class="co">## [10] generics_0.1.2      htmltools_0.5.2     yaml_2.3.5         </span>
-<span class="co">## [13] survival_3.3-1      utf8_1.2.2          rlang_1.0.2        </span>
-<span class="co">## [16] e1071_1.7-9         pkgdown_2.0.2       jquerylib_0.1.4    </span>
-<span class="co">## [19] pillar_1.7.0        glue_1.6.2          segmented_1.4-0    </span>
-<span class="co">## [22] lifecycle_1.0.1     stringr_1.4.0       ragg_1.2.2         </span>
-<span class="co">## [25] memoise_2.0.1       evaluate_0.15       knitr_1.37         </span>
-<span class="co">## [28] fastmap_1.1.0       class_7.3-20        fansi_1.0.2        </span>
-<span class="co">## [31] KernSmooth_2.23-20  BiocManager_1.30.16 cachem_1.0.6       </span>
-<span class="co">## [34] desc_1.4.1          jsonlite_1.8.0      systemfonts_1.0.4  </span>
-<span class="co">## [37] fs_1.5.2            textshaping_0.3.6   digest_0.6.29      </span>
-<span class="co">## [40] stringi_1.7.6       bookdown_0.24       grid_4.1.1         </span>
-<span class="co">## [43] rprojroot_2.0.2     cli_3.2.0           tools_4.1.1        </span>
-<span class="co">## [46] magrittr_2.0.2      sass_0.4.0          proxy_0.4-26       </span>
-<span class="co">## [49] tibble_3.1.6        crayon_1.5.0        pkgconfig_2.0.3    </span>
-<span class="co">## [52] Matrix_1.4-0        ellipsis_0.3.2      MASS_7.3-55        </span>
-<span class="co">## [55] rmarkdown_2.13      R6_2.5.1            compiler_4.1.1</span></code></pre>
+<div id="session-info" class="section level1">
+<h1 class="hasAnchor">
+<a href="#session-info" class="anchor"></a>Session info</h1>
+<pre><code>## R version 4.0.3 (2020-10-10)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 20.04.3 LTS
+## 
+## Matrix products: default
+## BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
+## LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
+## 
+## locale:
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=de_DE.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=de_DE.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=de_DE.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=de_DE.UTF-8 LC_IDENTIFICATION=C       
+## 
+## attached base packages:
+## [1] parallel  stats     graphics  grDevices utils     datasets  methods  
+## [8] base     
+## 
+## other attached packages:
+## [1] viper_1.24.0        dplyr_1.0.7         bcellViper_1.26.0  
+## [4] Biobase_2.50.0      BiocGenerics_0.36.0 dorothea_1.7.0     
+## [7] BiocStyle_2.18.1   
+## 
+## loaded via a namespace (and not attached):
+##  [1] mixtools_1.2.0      tidyselect_1.1.0    xfun_0.21          
+##  [4] bslib_0.2.4         kernlab_0.9-29      purrr_0.3.4        
+##  [7] lattice_0.20-41     splines_4.0.3       vctrs_0.3.8        
+## [10] generics_0.1.0      htmltools_0.5.1.1   yaml_2.2.1         
+## [13] survival_3.2-7      utf8_1.1.4          rlang_0.4.11       
+## [16] e1071_1.7-4         pkgdown_1.6.1       jquerylib_0.1.3    
+## [19] pillar_1.6.1        glue_1.4.2          DBI_1.1.1          
+## [22] segmented_1.3-2     lifecycle_1.0.0     stringr_1.4.0      
+## [25] ragg_1.1.0          memoise_2.0.0       evaluate_0.14      
+## [28] knitr_1.31          fastmap_1.1.0       class_7.3-17       
+## [31] fansi_0.4.2         KernSmooth_2.23-17  BiocManager_1.30.10
+## [34] cachem_1.0.4        desc_1.2.0          jsonlite_1.7.2     
+## [37] systemfonts_1.0.1   fs_1.5.0            textshaping_0.3.0  
+## [40] digest_0.6.27       stringi_1.5.3       bookdown_0.21      
+## [43] grid_4.0.3          rprojroot_2.0.2     tools_4.0.3        
+## [46] magrittr_2.0.1      sass_0.3.1          tibble_3.1.2       
+## [49] crayon_1.4.1        pkgconfig_2.0.3     Matrix_1.3-4       
+## [52] ellipsis_0.3.2      MASS_7.3-53         assertthat_0.2.1   
+## [55] rmarkdown_2.7       R6_2.5.0            compiler_4.0.3</code></pre>
 </div>
-<div class="section level2">
-<h2 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
-</h2>
+<div id="references" class="section level1 unnumbered">
+<h1 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-Alvarez2016" class="csl-entry">
-Alvarez, Mariano J, Yao Shen, Federico M Giorgi, Alexander Lachmann, B Belinda Ding, B Hilda Ye, and Andrea Califano. 2016. <span>“Functional Characterization of Somatic Mutations in Cancer Using Network-Based Inference of Protein Activity.”</span> <em>Nature Genetics</em> 48 (8): 838–47. <a href="https://doi.org/10.1038/ng.3593" class="external-link">https://doi.org/10.1038/ng.3593</a>.
+Alvarez, Mariano J, Yao Shen, Federico M Giorgi, Alexander Lachmann, B Belinda Ding, B Hilda Ye, and Andrea Califano. 2016. <span>“Functional Characterization of Somatic Mutations in Cancer Using Network-Based Inference of Protein Activity.”</span> <em>Nature Genetics</em> 48 (8): 838–47. <a href="https://doi.org/10.1038/ng.3593">https://doi.org/10.1038/ng.3593</a>.
 </div>
 <div id="ref-Dugourd2019" class="csl-entry">
-Dugourd, Aurelien, and Julio Saez-Rodriguez. 2019. <span>“Footprint-Based Functional Analysis of Multiomic Data.”</span> <em>Current Opinion in Systems Biology</em> 15 (June): 82–90. <a href="https://doi.org/10.1016/j.coisb.2019.04.002" class="external-link">https://doi.org/10.1016/j.coisb.2019.04.002</a>.
+Dugourd, Aurelien, and Julio Saez-Rodriguez. 2019. <span>“Footprint-Based Functional Analysis of Multiomic Data.”</span> <em>Current Opinion in Systems Biology</em> 15 (June): 82–90. <a href="https://doi.org/10.1016/j.coisb.2019.04.002">https://doi.org/10.1016/j.coisb.2019.04.002</a>.
 </div>
 <div id="ref-GarciaAlonso2019" class="csl-entry">
-Garcia-Alonso, Luz, Christian H. Holland, Mahmoud M. Ibrahim, Denes Turei, and Julio Saez-Rodriguez. 2019. <span>“Benchmark and Integration of Resources for the Estimation of Human Transcription Factor Activities.”</span> <em>Genome Research</em> 29 (8): 1363–75. <a href="https://doi.org/10.1101/gr.240663.118" class="external-link">https://doi.org/10.1101/gr.240663.118</a>.
+Garcia-Alonso, Luz, Christian H. Holland, Mahmoud M. Ibrahim, Denes Turei, and Julio Saez-Rodriguez. 2019. <span>“Benchmark and Integration of Resources for the Estimation of Human Transcription Factor Activities.”</span> <em>Genome Research</em> 29 (8): 1363–75. <a href="https://doi.org/10.1101/gr.240663.118">https://doi.org/10.1101/gr.240663.118</a>.
 </div>
 <div id="ref-Holland2019" class="csl-entry">
-Holland, Christian H., Bence Szalai, and Julio Saez-Rodriguez. 2019. <span>“Transfer of Regulatory Knowledge from Human to Mouse for Functional Genomics Analysis.”</span> <em>Biochimica Et Biophysica Acta (<span>BBA</span>) - Gene Regulatory Mechanisms</em>, September, 194431. <a href="https://doi.org/10.1016/j.bbagrm.2019.194431" class="external-link">https://doi.org/10.1016/j.bbagrm.2019.194431</a>.
+Holland, Christian H., Bence Szalai, and Julio Saez-Rodriguez. 2019. <span>“Transfer of Regulatory Knowledge from Human to Mouse for Functional Genomics Analysis.”</span> <em>Biochimica Et Biophysica Acta (<span>BBA</span>) - Gene Regulatory Mechanisms</em>, September, 194431. <a href="https://doi.org/10.1016/j.bbagrm.2019.194431">https://doi.org/10.1016/j.bbagrm.2019.194431</a>.
 </div>
 </div>
 </div>
@@ -254,13 +259,11 @@ Holland, Christian H., Bence Szalai, and Julio Saez-Rodriguez. 2019. <span>“Tr
 
 
       <footer><div class="copyright">
-  <p></p>
-<p>Developed by Daniel Dimitrov, Christian H. Holland, Luz Garcia-Alonso.</p>
+  <p>Developed by Daniel Dimitrov, Christian H. Holland, Luz Garcia-Alonso.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
@@ -268,8 +271,6 @@ Holland, Christian H., Bence Szalai, and Julio Saez-Rodriguez. 2019. <span>“Tr
 
   
 
-
-  
 
   </body>
 </html>
