@@ -49,7 +49,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -185,7 +185,7 @@
 <span class="co">## Identify the 2000 most highly variable genes</span>
 <span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/FindVariableFeatures.html" class="external-link">FindVariableFeatures</a></span><span class="op">(</span><span class="va">pbmc</span>, selection.method <span class="op">=</span> <span class="st">"vst"</span>, nfeatures <span class="op">=</span> <span class="fl">2000</span><span class="op">)</span>
 
-<span class="co">## In addition we scale the data</span>
+<span class="co">## We scale the data prior to clustering</span>
 <span class="va">all.genes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span>
 <span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/ScaleData.html" class="external-link">ScaleData</a></span><span class="op">(</span><span class="va">pbmc</span>, features <span class="op">=</span> <span class="va">all.genes</span><span class="op">)</span></code></pre></div>
 </div>
@@ -213,10 +213,10 @@
 <p><img src="single_cell_vignette_files/figure-html/pca-1.png" width="700"></p>
 </div>
 <div class="section level3">
-<h3 id="clustering-cells-with-tf-activity">Clustering cells with TF activity<a class="anchor" aria-label="anchor" href="#clustering-cells-with-tf-activity"></a>
+<h3 id="estimate-tf-activity-at-the-single-cell-level">Estimate TF activity at the single-cell level<a class="anchor" aria-label="anchor" href="#estimate-tf-activity-at-the-single-cell-level"></a>
 </h3>
-<p><span class="citation">Holland et al. (2020)</span> showed that clustering the cells based on their TF activity profiles can also be very interesting. Indeed, clustering cells using TF activity computed with <strong>VIPER</strong> and <strong>DoRothEA</strong> performs better than using the expression level of the same TFs. In addition, it brings complementary information to the clusters based on transcriptomics profiles.</p>
-<p>Here, we first run <strong>VIPER</strong> on <strong>DoRothEA’s</strong> regulons to obtain TFs activity, by using the wrapper function <code><a href="../reference/run_viper.html">run_viper()</a></code>. This function can deal with different input types such as matrix, dataframe, ExpressionSet or even Seurat objects. In case of a seurat object the function returns the same seurat object with an additonal assay called <code>dorothea</code> containing the TF activities in the slot <code>data</code>.</p>
+<p>We first run the <strong>VIPER</strong> method on <strong>DoRothEA’s</strong> regulons to obtain TFs activity, by using <em>DoRothEA’s</em> wrapper function <code><a href="../reference/run_viper.html">run_viper()</a></code>. This function can deal with different input types such as matrix, dataframe, ExpressionSet or even Seurat objects. In case of a seurat object the function returns the same seurat object with an additonal assay called <code>dorothea</code> containing the TF activities in the slot <code>data</code>.</p>
+<p>We kindly refer the user to <a href="https://github.com/saezlab/decoupleR" class="external-link">decoupleR</a> which provides a wide range of methods and best practices for enrichment analysis, also available in <a href="https://github.com/saezlab/decoupler-py" class="external-link">Python</a>. decoupleR is described in detail <a href="https://doi.org/10.1093/bioadv/vbac016" class="external-link">here</a>).</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## We read Dorothea Regulons for Human:</span>
 <span class="va">dorothea_regulon_human</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/get.html" class="external-link">get</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"dorothea_hs"</span>, package <span class="op">=</span> <span class="st">"dorothea"</span><span class="op">)</span><span class="op">)</span>
@@ -227,37 +227,20 @@
 
 <span class="co">## We compute Viper Scores </span>
 <span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/run_viper.html">run_viper</a></span><span class="op">(</span><span class="va">pbmc</span>, <span class="va">regulon</span>,
-                  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"scale"</span>, minsize <span class="op">=</span> <span class="fl">4</span>, 
+                  options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>minsize <span class="op">=</span> <span class="fl">4</span>, 
                                  eset.filter <span class="op">=</span> <span class="cn">FALSE</span>, cores <span class="op">=</span> <span class="fl">1</span>, 
-                                 verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p>We then apply <em><a href="https://CRAN.R-project.org/package=Seurat" class="external-link">Seurat</a></em> to cluster the cells following the same protocol than above but using TF activity scores.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## We compute the Nearest Neighbours to perform cluster</span>
+                                 verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span>
+
+<span class="co"># Change assay and scale data</span>
 <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/DefaultAssay.html" class="external-link">DefaultAssay</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">pbmc</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"dorothea"</span>
-<span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/ScaleData.html" class="external-link">ScaleData</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span>
-<span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/RunPCA.html" class="external-link">RunPCA</a></span><span class="op">(</span><span class="va">pbmc</span>, features <span class="op">=</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/rownames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/FindNeighbors.html" class="external-link">FindNeighbors</a></span><span class="op">(</span><span class="va">pbmc</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/FindClusters.html" class="external-link">FindClusters</a></span><span class="op">(</span><span class="va">pbmc</span>, resolution <span class="op">=</span> <span class="fl">0.5</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/RunUMAP.html" class="external-link">RunUMAP</a></span><span class="op">(</span><span class="va">pbmc</span>, dims <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, umap.method <span class="op">=</span> <span class="st">"uwot"</span>, metric <span class="op">=</span> <span class="st">"cosine"</span><span class="op">)</span>
-
-<span class="va">pbmc.markers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/FindAllMarkers.html" class="external-link">FindAllMarkers</a></span><span class="op">(</span><span class="va">pbmc</span>, only.pos <span class="op">=</span> <span class="cn">TRUE</span>, min.pct <span class="op">=</span> <span class="fl">0.25</span>, 
-                               logfc.threshold <span class="op">=</span> <span class="fl">0.25</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-
-<span class="co">## Assigning cell type identity to clusters</span>
-<span class="va">new.cluster.ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Naive CD4 T"</span>, <span class="st">"Memory CD4 T"</span>, <span class="st">"CD14+ Mono"</span>, <span class="st">"B"</span>, <span class="st">"CD8 T"</span>, 
-                     <span class="st">"FCGR3A+ Mono"</span>, <span class="st">"NK"</span>, <span class="st">"DC"</span>, <span class="st">"Platelet"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">new.cluster.ids</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span>
-<span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/Idents.html" class="external-link">RenameIdents</a></span><span class="op">(</span><span class="va">pbmc</span>, <span class="va">new.cluster.ids</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://satijalab.org/seurat/reference/DimPlot.html" class="external-link">DimPlot</a></span><span class="op">(</span><span class="va">pbmc</span>, reduction <span class="op">=</span> <span class="st">"umap"</span>, label <span class="op">=</span> <span class="cn">TRUE</span>, pt.size <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/SeuratTheme.html" class="external-link">NoLegend</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="single_cell_vignette_files/figure-html/tf_umap-1.png" width="700"></p>
+<span class="va">pbmc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://satijalab.org/seurat/reference/ScaleData.html" class="external-link">ScaleData</a></span><span class="op">(</span><span class="va">pbmc</span><span class="op">)</span></code></pre></div>
+<p>We then apply <em><a href="https://CRAN.R-project.org/package=Seurat" class="external-link">Seurat</a></em> to cluster the cells following the same protocol than above but using TF activity scores.</p>
 </div>
 <div class="section level3">
 <h3 id="tf-activity-per-cell-population">TF activity per cell population<a class="anchor" aria-label="anchor" href="#tf-activity-per-cell-population"></a>
 </h3>
-<p>Finally, we characterise the different cell populations based on their TF activities thanks to the previously computed <strong>VIPER</strong> scores on <strong>DoRothEA’s</strong> regulons.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<p>Finally, we characterise the different cell populations based on their TF activities thanks to the previously computed <strong>VIPER</strong> scores on <strong>DoRothEA’s</strong> regulons. Note that in this case we use the scaled data by rows, thus this allows us to distinguish TFs across cells. One could also run the enrichment analysis on the normalized (non-scaled) counts, depending on the goals of the analysis of question.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## We transform Viper scores, scaled by seurat, into a data frame to better </span>
 <span class="co">## handling the results</span>
 <span class="va">viper_scores_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mojaveazure.github.io/seurat-object/reference/AssayData.html" class="external-link">GetAssayData</a></span><span class="op">(</span><span class="va">pbmc</span>, slot <span class="op">=</span> <span class="st">"scale.data"</span>, 
@@ -283,7 +266,7 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>avg <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">activity</span><span class="op">)</span>,
             std <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">activity</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>For visualization purposes, we select the 20 most variable TFs across clusters according to our scores.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## We select the 20 most variable TFs. (20*9 populations = 180)</span>
 <span class="va">highly_variable_tfs</span> <span class="op">&lt;-</span> <span class="va">summarized_viper_scores</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">tf</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
@@ -298,7 +281,7 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">std</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>   
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/spread.html" class="external-link">spread</a></span><span class="op">(</span><span class="va">tf</span>, <span class="va">avg</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>row.names <span class="op">=</span> <span class="fl">1</span>, check.names <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">palette_length</span> <span class="op">=</span> <span class="fl">100</span>
 <span class="va">my_color</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Darkblue"</span>, <span class="st">"white"</span>,<span class="st">"red"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="va">palette_length</span><span class="op">)</span>
 
@@ -353,8 +336,8 @@
 <span class="co">##  [16] mixtools_1.2.0        ROCR_1.0-11           globals_0.14.0       </span>
 <span class="co">##  [19] matrixStats_0.61.0    pkgdown_2.0.2         spatstat.sparse_2.1-0</span>
 <span class="co">##  [22] colorspace_2.0-3      ggrepel_0.9.1         textshaping_0.3.6    </span>
-<span class="co">##  [25] xfun_0.29             crayon_1.5.0          jsonlite_1.8.0       </span>
-<span class="co">##  [28] spatstat.data_2.1-2   survival_3.2-13       zoo_1.8-9            </span>
+<span class="co">##  [25] xfun_0.30             crayon_1.5.0          jsonlite_1.8.0       </span>
+<span class="co">##  [28] spatstat.data_2.1-2   survival_3.3-1        zoo_1.8-9            </span>
 <span class="co">##  [31] glue_1.6.2            polyclip_1.10-0       gtable_0.3.0         </span>
 <span class="co">##  [34] leiden_0.3.9          kernlab_0.9-29        future.apply_1.8.1   </span>
 <span class="co">##  [37] abind_1.4-5           scales_1.1.1          spatstat.random_2.1-0</span>
@@ -364,18 +347,18 @@
 <span class="co">##  [49] RColorBrewer_1.1-2    ellipsis_0.3.2        ica_1.0-2            </span>
 <span class="co">##  [52] farver_2.1.0          pkgconfig_2.0.3       sass_0.4.0           </span>
 <span class="co">##  [55] uwot_0.1.11           deldir_1.0-6          utf8_1.2.2           </span>
-<span class="co">##  [58] tidyselect_1.1.2      labeling_0.4.2        rlang_1.0.1          </span>
+<span class="co">##  [58] tidyselect_1.1.2      labeling_0.4.2        rlang_1.0.2          </span>
 <span class="co">##  [61] reshape2_1.4.4        later_1.3.0           munsell_0.5.0        </span>
 <span class="co">##  [64] tools_4.1.1           cachem_1.0.6          cli_3.2.0            </span>
 <span class="co">##  [67] generics_0.1.2        ggridges_0.5.3        evaluate_0.15        </span>
 <span class="co">##  [70] stringr_1.4.0         fastmap_1.1.0         yaml_2.3.5           </span>
 <span class="co">##  [73] ragg_1.2.2            goftest_1.2-3         knitr_1.37           </span>
-<span class="co">##  [76] fs_1.5.2              fitdistrplus_1.1-6    bcellViper_1.28.0    </span>
+<span class="co">##  [76] fs_1.5.2              fitdistrplus_1.1-8    bcellViper_1.28.0    </span>
 <span class="co">##  [79] purrr_0.3.4           RANN_2.6.1            pbapply_1.5-0        </span>
 <span class="co">##  [82] future_1.24.0         nlme_3.1-155          mime_0.12            </span>
 <span class="co">##  [85] compiler_4.1.1        plotly_4.10.0         png_0.1-7            </span>
 <span class="co">##  [88] e1071_1.7-9           spatstat.utils_2.3-0  bslib_0.3.1          </span>
-<span class="co">##  [91] stringi_1.7.6         highr_0.9             desc_1.4.0           </span>
+<span class="co">##  [91] stringi_1.7.6         highr_0.9             desc_1.4.1           </span>
 <span class="co">##  [94] RSpectra_0.16-0       lattice_0.20-45       Matrix_1.4-0         </span>
 <span class="co">##  [97] vctrs_0.3.8           pillar_1.7.0          lifecycle_1.0.1      </span>
 <span class="co">## [100] BiocManager_1.30.16   spatstat.geom_2.3-2   lmtest_0.9-39        </span>
@@ -386,7 +369,7 @@
 <span class="co">## [115] parallelly_1.30.0     codetools_0.2-18      MASS_7.3-55          </span>
 <span class="co">## [118] rprojroot_2.0.2       sctransform_0.3.3     mgcv_1.8-39          </span>
 <span class="co">## [121] grid_4.1.1            rpart_4.1.16          class_7.3-20         </span>
-<span class="co">## [124] rmarkdown_2.11        segmented_1.4-0       Rtsne_0.15           </span>
+<span class="co">## [124] rmarkdown_2.13        segmented_1.4-0       Rtsne_0.15           </span>
 <span class="co">## [127] shiny_1.7.1</span></code></pre>
 </div>
 <div class="section level2">
