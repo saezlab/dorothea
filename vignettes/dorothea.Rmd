@@ -1,8 +1,18 @@
----
-title: "DoRothEA regulons"
-author: "Pau Badia i Mompel"
-date: "4/6/2022"
-output: html_document
+--- 
+title: "DoRothEA regulons."
+author:
+- name: Pau Badia i Mompel
+  affiliation: Institute for Computational Biomedicine, Heidelberg University
+  email: pau.badia@uni-heidelberg.de
+   
+package: dorothea
+output:
+  BiocStyle::html_document
+bibliography: references.bib
+vignette: |
+  %\VignetteIndexEntry{DoRothEA regulons.}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}
