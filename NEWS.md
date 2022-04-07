@@ -1,3 +1,7 @@
+# dorothea 1.7.1 (2022-04-07)
+* Removed outdated vignettes, now instead we point to decoupleR and decoupler-py's 
+most up-to-date vignettes.
+
 # dorothea 1.5.2 (2021-10-13)
 * Daniel Dimitrov is assigned as the new maintainer
 
