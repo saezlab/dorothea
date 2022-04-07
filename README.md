@@ -1,4 +1,4 @@
-# DoRothEA <img src="man/figures/tool_logo.png" align="right" height="139">
+# DoRothEA: collection of human and mouse regulons <img src="man/figures/tool_logo.png" align="right" width="120" />
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/saezlab/dorothea/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/saezlab/dorothea/actions)
