@@ -32,8 +32,6 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -46,12 +44,18 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">dorothea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.7.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+<li>
+  <a href="index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
 <li>
   <a href="articles/dorothea.html">Get started</a>
 </li>
@@ -64,19 +68,19 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/saezlab/dorothea/" class="external-link">
+  <a href="https://github.com/saezlab/dorothea/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="https://twitter.com/saezlab" class="external-link">
+  <a href="https://twitter.com/saezlab">
     <span class="fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="http://www.saezlab.org" class="external-link">
+  <a href="http://www.saezlab.org">
     <span class="fas fa-university"></span>
      
   </a>
@@ -93,55 +97,56 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div class="section level1">
-<div class="page-header"><h1 id="dorothea-collection-of-human-and-mouse-regulons-">DoRothEA: collection of human and mouse regulons <img src="reference/figures/tool_logo.png" align="right" width="120"><a class="anchor" aria-label="anchor" href="#dorothea-collection-of-human-and-mouse-regulons-"></a>
+<div id="dorothea-collection-of-human-and-mouse-regulons-" class="section level1">
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#dorothea-collection-of-human-and-mouse-regulons-" class="anchor"></a>DoRothEA: collection of human and mouse regulons <img src="reference/figures/tool_logo.png" align="right" width="120">
 </h1></div>
 <!-- badges: start -->
 
-<div class="section level2">
-<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
-</h2>
+<div id="overview" class="section level2">
+<h2 class="hasAnchor">
+<a href="#overview" class="anchor"></a>Overview</h2>
 <p>DoRothEA is a gene regulatory network containing signed transcription factor (TF) - target gene interactions. DoRothEA regulons, the collection of a TF and its transcriptional targets, were curated and collected from different types of evidence for both human and mouse. A confidence level was assigned to each TF-target interaction based on the number of supporting evidence.</p>
 <p><img src="reference/figures/overview.png" align="center" width="600"></p>
 <p>These regulons, coupled with any statistical method, can be used to infer TF activities from bulk or single-cell transcriptomics.</p>
-<p>This is an R package for storing the regulons. To infer TF activities, please check out <a href="https://doi.org/10.1093/bioadv/vbac016" class="external-link">decoupleR</a>, available in <a href="https://saezlab.github.io/decoupleR/" class="external-link">R</a> or <a href="https://github.com/saezlab/decoupler-py" class="external-link">python</a>.</p>
+<p>This is an R package for storing the regulons. To infer TF activities, please check out <a href="https://doi.org/10.1093/bioadv/vbac016">decoupleR</a>, available in <a href="https://saezlab.github.io/decoupleR/">R</a> or <a href="https://github.com/saezlab/decoupler-py">python</a>.</p>
 </div>
-<div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h2>
-<p>DoRothEA is available in <a href="http://bioconductor.org/packages/release/data/experiment/html/dorothea.html" class="external-link">Bioconductor</a>. In addition, one can install the development version from the Github repository:</p>
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h2>
+<p>DoRothEA is available in <a href="http://bioconductor.org/packages/release/data/experiment/html/dorothea.html">Bioconductor</a>. In addition, one can install the development version from the Github repository:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## To install the package from Bioconductor</span>
-<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
 
-<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"dorothea"</span><span class="op">)</span>
+<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"dorothea"</span><span class="op">)</span>
 
 <span class="co">## To install the development version from the Github repo:</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"saezlab/dorothea"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"saezlab/dorothea"</span><span class="op">)</span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="updates">Updates<a class="anchor" aria-label="anchor" href="#updates"></a>
-</h2>
+<div id="updates" class="section level2">
+<h2 class="hasAnchor">
+<a href="#updates" class="anchor"></a>Updates</h2>
 <p>Since the original release, we have implemented some extensions in DoRothEA:</p>
-<ol style="list-style-type: decimal">
+<ol>
 <li>
-<strong>Extension to mouse</strong>: Originally DoRothEA was developed for the application to human data. In a benchmark study we showed that DoRothEA is also applicable to mouse data, as described in <a href="https://doi.org/10.1016/j.bbagrm.2019.194431" class="external-link">Holland et al., 2019</a>. Accordingly, we included new parameters to run mouse version of DoRothEA by transforming the human genes to their mouse orthologs.</li>
+<strong>Extension to mouse</strong>: Originally DoRothEA was developed for the application to human data. In a benchmark study we showed that DoRothEA is also applicable to mouse data, as described in <a href="https://doi.org/10.1016/j.bbagrm.2019.194431">Holland et al., 2019</a>. Accordingly, we included new parameters to run mouse version of DoRothEA by transforming the human genes to their mouse orthologs.</li>
 <li>
-<strong>Extension to single-cell RNA-seq data</strong>: We showed that DoRothEA can be applied to scRNA-seq data, as described in <a href="https://doi.org/10.1186/s13059-020-1949-z" class="external-link">Holland et al., 2020</a>
+<strong>Extension to single-cell RNA-seq data</strong>: We showed that DoRothEA can be applied to scRNA-seq data, as described in <a href="https://doi.org/10.1186/s13059-020-1949-z">Holland et al., 2020</a>
 </li>
 </ol>
 </div>
-<div class="section level2">
-<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
-</h2>
-<p>DoRothEA is intended only for academic use as in contains resources whose licenses don’t permit commercial use. However, we developed a non-academic version of DoRothEA by removing those resources (mainly TRED from the curated databases). You can find the non-academic package with the regulons <a href="https://github.com/saezlab/dorothea/tree/non-academic" class="external-link">here</a>.</p>
+<div id="license" class="section level2">
+<h2 class="hasAnchor">
+<a href="#license" class="anchor"></a>License</h2>
+<p>DoRothEA is intended only for academic use as in contains resources whose licenses don’t permit commercial use. However, we developed a non-academic version of DoRothEA by removing those resources (mainly TRED from the curated databases). You can find the non-academic package with the regulons <a href="https://github.com/saezlab/dorothea/tree/non-academic">here</a>.</p>
 </div>
-<div class="section level2">
-<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
-</h2>
+<div id="citation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#citation" class="anchor"></a>Citation</h2>
 <blockquote>
-<p>Garcia-Alonso L, Holland CH, Ibrahim MM, Turei D, Saez-Rodriguez J. “Benchmark and integration of resources for the estimation of human transcription factor activities.” <em>Genome Research.</em> 2019. DOI: <a href="https://doi.org/10.1101/gr.240663.118" class="external-link">10.1101/gr.240663.118</a>.</p>
+<p>Garcia-Alonso L, Holland CH, Ibrahim MM, Turei D, Saez-Rodriguez J. “Benchmark and integration of resources for the estimation of human transcription factor activities.” <em>Genome Research.</em> 2019. DOI: <a href="https://doi.org/10.1101/gr.240663.118">10.1101/gr.240663.118</a>.</p>
 </blockquote>
 </div>
 </div>
@@ -149,62 +154,58 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2 data-toc-skip>Links</h2>
+<h2>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.bioconductor.org/packages/dorothea" class="external-link">View on Bioconductor</a></li>
-<li><a href="https://github.com/saezlab/dorothea/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/saezlab/dorothea/issues" class="external-link">Report a bug</a></li>
-</ul>
-</div>
-
-<div class="license">
-<h2 data-toc-skip>License</h2>
-<ul class="list-unstyled">
-<li>
-<a href="https://www.r-project.org/Licenses/GPL-3" class="external-link">GPL-3</a> + file <a href="LICENSE-text.html">LICENSE</a>
+<li>Download from BIOC at <br><a href="https://www.bioconductor.org/packages/dorothea">https://​www.bioconductor.org/​packages/​dorothea</a>
+</li>
+<li>Browse source code at <br><a href="https://github.com/saezlab/dorothea/">https://​github.com/​saezlab/​dorothea/​</a>
+</li>
+<li>Report a bug at <br><a href="https://github.com/saezlab/dorothea/issues">https://​github.com/​saezlab/​dorothea/​issues</a>
 </li>
 </ul>
 </div>
-
-
+<div class="license">
+<h2>License</h2>
+<ul class="list-unstyled">
+<li>
+<a href="https://www.r-project.org/Licenses/GPL-3">GPL-3</a> + file <a href="LICENSE-text.html">LICENSE</a>
+</li>
+</ul>
+</div>
 <div class="citation">
-<h2 data-toc-skip>Citation</h2>
+<h2>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing dorothea</a></li>
+<li><a href="authors.html">Citing dorothea</a></li>
 </ul>
 </div>
-
 <div class="developers">
-<h2 data-toc-skip>Developers</h2>
+<h2>Developers</h2>
 <ul class="list-unstyled">
-<li>Daniel Dimitrov <br><small class="roles"> Maintainer </small> <a href="https://orcid.org/0000-0002-5197-2112" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Christian H. Holland <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-3060-5786" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Daniel Dimitrov <br><small class="roles"> Maintainer </small> <a href="https://orcid.org/0000-0002-5197-2112" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Christian H. Holland <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-3060-5786" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Luz Garcia-Alonso <br><small class="roles"> Author </small>  </li>
-<li><a href="authors.html">More about authors...</a></li>
+<li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
 
-<div class="dev-status">
-<h2 data-toc-skip>Dev status</h2>
+  <div class="dev-status">
+<h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/saezlab/dorothea/actions" class="external-link"><img src="https://github.com/saezlab/dorothea/workflows/R-CMD-check-bioc/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://bioconductor.org/checkResults/release/data-experiment-LATEST/dorothea" class="external-link"><img src="http://bioconductor.org/shields/build/release/data-experiment/dorothea.svg" alt="BioC status"></a></li>
-<li><a href="https://codecov.io/gh/saezlab/dorothea" class="external-link"><img src="https://codecov.io/gh/saezlab/dorothea/branch/master/graph/badge.svg" alt="codecov"></a></li>
+<li><a href="https://github.com/saezlab/dorothea/actions"><img src="https://github.com/saezlab/dorothea/workflows/R-CMD-check-bioc/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://bioconductor.org/checkResults/release/data-experiment-LATEST/dorothea"><img src="http://bioconductor.org/shields/build/release/data-experiment/dorothea.svg" alt="BioC status"></a></li>
+<li><a href="https://codecov.io/gh/saezlab/dorothea"><img src="https://codecov.io/gh/saezlab/dorothea/branch/master/graph/badge.svg" alt="codecov"></a></li>
 </ul>
 </div>
-
-  </div>
+</div>
 </div>
 
 
       <footer><div class="copyright">
-  <p></p>
-<p>Developed by Daniel Dimitrov, Christian H. Holland, Luz Garcia-Alonso.</p>
+  <p>Developed by Daniel Dimitrov, Christian H. Holland, Luz Garcia-Alonso.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
@@ -212,8 +213,6 @@
 
   
 
-
-  
 
   </body>
 </html>
