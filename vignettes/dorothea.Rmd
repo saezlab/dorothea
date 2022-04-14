@@ -41,9 +41,10 @@ possible confidence score that resulted in a regulon size equal to or greater
 than ten targets. The final confidence level assigned to the TF regulon is the
 lowest confidence score of its component targets.
 
+# Activity estimation
 DoRothEA regulons can be coupled with any statistical method to infer TF
 activities from bulk or single-cell transcriptomics.
-In this vignette we show how to access these regulons and some of their
+In this vignette we just show how to access these regulons and some of their
 properties. To infer TF activities, please check out
 [decoupleR](https://doi.org/10.1093/bioadv/vbac016), available in
 [R](https://saezlab.github.io/decoupleR/) or
