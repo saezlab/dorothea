@@ -111,7 +111,11 @@
 <p>DoRothEA is a gene regulatory network containing signed transcription factor (TF) - target gene interactions. DoRothEA regulons, the collection of TFs and their transcriptional targets, were curated and collected from different types of evidence for both human and mouse.</p>
 <p><img src="../man/figures/overview.png" align="center" width="600"></p>
 <p>For each TF-target interaction we assigned a confidence level based on the number of supporting evidence. The confidence assignment comprises five levels, ranging from A (highest confidence) to E (lowest confidence). Interactions that are supported by all four lines of evidence, manually curated by experts in specific reviews, or supported both in at least two curated resources are considered to be highly reliable and were assigned an A level. Level B-D are reserved for curated and/or ChIP-seq interactions with different levels of additional evidence. Finally, E level is used for interactions that are uniquely supported by computational predictions. To provide the most confident regulon for each TF, we aggregated the TF-target interactions with the highest possible confidence score that resulted in a regulon size equal to or greater than ten targets. The final confidence level assigned to the TF regulon is the lowest confidence score of its component targets.</p>
-<p>DoRothEA regulons can be coupled with any statistical method to infer TF activities from bulk or single-cell transcriptomics. In this vignette we show how to access these regulons and some of their properties. To infer TF activities, please check out <a href="https://doi.org/10.1093/bioadv/vbac016">decoupleR</a>, available in <a href="https://saezlab.github.io/decoupleR/">R</a> or <a href="https://github.com/saezlab/decoupler-py">python</a>.</p>
+</div>
+<div id="activity-estimation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#activity-estimation" class="anchor"></a>Activity estimation</h1>
+<p>DoRothEA regulons can be coupled with any statistical method to infer TF activities from bulk or single-cell transcriptomics. In this vignette we just show how to access these regulons and some of their properties. To infer TF activities, please check out <a href="https://doi.org/10.1093/bioadv/vbac016">decoupleR</a>, available in <a href="https://saezlab.github.io/decoupleR/">R</a> or <a href="https://github.com/saezlab/decoupler-py">python</a>.</p>
 </div>
 <div id="load" class="section level1">
 <h1 class="hasAnchor">
