@@ -36,7 +36,7 @@ Description: This package contains human and mouse TF regulons.
     data. Preferably the statistical method viper is used.
 URL: https://saezlab.github.io/dorothea/, https://github.com/saezlab/dorothea
 BugReports: https://github.com/saezlab/dorothea/issues
-Depends: R (>= 4.0)
+Depends: R (>= 4.2)
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
