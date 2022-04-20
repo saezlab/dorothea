@@ -1,7 +1,7 @@
 Package: dorothea
 Type: Package
 Title: Collection Of Human And Mouse TF Regulons
-Version: 1.7.1
+Version: 1.8.0
 Authors@R: c(
     person(given = "Daniel",
            family = "Dimitrov",
@@ -26,14 +26,7 @@ Authors@R: c(
            family = "Gabor",
            role = "ctb")
            )
-Description: This package contains human and mouse TF regulons.
-    The human regulons were curated and collected from different types of 
-    evidence such as literature curated resources, ChIP-seq peaks, TF binding 
-    site motifs and interactions inferred directly from gene expression. The 
-    mouse regulons were constructed by mapping the human gene symbols to their 
-    orthologs in mice. Those regulons can be coupled with any statistical method
-    that aims to analyse gene sets to infer TF activity from gene expression 
-    data. Preferably the statistical method viper is used.
+Description: DoRothEA is a gene regulatory network containing signed transcription factor (TF) - target gene interactions. DoRothEA regulons, the collection of a TF and its transcriptional targets, were curated and collected from different types of evidence for both human and mouse. A confidence level was assigned to each TF-target interaction based on the number of supporting evidence.
 URL: https://saezlab.github.io/dorothea/, https://github.com/saezlab/dorothea
 BugReports: https://github.com/saezlab/dorothea/issues
 Depends: R (>= 4.2)
