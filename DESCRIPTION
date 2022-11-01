@@ -1,7 +1,7 @@
 Package: dorothea
 Type: Package
 Title: Collection Of Human And Mouse TF Regulons
-Version: 1.9.0
+Version: 1.10.0
 Authors@R: c(
     person(given = "Daniel",
            family = "Dimitrov",
