@@ -1,7 +1,7 @@
 #' VIPER wrapper
 #'
 #' This function is a convenient wrapper for the
-#' \code{\link[viper]{viper}} function using DoRothEA regulons.
+#' \code{\link[decoupleR]{run_viper}} function using DoRothEA regulons.
 #'
 #' @param input An object containing a gene expression matrix with genes
 #'   (HGNC/MGI symbols) in rows and samples in columns. The object can be a
@@ -124,10 +124,20 @@ run_viper.Seurat <- function(input, regulons, options = list(), tidy = FALSE,
 #' @export
 run_viper.matrix <- function(input, regulons, options = list(), tidy=FALSE,
                              assay_key = "RNA") {
-  viper_res <- do.call(viper::viper,
-                      c(list(eset = input,
-                             regulon = df2regulon(regulons)),
-                        options))
+  msg <- 'This function is deprecated, please check the package decoupleR to infer activities.'
+  .Deprecated(new=NULL, package="decoupleR", msg=msg)
+  viper_res <- do.call(decoupleR::run_viper,
+                      c(list(mat = input,
+                             network = regulons,
+                             .source = 'tf',
+                             pleiotropy = FALSE
+                             ),
+                        options)) %>%
+    tidyr::pivot_wider(id_cols = 'source',
+                       names_from = 'condition',
+                       values_from = 'score') %>%
+    tibble::column_to_rownames('source') %>%
+    as.matrix()
 
   if (tidy) {
     metadata <- regulons %>%

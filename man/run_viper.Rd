@@ -41,7 +41,7 @@ A matrix of normalized enrichment scores for each TF across all
 }
 \description{
 This function is a convenient wrapper for the
-\code{\link[viper]{viper}} function using DoRothEA regulons.
+\code{\link[decoupleR]{run_viper}} function using DoRothEA regulons.
 }
 \examples{
 # use example gene expression matrix from bcellViper package

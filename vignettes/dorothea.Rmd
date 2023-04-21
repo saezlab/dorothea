@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 
 # Introduction
 
-DoRothEA is a gene regulatory network containing signed transcription factor
+DoRothEA is a gene regulatory network (GRN) containing signed transcription factor
 (TF) - target gene interactions. DoRothEA regulons, the collection of TFs and
 their transcriptional targets, were curated and collected from different types of
 evidence for both human and mouse.
@@ -57,13 +57,14 @@ properties. To infer TF activities, please check out
 First we load the necessary packages:
 ```{r load, message=FALSE}
 library(dorothea)
+library(decoupleR)
 library(ggplot2)
 library(dplyr)
 ```
 
 Here is how to retrieve all regulons from human:
 ```{r model}
-net <- dorothea::dorothea_hs
+net <- decoupleR::get_dorothea(levels = c('A', 'B', 'C', 'D'))
 head(net)
 ```
 
@@ -76,7 +77,7 @@ the confidence levels A, B and C.
 We can observe the total number of genes per TF:
 ```{r n_genes}
 n_genes <- net %>%
-  group_by(tf) %>%
+  group_by(source) %>%
   summarize(n = n())
 
 ggplot(data=n_genes, aes(x=n)) +
@@ -101,8 +102,8 @@ n_edges <- net %>%
 ggplot(data=n_edges, aes(x=confidence, y=log10(n), color=confidence, fill=confidence)) +
   geom_bar(stat="identity") +
   theme(text = element_text(size=12)) +
-  xlab('log10(Number of edges)') +
-  ylab('densities') +
+  xlab('Confidence') +
+  ylab('log10(Number of edges)') +
   theme_bw() +
   theme(legend.position = "none")
 
@@ -117,7 +118,8 @@ of their edges with positive `mor`:
 
 ```{r prop}
 prop <- net %>%
-  group_by(tf, mor) %>%
+  mutate(mor = case_when(mor < 0 ~ -1, mor > 0 ~ 1)) %>%
+  group_by(source, mor) %>%
   summarize(n = n()) %>%
   mutate(freq = n / sum(n)) %>%
   filter(mor == 1)
@@ -134,3 +136,61 @@ ggplot(data=prop, aes(x=freq)) +
 
 Most TFs in DoRothEA are activators, but there are also some of them that
 are repressors.
+
+# CollecTRI
+
+Recently, we have released a new literature based GRN with increased coverage and better
+performance at identifying perturbed TFs, called [CollecTRI](https://github.com/saezlab/CollecTRI).
+We encourage users to use CollecTRI instead of DoRothEA. Vignettes on how to
+obtain activities are available at the [decoupleR package](https://saezlab.github.io/decoupleR/).
+
+Here's how to access it. The argument `split_complexes` keeps complexes or
+splits them into subunits, by default we recommend to keep complexes together.
+
+```{r collectri}
+net <- decoupleR::get_collectri(split_complexes = FALSE)
+head(net)
+```
+
+We can observe the total number of genes per TF:
+```{r n_genes_collectri}
+n_genes <- net %>%
+  group_by(source) %>%
+  summarize(n = n())
+
+ggplot(data=n_genes, aes(x=n)) +
+  geom_density() +
+  theme(text = element_text(size=12)) +
+  xlab('Number of target genes') +
+  ylab('densities') +
+  theme_bw() +
+  theme(legend.position = "none")
+
+```
+
+Similarly to DoRothEA, the majority of TFsin CollecTRI have around 20 target genes, but
+there are some that reach more than 1000.
+
+We can also check how many TFs are repressors, TFs with most of their edges with
+negative mode of regulation (`mor`), and how many are activators, TFs with most
+of their edges with positive `mor`:
+
+```{r prop_collectri}
+prop <- net %>%
+  mutate(mor = case_when(mor < 0 ~ -1, mor > 0 ~ 1)) %>%
+  group_by(source, mor) %>%
+  summarize(n = n()) %>%
+  mutate(freq = n / sum(n)) %>%
+  filter(mor == 1)
+
+ggplot(data=prop, aes(x=freq)) +
+  geom_density() +
+  theme(text = element_text(size=12)) +
+  xlab('% of positive edges') +
+  ylab('densities') +
+  theme_bw() +
+  theme(legend.position = "none")
+
+```
+
+As seen in DoRothEA, Most TFs in CollecTRI are also activators.

@@ -3,7 +3,7 @@ test_that("test run_viper with matrix as input", {
     system.file("testdata", "toy_matrix.rds", package = "dorothea")
   )
   r <- dplyr::filter(dorothea_hs, confidence %in% c("A", "B"))
-  res <- run_viper(m, r, options =  list(method = "scale", minsize = 4,
+  res <- dorothea::run_viper(m, r, options =  list(method = "scale", minsize = 4,
                                          eset.filter = FALSE, verbose = FALSE))
 
   tidy_res <- run_viper(m, r, options =  list(method = "scale", minsize = 4,

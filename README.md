@@ -8,7 +8,7 @@
 <!-- badges: end -->
 
 ## Overview
-DoRothEA is a gene regulatory network containing signed transcription factor
+DoRothEA is a gene regulatory network (GRN) containing signed transcription factor
 (TF) - target gene interactions. DoRothEA regulons, the collection of a TF and
 its transcriptional targets, were curated and collected from different types of
 evidence for both human and mouse. A confidence level was assigned to each 
@@ -56,6 +56,12 @@ Since the original release, we have implemented some extensions in DoRothEA:
   We showed that DoRothEA can be applied to scRNA-seq data, as described in
   [Holland et al., 2020](https://doi.org/10.1186/s13059-020-1949-z)
 
+3. **Extension to other databases**
+  We have released a new literature based GRN with increased coverage and better
+  performance at identifying perturbed TFs, called [CollecTRI](https://github.com/saezlab/CollecTRI).
+  We encourage users to use CollecTRI instead of DoRothEA. Vignettes on how to
+  obtain activities are available at the [decoupleR package](https://saezlab.github.io/decoupleR/).
+
 ## License
 DoRothEA is intended only for academic use as in contains resources
 whose licenses don't permit commercial use. However, we developed a non-academic
@@ -63,6 +69,24 @@ version of DoRothEA by removing those resources (mainly TRED from the curated
 databases). You can find the non-academic package with the regulons [here](https://github.com/saezlab/dorothea/tree/non-academic).
 
 ## Citation
+If you use the DoRothEA resource, please cite:
+
 > Garcia-Alonso L, Holland CH, Ibrahim MM, Turei D, Saez-Rodriguez J.
-"Benchmark and integration of resources for the estimation of human
-transcription factor activities." _Genome Research._ 2019. DOI: [10.1101/gr.240663.118](https://doi.org/10.1101/gr.240663.118).
+Benchmark and integration of resources for the estimation of human
+transcription factor activities. _Genome Research._ 2019. DOI: [10.1101/gr.240663.118](https://doi.org/10.1101/gr.240663.118).
+
+If you infer TF activities, please cite:
+
+> Badia-i-Mompel P., Vélez Santiago J., Braunger J., Geiss C., Dimitrov
+  D., Müller-Dott S., Taus P., Dugourd A., Holland C.H., Ramirez Flores R.O.
+  and Saez-Rodriguez J. decoupleR: Ensemble of computational methods to
+  infer biological activities from omics data. 2022. _Bioinformatics Advances_.
+  DOI: [10.1093/bioadv/vbac016](https://doi.org/10.1093/bioadv/vbac016)
+
+If you use the CollecTRI resource, please cite:
+
+> Müller-Dott S., Tsirvouli E., Vázquez M., Ramirez Flores R.O.,
+  Badia-i-Mompel P., Fallegger R., Lægreid A. and Saez-Rodriguez J.
+  Expanding the coverage of regulons from high-confidence prior knowledge for
+  accurate estimation of transcription factor activities. _bioRxiv_. 2023. DOI:
+  [10.1101/2023.03.30.534849](https://doi.org/10.1101/2023.03.30.534849)

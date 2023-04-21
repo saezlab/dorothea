@@ -1,11 +1,16 @@
 Package: dorothea
 Type: Package
 Title: Collection Of Human And Mouse TF Regulons
-Version: 1.7.2
+Version: 1.7.3
 Authors@R: c(
+    person(given = "Pau",
+           family = "Badia-i-Mompel",
+           role = c("cre"),
+           email = "pau.badia@uni-heidelberg.de",
+           comment = c(ORCID = "0000-0002-1004-3923")),
     person(given = "Daniel",
            family = "Dimitrov",
-           role = c("cre"),
+           role = c("aut"),
            email = "daniel.dimitrov@uni-heidelberg.de",
            comment = c(ORCID = "0000-0002-5197-2112")),
     person(given = "Christian H.",
@@ -34,17 +39,19 @@ License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
 LazyDataCompression: xz
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 biocViews: ExperimentData, Homo_sapiens_Data, Mus_musculus_Data
 Imports:
     dplyr,
     magrittr,
     bcellViper,
-    viper
+    decoupleR,
 Suggests:
     Biobase,
     BiocStyle,
+    OmnipathR,
+    viper,
     knitr,
     pheatmap,
     pkgdown,

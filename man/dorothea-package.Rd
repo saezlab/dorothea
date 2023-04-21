@@ -22,10 +22,11 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Daniel Dimitrov \email{daniel.dimitrov@uni-heidelberg.de} (\href{https://orcid.org/0000-0002-5197-2112}{ORCID})
+\strong{Maintainer}: Pau Badia-i-Mompel \email{pau.badia@uni-heidelberg.de} (\href{https://orcid.org/0000-0002-1004-3923}{ORCID})
 
 Authors:
 \itemize{
+  \item Daniel Dimitrov \email{daniel.dimitrov@uni-heidelberg.de} (\href{https://orcid.org/0000-0002-5197-2112}{ORCID})
   \item Christian H. Holland \email{cholland2408@gmail.com} (\href{https://orcid.org/0000-0002-3060-5786}{ORCID})
   \item Luz Garcia-Alonso
 }

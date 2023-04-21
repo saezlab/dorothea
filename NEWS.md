@@ -1,3 +1,6 @@
+# dorothea 1.7.3 (2023-04-21)
+* Added CollecTRI and deprecated run_viper function for `decoupleR`.
+
 # dorothea 1.7.1 (2022-04-07)
 * Removed outdated vignettes, now instead we point to decoupleR and decoupler-py's 
 most up-to-date vignettes.
