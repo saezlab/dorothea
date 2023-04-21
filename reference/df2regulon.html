@@ -24,7 +24,7 @@ format required by the viper function."><!-- mathjax --><script src="https://cdn
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dorothea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.3</span>
       </span>
     </div>
 
@@ -76,26 +76,29 @@ format required by the <code><a href="https://rdrr.io/pkg/viper/man/viper.html" 
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">df2regulon</span><span class="op">(</span><span class="va">df</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">df2regulon</span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>df</dt>
 <dd><p>A regulon table from dorothea package.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>Regulons in the <code>viper</code> format.</p>
+    
+
+<p>Regulons in the <code>viper</code> format.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># acessing (human) dorothea regulons</span></span>
-<span class="r-in"><span class="co"># for mouse regulons: data(dorothea_mm, package = "dorothea")</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dorothea_hs</span>, package <span class="op">=</span> <span class="st">"dorothea"</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># convert to the format required by viper</span></span>
-<span class="r-in"><span class="va">viper_regulons</span> <span class="op">=</span> <span class="fu">df2regulon</span><span class="op">(</span><span class="va">dorothea_hs</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># acessing (human) dorothea regulons</span></span></span>
+<span class="r-in"><span><span class="co"># for mouse regulons: data(dorothea_mm, package = "dorothea")</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">dorothea_hs</span>, package <span class="op">=</span> <span class="st">"dorothea"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># convert to the format required by viper</span></span></span>
+<span class="r-in"><span><span class="va">viper_regulons</span> <span class="op">=</span> <span class="fu">df2regulon</span><span class="op">(</span><span class="va">dorothea_hs</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -106,11 +109,11 @@ format required by the <code><a href="https://rdrr.io/pkg/viper/man/viper.html" 
 
 
       <footer><div class="copyright">
-  <p></p><p>Developed by Daniel Dimitrov, Christian H. Holland, Luz Garcia-Alonso.</p>
+  <p></p><p>Developed by Pau Badia-i-Mompel, Daniel Dimitrov, Christian H. Holland, Luz Garcia-Alonso.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

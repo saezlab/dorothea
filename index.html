@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">dorothea</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.3</span>
       </span>
     </div>
 
@@ -94,7 +94,7 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p>DoRothEA is a gene regulatory network containing signed transcription factor (TF) - target gene interactions. DoRothEA regulons, the collection of a TF and its transcriptional targets, were curated and collected from different types of evidence for both human and mouse. A confidence level was assigned to each TF-target interaction based on the number of supporting evidence.</p>
+<p>DoRothEA is a gene regulatory network (GRN) containing signed transcription factor (TF) - target gene interactions. DoRothEA regulons, the collection of a TF and its transcriptional targets, were curated and collected from different types of evidence for both human and mouse. A confidence level was assigned to each TF-target interaction based on the number of supporting evidence.</p>
 <p><img src="reference/figures/overview.png" align="center" width="600"></p>
 <p>These regulons, coupled with any statistical method, can be used to infer TF activities from bulk or single-cell transcriptomics.</p>
 <p>This is an R package for storing the regulons. To infer TF activities, please check out <a href="https://doi.org/10.1093/bioadv/vbac016" class="external-link">decoupleR</a>, available in <a href="https://saezlab.github.io/decoupleR/" class="external-link">R</a> or <a href="https://github.com/saezlab/decoupler-py" class="external-link">python</a>.</p>
@@ -104,25 +104,23 @@
 </h2>
 <p>DoRothEA is available in <a href="http://bioconductor.org/packages/release/data/experiment/html/dorothea.html" class="external-link">Bioconductor</a>. In addition, one can install the development version from the Github repository:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## To install the package from Bioconductor</span>
-<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
-
-<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"dorothea"</span><span class="op">)</span>
-
-<span class="co">## To install the development version from the Github repo:</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"saezlab/dorothea"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co">## To install the package from Bioconductor</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"dorothea"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## To install the development version from the Github repo:</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"saezlab/dorothea"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="updates">Updates<a class="anchor" aria-label="anchor" href="#updates"></a>
 </h2>
 <p>Since the original release, we have implemented some extensions in DoRothEA:</p>
 <ol style="list-style-type: decimal">
-<li>
-<strong>Extension to mouse</strong>: Originally DoRothEA was developed for the application to human data. In a benchmark study we showed that DoRothEA is also applicable to mouse data, as described in <a href="https://doi.org/10.1016/j.bbagrm.2019.194431" class="external-link">Holland et al., 2019</a>. Accordingly, we included new parameters to run mouse version of DoRothEA by transforming the human genes to their mouse orthologs.</li>
-<li>
-<strong>Extension to single-cell RNA-seq data</strong>: We showed that DoRothEA can be applied to scRNA-seq data, as described in <a href="https://doi.org/10.1186/s13059-020-1949-z" class="external-link">Holland et al., 2020</a>
-</li>
+<li><p><strong>Extension to mouse</strong>: Originally DoRothEA was developed for the application to human data. In a benchmark study we showed that DoRothEA is also applicable to mouse data, as described in <a href="https://doi.org/10.1016/j.bbagrm.2019.194431" class="external-link">Holland et al., 2019</a>. Accordingly, we included new parameters to run mouse version of DoRothEA by transforming the human genes to their mouse orthologs.</p></li>
+<li><p><strong>Extension to single-cell RNA-seq data</strong>: We showed that DoRothEA can be applied to scRNA-seq data, as described in <a href="https://doi.org/10.1186/s13059-020-1949-z" class="external-link">Holland et al., 2020</a></p></li>
+<li><p><strong>Extension to other databases</strong> We have released a new literature based GRN with increased coverage and better performance at identifying perturbed TFs, called <a href="https://github.com/saezlab/CollecTRI" class="external-link">CollecTRI</a>. We encourage users to use CollecTRI instead of DoRothEA. Vignettes on how to obtain activities are available at the <a href="https://saezlab.github.io/decoupleR/" class="external-link">decoupleR package</a>.</p></li>
 </ol>
 </div>
 <div class="section level2">
@@ -133,8 +131,17 @@
 <div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
+<p>If you use the DoRothEA resource, please cite:</p>
 <blockquote>
-<p>Garcia-Alonso L, Holland CH, Ibrahim MM, Turei D, Saez-Rodriguez J. “Benchmark and integration of resources for the estimation of human transcription factor activities.” <em>Genome Research.</em> 2019. DOI: <a href="https://doi.org/10.1101/gr.240663.118" class="external-link">10.1101/gr.240663.118</a>.</p>
+<p>Garcia-Alonso L, Holland CH, Ibrahim MM, Turei D, Saez-Rodriguez J. Benchmark and integration of resources for the estimation of human transcription factor activities. <em>Genome Research.</em> 2019. DOI: <a href="https://doi.org/10.1101/gr.240663.118" class="external-link">10.1101/gr.240663.118</a>.</p>
+</blockquote>
+<p>If you infer TF activities, please cite:</p>
+<blockquote>
+<p>Badia-i-Mompel P., Vélez Santiago J., Braunger J., Geiss C., Dimitrov D., Müller-Dott S., Taus P., Dugourd A., Holland C.H., Ramirez Flores R.O. and Saez-Rodriguez J. decoupleR: Ensemble of computational methods to infer biological activities from omics data. 2022. <em>Bioinformatics Advances</em>. DOI: <a href="https://doi.org/10.1093/bioadv/vbac016" class="external-link">10.1093/bioadv/vbac016</a></p>
+</blockquote>
+<p>If you use the CollecTRI resource, please cite:</p>
+<blockquote>
+<p>Müller-Dott S., Tsirvouli E., Vázquez M., Ramirez Flores R.O., Badia-i-Mompel P., Fallegger R., Lægreid A. and Saez-Rodriguez J. Expanding the coverage of regulons from high-confidence prior knowledge for accurate estimation of transcription factor activities. <em>bioRxiv</em>. 2023. DOI: <a href="https://doi.org/10.1101/2023.03.30.534849" class="external-link">10.1101/2023.03.30.534849</a></p>
 </blockquote>
 </div>
 </div>
@@ -170,7 +177,8 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Daniel Dimitrov <br><small class="roles"> Maintainer </small> <a href="https://orcid.org/0000-0002-5197-2112" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Pau Badia-i-Mompel <br><small class="roles"> Maintainer </small> <a href="https://orcid.org/0000-0002-1004-3923" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Daniel Dimitrov <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-5197-2112" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Christian H. Holland <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-3060-5786" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 <li>Luz Garcia-Alonso <br><small class="roles"> Author </small>  </li>
 <li><a href="authors.html">More about authors...</a></li>
@@ -192,12 +200,12 @@
 
       <footer><div class="copyright">
   <p></p>
-<p>Developed by Daniel Dimitrov, Christian H. Holland, Luz Garcia-Alonso.</p>
+<p>Developed by Pau Badia-i-Mompel, Daniel Dimitrov, Christian H. Holland, Luz Garcia-Alonso.</p>
 </div>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
