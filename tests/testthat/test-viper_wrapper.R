@@ -63,6 +63,7 @@ test_that("test run_viper with seurat as input", {
   m <- readRDS(
     system.file("testdata", "toy_seurat.rds", package = "dorothea")
   )
+  m <- Seurat::UpdateSeuratObject(m)
   r <- dplyr::filter(dorothea_hs, confidence %in% c("A", "B"))
 
   res <- run_viper(m, r, options =  list(method = "scale", minsize = 4,
@@ -78,9 +79,9 @@ test_that("test run_viper with seurat as input", {
   expected_res <- readRDS(
     system.file("testdata", "output_seurat.rds", package = "dorothea")
   )
-
-  expect_equal(res@assays$dorothea, expected_res@assays$dorothea)
-  expect_equal(tidy_res@assays$dorothea, expected_res@assays$dorothea)
+  expected_res <- Seurat::UpdateSeuratObject(expected_res)
+  expect_equal(res@assays$dorothea$data, expected_res@assays$dorothea$data)
+  expect_equal(tidy_res@assays$dorothea$data, expected_res@assays$dorothea$data)
 
   # check raised warning when tidy is set to T
   expect_warning(
@@ -92,7 +93,7 @@ test_that("test run_viper with seurat as input", {
            "'tidy' is set to FALSE"))
 
   # Check key of seurat assays
-  expect_equal(unname(Seurat::Key(res)), c("rna_","dorothea_"))
+  expect_equal(unname(Seurat::Key(res)), c("md_", "rna_","dorothea_"))
 })
 
 
